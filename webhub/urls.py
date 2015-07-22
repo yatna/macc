@@ -7,7 +7,6 @@ from webhub import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'posts', malaria_views.PostViewSet)
-router.register(r'revposts', malaria_views.RevPostViewSet)
 router.register(r'regions', peacetrack_views.RegionViewSet)
 router.register(r'sectors', peacetrack_views.SectorViewSet)
 router.register(r'ptposts', peacetrack_views.PTPostViewSet)
@@ -98,7 +97,4 @@ urlpatterns = patterns(
     url(r'^helpPC/$',
         views.helpPC,
         name='helpPC'),
-    url(r'^testDB/$',
-        views.testDB,
-        name='testDB'),
 )
