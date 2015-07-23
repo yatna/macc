@@ -7,7 +7,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.test import APITestCase
 from malaria.models import Post
-from malaria.serializers import PostSerializer
+from malaria_api.serializers import PostSerializer
 from webhub.models import Pcuser
 
 

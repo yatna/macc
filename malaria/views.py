@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from rest_framework import viewsets
 from malaria.forms import PostForm
 from malaria.models import Post, RevPost
-from malaria.serializers import PostSerializer
 from malaria.services import delete_post_by_id, get_post_by_id, get_revpost_of_owner
 from webhub.checker import check
 
@@ -142,13 +140,3 @@ def delete_post(request, post_id):
         return render(request,
                       'malaria/delete_post.html',
                       {'post_id': post_id})
-
-
-class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Post endpoint that provides `list` and `detail` actions
-    `list` action returns a list of all Posts
-    `detail` action returns a particular Post instance based on id
-    """
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
