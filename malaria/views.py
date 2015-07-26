@@ -14,24 +14,6 @@ def list_posts(request):
                   {'post_list': post_list})
 
 
-def view_post(request, post_id):
-
-    retval = check(request)
-    if retval is not None:
-        return retval
-
-    post = get_post_by_id(post_id)
-    revpost = get_revpost_of_owner(post_id)
-    # revpost may not exist yet so do not check it
-    if post:
-        return render(request,
-                      'malaria/view_post.html',
-                      {'post': post,
-                       'revpost': revpost})
-    else:
-        raise Http404
-
-
 def create_post(request):
 
     # check if the user is logged in
@@ -43,14 +25,24 @@ def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
+
+            title_post = form.cleaned_data['title_post']
+            description_post = form.cleaned_data['description_post']
+
             post = form.save(commit=False)
             post.owner = request.user.pcuser
             post.save()
-            return render(request,
-                          'malaria/notice.html',
-                          {'text': 'Post created successfully.',
-                           'text1': 'Click here to view post.',
-                           'post': post})
+
+            revpost = RevPost(owner_rev=request.user.pcuser,
+                              owner_rev_post=post,
+                              title_post_rev=title_post,
+                              description_post_rev=description_post,
+                              title_change=True,
+                              description_change=True)
+            revpost.save()
+
+            return HttpResponseRedirect(reverse('malaria:list_posts'))
+
     return render(request,
                   'malaria/create_post.html',
                   {'form': form})
@@ -95,23 +87,14 @@ def edit_post(request, post_id):
 
                     revpost = RevPost(owner_rev=owner,
                                       owner_rev_post=post,
-                                      title_post_rev=orig_title,
-                                      description_post_rev=orig_desc,
+                                      title_post_rev=edited_title,
+                                      description_post_rev=edited_desc,
                                       title_change=revpost_title_change,
                                       description_change=revpost_desc_change)
                     revpost.save()
 
-                    return render(request,
-                                  'malaria/notice.html',
-                                  {'text': 'Post edited successfully.',
-                                   'text1': 'Click here to view post.',
-                                   'post': post})
-                else:
-                    return render(request,
-                                  'malaria/notice.html',
-                                  {'text': 'No changes to Post made.',
-                                   'text1': 'Click here to view post.',
-                                   'post': post})
+                return HttpResponseRedirect(reverse('malaria:view_post',
+                                                    args=(post_id,)))
             else:
                 return render(request,
                               'malaria/edit_post.html',
@@ -140,3 +123,21 @@ def delete_post(request, post_id):
         return render(request,
                       'malaria/delete_post.html',
                       {'post_id': post_id})
+
+
+def view_post(request, post_id):
+
+    retval = check(request)
+    if retval is not None:
+        return retval
+
+    post = get_post_by_id(post_id)
+    revpost_list = get_revpost_of_owner(post_id)
+    # revpost may not exist yet so do not check it
+    if post:
+        return render(request,
+                      'malaria/view_post.html',
+                      {'post': post,
+                       'revpost_list': revpost_list})
+    else:
+        raise Http404
