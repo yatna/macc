@@ -3,7 +3,8 @@ from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from malaria.forms import PostForm
 from malaria.models import Post, RevPost
-from malaria.services import delete_post_by_id, get_post_by_id, get_revpost_of_owner
+from malaria.services import create_post_from_form, create_revpost, \
+    delete_post_by_id, get_post_by_id, get_revpost_of_owner
 from webhub.checker import check
 
 
@@ -26,22 +27,19 @@ def create_post(request):
         form = PostForm(request.POST)
         if form.is_valid():
 
-            title_post = form.cleaned_data['title_post']
-            description_post = form.cleaned_data['description_post']
+            title = form.cleaned_data['title_post']
+            description = form.cleaned_data['description_post']
+            owner = request.user.pcuser
+            post = create_post_from_form(form, owner)
 
-            post = form.save(commit=False)
-            post.owner = request.user.pcuser
-            post.save()
-
-            revpost = RevPost(owner_rev=request.user.pcuser,
-                              owner_rev_post=post,
-                              title_post_rev=title_post,
-                              description_post_rev=description_post,
-                              title_change=True,
-                              description_change=True)
-            revpost.save()
-
-            return HttpResponseRedirect(reverse('malaria:list_posts'))
+            if post:
+                revpost = create_revpost(owner, post, title, description)
+                if revpost:
+                    return HttpResponseRedirect(reverse('malaria:list_posts'))
+                else:
+                    raise Http404
+            else:
+                raise Http404
 
     return render(request,
                   'malaria/create_post.html',
