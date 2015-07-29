@@ -24,7 +24,7 @@
             <div class="col-sm-2 col-sm-offset-2">
                 <h4 class="inverted-font">Description:</h4>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-7">
                 <h4 class="inverted-font">
                     {{ post.description_post }}
                 </h4>
@@ -34,8 +34,8 @@
         <div class="row">
             <div class="col-sm-12 col-sm-offset-2">
                 <a href="{% url 'malaria:list_posts' %}" class="btn btn-default">Back to Post List</a>
-                <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-default">Edit</a>
-                <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-default">Delete</a>
+                <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -46,16 +46,16 @@
             <thead>
                 <tr>
                     <th>
-                        <h4 class="inverted-font">Author</h4>
+                        <h4 class="inverted-font"><strong>Author</strong></h4>
                     </th>
                     <th>
-                        <h4 class="inverted-font">Date Updated</h4>
+                        <h4 class="inverted-font"><strong>Date Updated</strong></h4>
                     </th>
                     <th>
-                        <h4 class="inverted-font">Title</h4>
+                        <h4 class="inverted-font"><strong>Title</strong></h4>
                     </th>
                     <th>
-                        <h4 class="inverted-font">Description</h4>
+                        <h4 class="inverted-font"><strong>Description</strong></h4>
                     </th>
                 </tr>
             </thead>
