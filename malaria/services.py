@@ -19,6 +19,8 @@ def create_revpost(owner, post, title, description):
     revpost = None
 
     if owner and post and title and description:
+        # title_change and description_change fields
+        # are not being used, may have to remove from model later
         revpost = RevPost(owner_rev=owner,
                           owner_rev_post=post,
                           title_post_rev=title,

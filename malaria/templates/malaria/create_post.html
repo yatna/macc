@@ -16,7 +16,7 @@
                 <label class="col-sm-2 control-label inverted-font">Title</label>
                 <div class="col-sm-9">
                     <input class="form-control" type="text" name="title_post" value="{% if form.title_post.value %}{{ form.title_post.value }}{% endif %}">
-                    <p class="help-block">
+                    <p class="help-block inverted-font">
                         <strong>
                             {% if form.title_post.errors %}
                                 {% for error in form.title_post.errors %}
@@ -31,7 +31,7 @@
                 <label class="col-sm-2 control-label inverted-font">Description</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" rows="15" name="description_post">{% if form.description_post.value %}{{ form.description_post.value }}{% endif %}</textarea>
-                    <p class="help-block">
+                    <p class="help-block inverted-font">
                         <strong>
                             {% if form.description_post.errors %}
                                 {% for error in form.description_post.errors %}

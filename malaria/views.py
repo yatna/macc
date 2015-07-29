@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from malaria.forms import PostForm
-from malaria.models import Post, RevPost
+from malaria.models import Post
 from malaria.services import create_post_from_form, create_revpost, \
     delete_post_by_id, get_post_by_id, get_revpost_of_owner
 from webhub.checker import check
@@ -71,25 +71,17 @@ def edit_post(request, post_id):
                 if (orig_title != edited_title) or \
                    (orig_desc != edited_desc):
 
-                    post = form.save(commit=False)
-                    post.owner = owner
-                    post.save()
+                    post = create_post_from_form(form, owner)
 
-                    revpost_title_change = False
-                    revpost_desc_change = False
-
-                    if(orig_title != edited_title):
-                        revpost_title_change = True
-                    if(orig_desc != edited_desc):
-                        revpost_desc_change = True
-
-                    revpost = RevPost(owner_rev=owner,
-                                      owner_rev_post=post,
-                                      title_post_rev=edited_title,
-                                      description_post_rev=edited_desc,
-                                      title_change=revpost_title_change,
-                                      description_change=revpost_desc_change)
-                    revpost.save()
+                    if post:
+                        revpost = create_revpost(owner,
+                                                 post,
+                                                 edited_title,
+                                                 edited_desc)
+                        if not revpost:
+                            raise Http404
+                    else:
+                        raise Http404
 
                 return HttpResponseRedirect(reverse('malaria:view_post',
                                                     args=(post_id,)))

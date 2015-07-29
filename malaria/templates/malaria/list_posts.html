@@ -49,7 +49,10 @@
             </table>
         </div>
     {% else %}
-        <center><font color="white"><h4>There are No Posts right now.</h4></font><br><br><br><br><br><br><br><br><br><br></center>
+        <div class="well">
+            <a href="{% url 'malaria:create_post' %}" class="btn btn-default pull-right">New Post</a>
+            <h3 class="text-center inverted-font">No Posts</h3>
+        </div>
     {% endif %}
 </body>
 {% endblock %}

@@ -6,16 +6,16 @@ from webhub.models import Pcuser
 class Post(models.Model):
     # The owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
-    title_post = models.CharField(max_length=100,
+    title_post = models.CharField(max_length=500,
                                   validators=[
                                       RegexValidator(
-                                          r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(!)|(:)]+$'
+                                          r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                       )]
                                   )
     description_post = models.CharField(max_length=5000,
                                         validators=[
                                             RegexValidator(
-                                                r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(!)|(:)]+$'
+                                                r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                             )]
                                         )
     # link to important documents
