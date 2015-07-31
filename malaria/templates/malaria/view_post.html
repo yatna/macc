@@ -64,7 +64,11 @@
                     <tr>
                         <td>
                             <h4 class="inverted-font">
-                                {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                                {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
+                                    {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                                {% else %}
+                                    {{ revpost.owner_rev.user.username }}
+                                {% endif %}
                             </h4>
                         </td>
                         <td>
