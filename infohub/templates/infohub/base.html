@@ -6,6 +6,7 @@
         <link href="{% static "infohub/bootstrap-css-custom/navbar-default.css" %}" rel="stylesheet">
         <link href="{% static "infohub/bootstrap-css-custom/sticky-footer.css" %}" rel="stylesheet">
         <link href="{% static "infohub/bootstrap-css-custom/well.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/css/navbar-btn.css" %}" rel="stylesheet">
         <link href="{% static "infohub/css/text-color.css" %}" rel="stylesheet">
     </head>
     <body>
@@ -17,6 +18,20 @@
                     </a>
                     <a class="navbar-brand hidden-xs" href="{% url 'webhub:dashboard' %}"><h1>Mobile App Control Center</h1></a>
                 </div>
+                {% if user.is_authenticated %}
+                    <div class="navbar-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav navbar-right text-uppercase">
+                            <div class="navbar-btn-border">
+                                <li>
+                                    <!--Update profile url so that its not hardcoded-->
+                                    <a href="/profile/?id={{ user.id }}">
+                                        <h4 class="navbar-btn-text">Profile</h4>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </nav>
         <div class="container">
