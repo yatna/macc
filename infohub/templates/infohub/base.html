@@ -21,14 +21,21 @@
                 {% if user.is_authenticated %}
                     <div class="navbar-collapse collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav navbar-right text-uppercase">
-                            <div class="navbar-btn-border">
-                                <li>
+                            <li>
+                                <div class="navbar-btn-border">
                                     <!--Update profile url so that its not hardcoded-->
                                     <a href="/profile/?id={{ user.id }}">
                                         <h4 class="navbar-btn-text">Profile</h4>
                                     </a>
-                                </li>
-                            </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="navbar-btn-border">
+                                    <a href="{% url 'webhub:logout_do' %}">
+                                        <h4 class="navbar-btn-text">Log Out</h4>
+                                    </a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 {% endif %}
