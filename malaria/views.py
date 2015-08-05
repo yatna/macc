@@ -5,10 +5,13 @@ from malaria.forms import PostForm
 from malaria.models import Post
 from malaria.services import create_post_from_form, create_revpost, \
     delete_post_by_id, get_post_by_id, get_revpost_of_owner
-from webhub.checker import check
 
 
 def list_posts(request):
+
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
+
     post_list = Post.objects.all()
     return render(request,
                   'malaria/list_posts.html',
@@ -17,10 +20,8 @@ def list_posts(request):
 
 def create_post(request):
 
-    # check if the user is logged in
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     form = PostForm()
     if request.method == 'POST':
@@ -48,9 +49,8 @@ def create_post(request):
 
 def edit_post(request, post_id):
 
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     post = get_post_by_id(post_id)
     if post:
@@ -100,9 +100,8 @@ def edit_post(request, post_id):
 
 def delete_post(request, post_id):
 
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     if request.method == 'POST':
         if delete_post_by_id(post_id):
@@ -117,9 +116,8 @@ def delete_post(request, post_id):
 
 def view_post(request, post_id):
 
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     post = get_post_by_id(post_id)
     revpost_list = get_revpost_of_owner(post_id)
