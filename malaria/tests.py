@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from malaria.models import Post
-from malaria.services import get_post_by_id
+from malaria.services import delete_post_by_id, get_post_by_id
 from webhub.models import Pcuser
 
 
@@ -34,6 +34,19 @@ class MalariaTests(TestCase):
         self.p1.save()
         self.p2.save()
         self.p3.save()
+
+    def test_delete_post_by_id(self):
+
+        self.assertTrue(delete_post_by_id(self.p1.id))
+        self.assertTrue(delete_post_by_id(self.p2.id))
+        self.assertTrue(delete_post_by_id(self.p3.id))
+
+        self.assertFalse(delete_post_by_id(100))
+        self.assertFalse(delete_post_by_id(200))
+        self.assertFalse(delete_post_by_id(300))
+        self.assertFalse(delete_post_by_id(400))
+        self.assertFalse(delete_post_by_id(500))
+        self.assertFalse(delete_post_by_id(600))
 
     def test_get_post_by_id(self):
 
