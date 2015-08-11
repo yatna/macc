@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from malaria.forms import PostForm
 from malaria.models import Post
 from malaria.services import create_post_from_form, create_revpost, \
-    delete_post_by_id, get_post_by_id, get_revpost_of_owner
+    delete_post_by_id, get_post_by_id, get_revposts_of_owner
 
 
 def list_posts(request):
@@ -120,7 +120,7 @@ def view_post(request, post_id):
         return HttpResponseRedirect(reverse('webhub:index'))
 
     post = get_post_by_id(post_id)
-    revpost_list = get_revpost_of_owner(post_id)
+    revpost_list = get_revposts_of_owner(post_id)
     # revpost may not exist yet so do not check it
     if post:
         return render(request,

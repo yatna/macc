@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from malaria.models import Post, RevPost
-from malaria.services import create_revpost, delete_post_by_id, get_post_by_id
+from malaria.services import create_revpost, delete_post_by_id, get_post_by_id, get_revposts_of_owner
 from webhub.models import Pcuser
 
 
@@ -14,10 +14,18 @@ class MalariaTests(TestCase):
                                                 password='password',
                                                 email='')
 
+        self.u2 = User.objects.create_superuser(username='admin2',
+                                                password='password2',
+                                                email='')
+
         self.u1.save()
+        self.u2.save()
 
         self.o1 = Pcuser(user=self.u1)
+        self.o2 = Pcuser(user=self.u2)
+
         self.o1.save()
+        self.o2.save()
 
         self.p1 = Post(owner=self.o1,
                        title_post="Title 1",
@@ -31,9 +39,19 @@ class MalariaTests(TestCase):
                        title_post="Title 3",
                        description_post="Description 3")
 
+        self.p4 = Post(owner=self.o2,
+                       title_post="Title 4",
+                       description_post="Description 4")
+
+        self.p5 = Post(owner=self.o2,
+                       title_post="Title 5",
+                       description_post="Description 5")
+
         self.p1.save()
         self.p2.save()
         self.p3.save()
+        self.p4.save()
+        self.p5.save()
 
     def test_create_revpost(self):
 
@@ -47,7 +65,8 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.owner_rev, self.o1)
         self.assertEqual(revpost.owner_rev_post, self.p1)
         self.assertEqual(revpost.title_post_rev, self.p1.title_post)
-        self.assertEqual(revpost.description_post_rev, self.p1.description_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p1.description_post)
         self.assertEqual(revpost.title_change, True)
         self.assertEqual(revpost.description_change, True)
 
@@ -61,7 +80,8 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.owner_rev, self.o1)
         self.assertEqual(revpost.owner_rev_post, self.p2)
         self.assertEqual(revpost.title_post_rev, self.p2.title_post)
-        self.assertEqual(revpost.description_post_rev, self.p2.description_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p2.description_post)
         self.assertEqual(revpost.title_change, True)
         self.assertEqual(revpost.description_change, True)
 
@@ -75,7 +95,8 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.owner_rev, self.o1)
         self.assertEqual(revpost.owner_rev_post, self.p3)
         self.assertEqual(revpost.title_post_rev, self.p3.title_post)
-        self.assertEqual(revpost.description_post_rev, self.p3.description_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p3.description_post)
         self.assertEqual(revpost.title_change, True)
         self.assertEqual(revpost.description_change, True)
 
@@ -225,3 +246,203 @@ class MalariaTests(TestCase):
 
         self.assertNotEqual(get_post_by_id(self.p3.id), self.p1)
         self.assertNotEqual(get_post_by_id(self.p3.id), self.p2)
+
+    def test_get_revposts_of_owner(self):
+
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_2 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_3 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 3",
+                                   "Test description 3")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        self.assertIn(revpost_3, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_3.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 3")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_2 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_3 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 3",
+                                   "Test description 3")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        self.assertIn(revpost_3, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_3.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 3")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o2,
+                                   self.p4,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p4)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_2 = create_revpost(self.o2,
+                                   self.p4,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p4)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_1 = create_revpost(self.o2,
+                                   self.p5,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p5.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p5)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_2 = create_revpost(self.o2,
+                                   self.p5,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p5.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p5)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+        self.assertEqual(revpost_compare.title_change, True)
+        self.assertEqual(revpost_compare.description_change, True)
+
+        revpost_list = get_revposts_of_owner(-999999)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(-1)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(100)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(200)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(300)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(999)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(999999)
+        self.assertEqual(len(revpost_list), 0)

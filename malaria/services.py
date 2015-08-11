@@ -56,12 +56,12 @@ def get_post_by_id(post_id):
     return post
 
 
-def get_revpost_of_owner(post_id):
+def get_revposts_of_owner(post_id):
 
-    revpost = None
+    revpost_list = None
     try:
-        revpost = RevPost.objects.filter(owner_rev_post_id=post_id)
+        revpost_list = RevPost.objects.filter(owner_rev_post_id=post_id)
     except ObjectDoesNotExist:
         pass
 
-    return revpost
+    return revpost_list
