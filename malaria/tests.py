@@ -31,7 +31,7 @@ class MalariaTests(TestCase):
                        title_post="Title 1",
                        description_post="Description 1")
 
-        self.p2 = Post(owner=self.o1,
+        self.p2 = Post(owner=self.o2,
                        title_post="Title 2",
                        description_post="Description 2")
 
@@ -43,7 +43,7 @@ class MalariaTests(TestCase):
                        title_post="Title 4",
                        description_post="Description 4")
 
-        self.p5 = Post(owner=self.o2,
+        self.p5 = Post(owner=self.o1,
                        title_post="Title 5",
                        description_post="Description 5")
 
@@ -99,6 +99,79 @@ class MalariaTests(TestCase):
                          self.p3.description_post)
         self.assertEqual(revpost.title_change, True)
         self.assertEqual(revpost.description_change, True)
+
+        revpost = create_revpost(self.o2,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 self.p1.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p1)
+        self.assertEqual(revpost.title_post_rev, self.p1.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p1.description_post)
+        self.assertEqual(revpost.title_change, True)
+        self.assertEqual(revpost.description_change, True)
+
+        revpost = create_revpost(self.o2,
+                                 self.p4,
+                                 self.p4.title_post,
+                                 self.p4.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p4)
+        self.assertEqual(revpost.title_post_rev, self.p4.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p4.description_post)
+        self.assertEqual(revpost.title_change, True)
+        self.assertEqual(revpost.description_change, True)
+
+        revpost = create_revpost(self.o2,
+                                 self.p5,
+                                 self.p5.title_post,
+                                 self.p5.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p5)
+        self.assertEqual(revpost.title_post_rev, self.p5.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p5.description_post)
+        self.assertEqual(revpost.title_change, True)
+        self.assertEqual(revpost.description_change, True)
+
+        revpost_list = RevPost.objects.filter(owner_rev_id=self.o1.id)
+        self.assertIsNotNone(revpost_list)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p1))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p2))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p3))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o1,
+                                                owner_rev_post=self.p4))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o1,
+                                                owner_rev_post=self.p5))
+
+        revpost_list = RevPost.objects.filter(owner_rev_id=self.o2.id)
+        self.assertIsNotNone(revpost_list)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p1))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p4))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p5))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o2,
+                                                owner_rev_post=self.p2))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o2,
+                                                owner_rev_post=self.p3))
 
         revpost = create_revpost(None,
                                  self.p1,
