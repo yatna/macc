@@ -6,4 +6,5 @@ install:
   - "pip install -r requirements.txt"
 before_script:
   - psql -c "create role myuser with createrole createdb login password 'mypassword';" -U postgres
+  - psql -c "create database webapp;" -U postgres
 script: python manage.py test
