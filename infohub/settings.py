@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'malaria',
     'malaria_api',
     'webhub',
+    'signup',
 )
 
 MIDDLEWARE_CLASSES = (

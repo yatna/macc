@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from webhub.models import *
+from signup.models import *
 
 from rest_framework import serializers
 

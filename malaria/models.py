@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
-from webhub.models import Pcuser
-
+from signup.models import Pcuser
 
 class Post(models.Model):
     # The owner of the post

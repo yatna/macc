@@ -5,7 +5,7 @@ from malaria.services import (create_revpost,
                               delete_post_by_id,
                               get_post_by_id,
                               get_revposts_of_owner)
-from webhub.models import Pcuser
+from signup.models import Pcuser
 
 
 class MalariaTests(TestCase):

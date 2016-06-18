@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url, include
 from rest_framework import routers
 from malaria_api import views as malaria_api_views
 from webhub import views
+from signup import views as signup_views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -16,16 +17,16 @@ urlpatterns = patterns(
         views.dashboard,
         name='dashboard'),
     url(r'^signup_page/$',
-        views.signup_page,
+        signup_views.signup_page,
         name='signup_page'),
     url(r'^signup_do/$',
-        views.signup_do,
+        signup_views.signup_do,
         name='signup_do'),
     url(r'^send_verification_email/$',
-        views.send_verification_email,
+        signup_views.send_verification_email,
         name='send_verification_email'),
     url(r'^send_email/$',
-        views.send_email,
+        signup_views.send_email,
         name='send_email'),
     url(r'^login_do/$',
         views.login_do,
@@ -49,7 +50,7 @@ urlpatterns = patterns(
         views.forgot_pass,
         name='forgot_pass'),
     url(r'^verify/$',
-        views.verify,
+        signup_views.verify,
         name='verify'),
     url(r'^reset_pass_page/$',
         views.reset_pass_page,

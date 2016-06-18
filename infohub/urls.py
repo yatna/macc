@@ -9,4 +9,5 @@ urlpatterns = patterns(
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^malaria/', include('malaria.urls', namespace='malaria')),
     url(r'^webhub/', include('webhub.urls', namespace='webhub')),
+    url(r'^signup/', include('signup.urls', namespace='signup')),
 )
