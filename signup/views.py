@@ -18,6 +18,11 @@ from webhub import views as webhub_view
 
 jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['signup/templates/signup']), extensions=[loopcontrols])
 
+# SMTP port for sending emails
+SMTP_PORT = 465
+
+#link for the localhost
+website = "http://systerspcweb.herokuapp.com/"
 
 #Calls the signup page. If the user us already logged in, s/he will be redirected to dashboard.
 def signup_page(request):
