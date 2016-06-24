@@ -83,8 +83,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.title_post_rev, self.p2.title_post)
         self.assertEqual(revpost.description_post_rev,
                          self.p2.description_post)
-        self.assertEqual(revpost.title_change, True)
-        self.assertEqual(revpost.description_change, True)
+         
 
         revpost = create_revpost(self.o1,
                                  self.p3,
@@ -98,8 +97,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.title_post_rev, self.p3.title_post)
         self.assertEqual(revpost.description_post_rev,
                          self.p3.description_post)
-        self.assertEqual(revpost.title_change, True)
-        self.assertEqual(revpost.description_change, True)
+         
 
         revpost = create_revpost(self.o2,
                                  self.p1,
@@ -113,8 +111,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.title_post_rev, self.p1.title_post)
         self.assertEqual(revpost.description_post_rev,
                          self.p1.description_post)
-        self.assertEqual(revpost.title_change, True)
-        self.assertEqual(revpost.description_change, True)
 
         revpost = create_revpost(self.o2,
                                  self.p4,
@@ -128,8 +124,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.title_post_rev, self.p4.title_post)
         self.assertEqual(revpost.description_post_rev,
                          self.p4.description_post)
-        self.assertEqual(revpost.title_change, True)
-        self.assertEqual(revpost.description_change, True)
+         
 
         revpost = create_revpost(self.o2,
                                  self.p5,
@@ -143,8 +138,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost.title_post_rev, self.p5.title_post)
         self.assertEqual(revpost.description_post_rev,
                          self.p5.description_post)
-        self.assertEqual(revpost.title_change, True)
-        self.assertEqual(revpost.description_change, True)
+         
 
         revpost_list = RevPost.objects.filter(owner_rev_id=self.o1.id)
         self.assertIsNotNone(revpost_list)
@@ -353,9 +347,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 2")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
-
+    
         revpost_3 = create_revpost(self.o1,
                                    self.p1,
                                    "Test title 3",
@@ -371,9 +363,7 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 3")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
-
+       
         revpost_list = get_revposts_of_owner(self.p2.id)
         self.assertEqual(len(revpost_list), 0)
 
@@ -390,8 +380,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 1")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_2 = create_revpost(self.o1,
                                    self.p2,
@@ -407,8 +395,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 2")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_3 = create_revpost(self.o1,
                                    self.p2,
@@ -425,8 +411,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 3")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_list = get_revposts_of_owner(self.p4.id)
         self.assertEqual(len(revpost_list), 0)
@@ -444,8 +428,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 1")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_2 = create_revpost(self.o2,
                                    self.p4,
@@ -461,8 +443,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 2")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_1 = create_revpost(self.o2,
                                    self.p5,
@@ -477,8 +457,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 1")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_2 = create_revpost(self.o2,
                                    self.p5,
@@ -494,8 +472,6 @@ class MalariaTests(TestCase):
         self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
         self.assertEqual(revpost_compare.description_post_rev,
                          "Test description 2")
-        self.assertEqual(revpost_compare.title_change, True)
-        self.assertEqual(revpost_compare.description_change, True)
 
         revpost_list = get_revposts_of_owner(-999999)
         self.assertEqual(len(revpost_list), 0)
