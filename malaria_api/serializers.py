@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from malaria.models import Post
+from malaria_web.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):

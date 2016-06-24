@@ -29,7 +29,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'infohub',
-    'malaria',
+    'malaria_web',
     'malaria_api',
     'webhub',
     'signup',
@@ -58,7 +58,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'webapp',
         'USER': 'myuser',
-        'PASSWORD': 'mypassword',
+        'PASSWORD': 'mypass',
         'HOST': 'localhost',
     }
 }

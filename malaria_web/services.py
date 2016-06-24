@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from malaria.models import Post, RevPost
+from malaria_web.models import Post, RevPost
 
 
 def create_post_from_form(form, owner):

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from malaria.models import Post, RevPost
-from malaria.services import (create_revpost,
+from malaria_web.models import Post, RevPost
+from malaria_web.services import (create_revpost,
                               delete_post_by_id,
                               get_post_by_id,
                               get_revposts_of_owner)
