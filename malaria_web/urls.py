@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from malaria import views
+from malaria_web import views
 
 urlpatterns = patterns(
     '',

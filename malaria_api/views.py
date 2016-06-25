@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from malaria.models import Post
+from malaria_web.models import Post
 from malaria_api.serializers import PostSerializer
 
 
