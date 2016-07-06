@@ -11,5 +11,6 @@ urlpatterns = patterns(
     url(r'^webhub/', include('webhub.urls', namespace='webhub')),
     url(r'^signup/', include('signup.urls', namespace='signup')),
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
+    url(r'^pcsa/', include('pcsa.urls', namespace='pcsa')),
 
 )
