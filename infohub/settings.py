@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'webhub',
     'signup',
     'profiles',
+    'pcsa',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,7 +59,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'webapp',
         'USER': 'myuser',
-        'PASSWORD': 'mypass',
+        'PASSWORD': 'mypassword',
         'HOST': 'localhost',
     }
 }
