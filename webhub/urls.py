@@ -3,12 +3,14 @@ from rest_framework import routers
 from malaria_api import views as malaria_api_views
 from webhub import views
 from signup import views as signup_views
+from pcsa import views as pcsa_views
 from profiles import views as profiles_views
 
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
-router.register(r'posts', malaria_api_views.PostViewSet)
+router.register(r'malaria_posts', malaria_api_views.PostViewSet)
+router.register(r'pcsa_posts', pcsa_views.PcsaPostViewSet)
 
 urlpatterns = patterns(
     '',
