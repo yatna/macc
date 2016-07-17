@@ -5,6 +5,19 @@ from pcsa.forms import PostForm
 from pcsa.models import PcsaPost
 from pcsa.services import create_post_from_form, \
     delete_post_by_id, get_post_by_id
+from rest_framework import viewsets
+from .models import PcsaPost
+from .serializers import PcsaPostSerializer
+
+
+class PcsaPostViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Post endpoint that provides `list` and `detail` actions
+    `list` action returns a list of all Posts
+    `detail` action returns a particular Post instance based on id
+    """
+    queryset = PcsaPost.objects.all()
+    serializer_class = PcsaPostSerializer
 
 
 def list_posts(request):
