@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from malaria_web.models import Post
+from malaria_web.models import Post, MalariaUsers
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -11,3 +11,10 @@ class PostSerializer(serializers.ModelSerializer):
                   'created',
                   'updated',
                   'id')
+class MalariaUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MalariaUsers
+        fields = ('name',
+                  'email',
+                  'age',
+                  'medicineType')
