@@ -62,3 +62,6 @@ class MalariaUsers(models.Model):
     email = models.EmailField(max_length=254)
     age = models.IntegerField()
     medicineType = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name

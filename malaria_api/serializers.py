@@ -17,4 +17,5 @@ class MalariaUserSerializer(serializers.ModelSerializer):
         fields = ('name',
                   'email',
                   'age',
-                  'medicineType')
+                  'medicineType',
+                  'id')
