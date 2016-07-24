@@ -11,6 +11,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'malaria_posts', malaria_api_views.PostViewSet)
 router.register(r'pcsa_posts', pcsa_views.PcsaPostViewSet)
+router.register(r'malaria_users', malaria_api_views.MalariaUsersViewSet)
 
 urlpatterns = patterns(
     '',

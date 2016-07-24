@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from signup.models import Pcuser
 
+
 class Post(models.Model):
     # The owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
@@ -44,12 +45,23 @@ class RevPost(models.Model):
                                       )
     # revised description
     description_post_rev = models.TextField(max_length=20000,
-                                        validators=[
-                                            RegexValidator(
-                                                r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
-                                            )]
-                                        )
+                                            validators=[
+                                                RegexValidator(
+                                                    r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                                )]
+                                            )
     # field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
+
     def __unicode__(self):
         return self.owner_rev.user.username
+
+
+class MalariaUsers(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=254)
+    age = models.IntegerField()
+    medicineType = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
