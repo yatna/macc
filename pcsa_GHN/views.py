@@ -1,31 +1,31 @@
 from django.shortcuts import render
-from .models import Contact, Post
+from .models import Contact, ghnPost
 from django.http import HttpResponse
 from django.http import Http404, HttpResponseRedirect
 from .services import *
-from .forms import PostForm, ContactForm
+from .forms import ghnPostForm, ContactForm
 from django.core.urlresolvers import reverse
+from .serializers import ghnPostSerializer, ContactSerializer
 from rest_framework import viewsets
-from .serializers import PostSerializer, ContactSerializer
 
 # Create your views here.
 
-class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class ghnPostsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ghnPost.objects.all()
+    serializer_class = ghnPostSerializer
 
 class ContactViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
-post_list = Post.objects.all()
+post_list = ghnPost.objects.all()
 contact_list = Contact.objects.all()
 
 
 def home(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
-    post_list = Post.objects.all()
+    post_list = ghnPost.objects.all()
     contact_list = Contact.objects.all()
     return render(request, 'pcsa_GHN/home.html', {'post_list': post_list, 'contact_list': contact_list})
 
@@ -34,9 +34,9 @@ def create_post(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
 
-    form = PostForm()
+    form = ghnPostForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = ghnPostForm(request.POST)
         if form.is_valid():
             owner = request.user.pcuser
             post = create_post_from_form(form, owner)
@@ -80,7 +80,7 @@ def edit_post(request, post_id):
             # before it is changed when calling instance on PostForm
             orig_title = post.title
             orig_desc = post.description
-            form = PostForm(request.POST, instance=post)
+            form = ghnPostForm(request.POST, instance=post)
 
             if form.is_valid():
 
@@ -99,7 +99,7 @@ def edit_post(request, post_id):
                               'pcsa_GHN/edit_post.html',
                               {'form': form, 'post': post})
         else:
-            form = PostForm(instance=post)
+            form = ghnPostForm(instance=post)
             return render(request,
                           'pcsa_GHN/edit_post.html',
                           {'form': form, 'post': post})
@@ -138,7 +138,7 @@ def edit_contact(request, contact_id):
                               'pcsa_GHN/edit_contact.html',
                               {'form': form, 'contact': contact})
         else:
-            form = PostForm(instance=contact)
+            form = ghnPostForm(instance=contact)
             return render(request,
                           'pcsa_GHN/edit_contact.html',
                           {'form': form, 'contact': contact})

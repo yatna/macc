@@ -1,10 +1,10 @@
 from django.forms import ModelForm
-from pcsa_GHN.models import Post, Contact
+from pcsa_GHN.models import ghnPost, Contact
 
 
-class PostForm(ModelForm):
+class ghnPostForm(ModelForm):
     class Meta:
-        model = Post
+        model = ghnPost
         fields = ['title', 'description']
 
 class ContactForm(ModelForm):

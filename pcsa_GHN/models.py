@@ -11,7 +11,7 @@ class Contact(models.Model):
         return self.office_name
 
 
-class Post(models.Model):
+class ghnPost(models.Model):
     owner = models.ForeignKey(Pcuser, null=False, related_name='xowner')
     title = models.CharField(max_length=1000)
     description = models.TextField(max_length=30000)

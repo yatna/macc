@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from pcsa_GHN.models import Post
+from pcsa_GHN.models import ghnPost
 
 
 def create_post_from_form(form, owner):
@@ -16,7 +16,7 @@ def delete_post_by_id(post_id):
 
     is_deleted = False
     try:
-        post = Post.objects.get(pk=post_id)
+        post = ghnPost.objects.get(pk=post_id)
         post.delete()
         is_deleted = True
     except ObjectDoesNotExist:
@@ -29,7 +29,7 @@ def get_post_by_id(post_id):
 
     post = None
     try:
-        post = Post.objects.get(pk=post_id)
+        post = ghnPost.objects.get(pk=post_id)
     except ObjectDoesNotExist:
         pass
 

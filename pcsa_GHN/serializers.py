@@ -2,9 +2,9 @@ from .models import *
 from rest_framework import serializers
 
 
-class PostSerializer(serializers.ModelSerializer):
+class ghnPostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = ghnPost
         fields = ('title', 'description', 'created_date')
 
 

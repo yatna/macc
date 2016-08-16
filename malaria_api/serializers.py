@@ -11,6 +11,8 @@ class PostSerializer(serializers.ModelSerializer):
                   'created',
                   'updated',
                   'id')
+
+
 class MalariaUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MalariaUsers
