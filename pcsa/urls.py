@@ -1,4 +1,5 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
+from pcsa_GHN import urls
 from pcsa import views
 
 urlpatterns = patterns(
@@ -22,4 +23,5 @@ urlpatterns = patterns(
     url(r'^view_post/(?P<post_id>\d+)$',
         views.view_post,
         name='view_post'),
+
 )
