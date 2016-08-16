@@ -7,7 +7,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.test import APITestCase
 from malaria_web.models import Post
-from malaria_api.serializers import mPostSerializer
+from malaria_api.serializers import PostSerializer
 from signup.models import Pcuser
 
 
@@ -233,9 +233,9 @@ class PostAPITestCase(APITestCase):
 
         for post in results:
             # compare JSON objects
-            serializer = mPostSerializer(post_list[i])
+            serializer = PostSerializer(post_list[i])
             content_db = JSONRenderer().render(serializer.data)
-            serializer = mPostSerializer(post)
+            serializer = PostSerializer(post)
             content_api = JSONRenderer().render(serializer.data)
             # assert is failing because PostSerializer sets
             # owner to null but api returns the correct owner id
