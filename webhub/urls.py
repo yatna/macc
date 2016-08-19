@@ -6,6 +6,7 @@ from signup import views as signup_views
 from pcsa import views as pcsa_views
 from profiles import views as profiles_views
 from pcsa_GHN import views as ghn_views
+from pcsa_safety_tools import views as safetytools_views
 
 
 router = routers.DefaultRouter()
@@ -15,6 +16,7 @@ router.register(r'malaria_posts', malaria_api_views.PostViewSet)
 router.register(r'malaria_users', malaria_api_views.MalariaUsersViewSet)
 router.register(r'gethelpnow/posts', ghn_views.ghnPostsViewSet)
 router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
+router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
 
 urlpatterns = patterns(
     '',
