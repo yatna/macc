@@ -1,8 +1,5 @@
-from django.conf.urls import patterns, url, include
-from pcsa_GHN import views as ghn_views
-from pcsa import views
-from rest_framework import routers
-
+from django.conf.urls import patterns, url
+from pcsa_safety_tools import views
 
 urlpatterns = patterns(
     '',
@@ -18,12 +15,8 @@ urlpatterns = patterns(
         views.edit_post,
         name='edit_post'),
 
-    url(r'^list_posts/$',
-        views.list_posts,
-        name='list_posts'),
-
     url(r'^view_post/(?P<post_id>\d+)$',
         views.view_post,
         name='view_post'),
-
+    url(r'^home/$', views.home, name='home')
 )

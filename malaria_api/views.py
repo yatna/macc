@@ -7,11 +7,6 @@ from rest_framework.response import Response
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Post endpoint that provides `list` and `detail` actions
-    `list` action returns a list of all Posts
-    `detail` action returns a particular Post instance based on id
-    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -57,5 +52,5 @@ def muser_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        muser.delete()
+        MalariaUsers.objects.get(pk=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

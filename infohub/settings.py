@@ -35,6 +35,8 @@ INSTALLED_APPS = (
     'signup',
     'profiles',
     'pcsa',
+    'pcsa_GHN',
+    'pcsa_safety_tools'
 )
 
 MIDDLEWARE_CLASSES = (
