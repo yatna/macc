@@ -162,6 +162,11 @@ Or install one by one
     sudo pip install django-rest-swagger==0.3.2
     sudo pip install PyYAML==3.11
 
+**Configure autoenv**
+
+    sudo pip install autoenv
+    echo "source `which activate.sh`" >> ~/.bashrc
+    
 ## Setup PostgreSQL
 
 We will now setup PostgreSQL by first running the postgres client as root:
