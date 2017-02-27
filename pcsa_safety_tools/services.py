@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
-from .models import SafetyToolsPost, SafetyToolsCategory
+
+from .models import SafetyToolsCategory, SafetyToolsPost
 
 
 def create_post_from_form(form):

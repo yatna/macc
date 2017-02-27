@@ -1,9 +1,10 @@
-from django.db import models
-from django.contrib.auth.models import User
 import os
+
+from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
- 
- 
+from django.db import models
+
+
 # Django provides a table called user that stores basic user information like username, password and email id.
 class Pcuser(models.Model):
     gender_choices = (('Male', 'Male'), ('Female', 'Female'), ('Restricted', 'Prefer not to say'))

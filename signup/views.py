@@ -1,20 +1,20 @@
-import jinja2
 import smtplib
 import uuid
-from django.http import HttpResponse
+
+import jinja2
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from jinja2.ext import loopcontrols
-from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from webhub import views as webhub_view
 from webhub.checker import check
 from webhub.models import *
 from webhub.serializers import *
-from webhub import views as webhub_view
-
 
 jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['signup/templates/signup']), extensions=[loopcontrols])
 
@@ -157,6 +157,3 @@ def verify(request):
     
     return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
                                                                           "text":'<p>Verification Failed.</p>',"text1":'<p>Please go back or click here to go to the homepage</p>',"link":'/'}))
-
-
-

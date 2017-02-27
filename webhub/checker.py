@@ -3,18 +3,20 @@
 #Github username : desaivaibhavi
 #email : ranihaileydesai@gmail.com
 
-from django.http import HttpResponse
-from django.utils import timezone
-from signup.models import *
-from django.views.decorators.csrf import csrf_exempt
 import datetime
+import uuid
+
+import jinja2
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db.models import Avg, Count, Min, Sum
+from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.db.models import Count, Min, Sum, Avg
-import uuid
-import jinja2
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from jinja2.ext import loopcontrols
+
+from signup.models import *
 
 jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['ui']), extensions=[loopcontrols])
 

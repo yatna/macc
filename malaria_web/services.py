@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+
 from malaria_web.models import Post, RevPost
 
 

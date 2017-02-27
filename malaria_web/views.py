@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render
+
 from malaria_web.forms import PostForm
 from malaria_web.models import Post
-from malaria_web.services import create_post_from_form, create_revpost, \
-    delete_post_by_id, get_post_by_id, get_revposts_of_owner
+from malaria_web.services import (create_post_from_form, create_revpost,
+                                  delete_post_by_id, get_post_by_id,
+                                  get_revposts_of_owner)
 
 
 def list_posts(request):

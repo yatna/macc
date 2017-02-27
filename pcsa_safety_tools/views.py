@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from .models import SafetyToolsPost
-from django.http import HttpResponse
-from django.http import Http404, HttpResponseRedirect
-from .services import *
-from .forms import SafetyToolsPostForm
 from django.core.urlresolvers import reverse
-from .serializers import SafetyToolsPostSerializer
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from rest_framework import viewsets
+
+from .forms import SafetyToolsPostForm
+from .models import SafetyToolsPost
+from .serializers import SafetyToolsPostSerializer
+from .services import *
 
 
 # Create your views here.

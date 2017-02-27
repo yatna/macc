@@ -1,18 +1,19 @@
-from django.contrib.auth.models import User
-from django.test import TestCase
-from pcsa.views import (delete_post_by_id,
-                        get_post_by_id)
 from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.test import TestCase
 from django.utils.six import BytesIO
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.test import APITestCase
+
 from pcsa.models import PcsaPost
 from pcsa.serializers import PcsaPostSerializer
+from pcsa.views import delete_post_by_id, get_post_by_id
 from signup.models import Pcuser
+
 
 # Create your tests here.
 

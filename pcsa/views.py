@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render
+from rest_framework import viewsets
+
 from pcsa.forms import PostForm
 from pcsa.models import PcsaPost
-from pcsa.services import create_post_from_form, \
-    delete_post_by_id, get_post_by_id
-from rest_framework import viewsets
+from pcsa.services import (create_post_from_form, delete_post_by_id,
+                           get_post_by_id)
+
 from .models import PcsaPost
 from .serializers import PcsaPostSerializer
 

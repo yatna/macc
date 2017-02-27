@@ -1,17 +1,18 @@
-from django.shortcuts import render
-import jinja2
 import uuid
-from django.http import HttpResponse
+
+import jinja2
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from jinja2.ext import loopcontrols
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from signup.models import *
 from webhub.checker import check
 from webhub.serializers import *
-from signup.models import *
-
 
 jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles']), extensions=[loopcontrols])
 
@@ -233,4 +234,3 @@ def change_pass_page(request):
     if retval <> None:
         return retval
     return HttpResponse(jinja_environ.get_template('change_password.html').render({"pcuser":request.user.pcuser}))
-        
