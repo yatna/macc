@@ -7,9 +7,11 @@
 import os
 import sys
 import uuid
-from signup.models import Pcuser
-from django.core.management import execute_from_command_line
+
 from django.contrib.auth.models import User
+from django.core.management import execute_from_command_line
+
+from signup.models import Pcuser
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "infohub.settings")

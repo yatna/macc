@@ -1,9 +1,9 @@
-from malaria_web.models import Post, MalariaUsers
-from malaria_api.serializers import PostSerializer, MalariaUserSerializer
-from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from malaria_api.serializers import MalariaUserSerializer, PostSerializer
+from malaria_web.models import MalariaUsers, Post
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):

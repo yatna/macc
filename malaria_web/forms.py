@@ -1,5 +1,7 @@
 from django.forms import ModelForm
+
 from malaria_web.models import Post
+
 
 class PostForm(ModelForm):
     class Meta:

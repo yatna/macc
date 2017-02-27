@@ -1,19 +1,19 @@
-import jinja2
 import smtplib
 import uuid
-from django.http import HttpResponse
+
+import jinja2
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from jinja2.ext import loopcontrols
-from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from webhub.checker import check
 from webhub.models import *
 from webhub.serializers import *
-
 
 # SMTP port for sending emails
 SMTP_PORT = 465

@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url, include
-from pcsa_GHN import views as ghn_views
-from pcsa import views
+from django.conf.urls import include, patterns, url
 from rest_framework import routers
 
+from pcsa import views
+from pcsa_GHN import views as ghn_views
 
 urlpatterns = patterns(
     '',

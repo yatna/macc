@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
-from pcsa_GHN.models import ghnPost, Contact
+
+from pcsa_GHN.models import Contact, ghnPost
 
 
 def create_post_from_form(form, owner):

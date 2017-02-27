@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from pcsa_GHN.models import ghnPost, Contact
+
+from pcsa_GHN.models import Contact, ghnPost
 
 
 class ghnPostForm(ModelForm):

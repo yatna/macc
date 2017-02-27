@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
+
 from malaria_web.models import Post, RevPost
-from malaria_web.services import (create_revpost,
-                              delete_post_by_id,
-                              get_post_by_id,
-                              get_revposts_of_owner)
+from malaria_web.services import (create_revpost, delete_post_by_id,
+                                  get_post_by_id, get_revposts_of_owner)
 from signup.models import Pcuser
 
 

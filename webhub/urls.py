@@ -1,13 +1,13 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import include, patterns, url
 from rest_framework import routers
+
 from malaria_api import views as malaria_api_views
-from webhub import views
-from signup import views as signup_views
 from pcsa import views as pcsa_views
-from profiles import views as profiles_views
 from pcsa_GHN import views as ghn_views
 from pcsa_safety_tools import views as safetytools_views
-
+from profiles import views as profiles_views
+from signup import views as signup_views
+from webhub import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)

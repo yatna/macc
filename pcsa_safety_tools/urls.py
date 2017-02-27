@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+
 from pcsa_safety_tools import views
 
 urlpatterns = patterns(
