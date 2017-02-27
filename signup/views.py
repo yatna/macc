@@ -52,7 +52,7 @@ def signup_do(request):
         
     if password <> confirmpassword:
       return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                            "text":'<p>Passwords don\'t match. Please Enter again.</p><p>Click OK to go back to signup page.</p>',"link":'/signup_page/'}))
+                                                                            "text":'<p>Passwords don\'t match. Please Enter again.</p>',"text1":'<p>Click here to go back to signup page.</p>',"link":'/signup_page/'}))
     
     first_name = request.REQUEST['first_name']
     last_name = request.REQUEST['last_name']
@@ -70,7 +70,7 @@ def signup_do(request):
     
     if '@' not in email or '.' not in email:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'<p>Invalid email, please Enter again.</p><p>Go Back or click OK to go to signup page.</p>',"link":"/signup_page/"}))
+                                                                              "text":'<p>Invalid email, please Enter again.</p>',"text1":'<p>Click here to go to signup page.</p>',"link":"/signup_page/"}))
     
         
     if first_name == "":
@@ -101,7 +101,7 @@ def send_verification_email(request):
         request.user.pcuser
     except:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'No Pcuser associated!. Please go back or click  to go to the homepage' , "link": '/signup_page/'}))
+                                                                              "text":'<p>No Pcuser associated!.</p>',"text1":'<p>Click here to go to the homepage</p>' , "link": '/signup_page/'}))
     entry=request.user
     subject = 'Peace Corps Verification Email'
     msg = 'Subject: %s \n\nYour email has been registered on pchub.com.\nPlease\
