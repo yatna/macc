@@ -34,6 +34,9 @@ email : ranihaileydesai@gmail.com
         size:11;
         padding:3;
     }
+    .controls{
+    padding-bottom:8;
+    }
     </style>
 </head>
 <body>
@@ -57,13 +60,16 @@ email : ranihaileydesai@gmail.com
         
         <div class="controls">
                 <label class="radio-inline">
-                       <input maxlength=100 type="radio" name="gender" value="male" checked>Male
+
+	                   <input maxlength=100 type="radio" name="gender" value="male" required>Male
+
                 </label>
                 <label class="radio-inline">
                        <input maxlength=100 type="radio" name="gender" value="female">Female
                 </label>
-        <label class="radio-inline">
-                       <input maxlength=100 type="radio" name="gender" value="restricted">Prefer not to say
+
+		<label class="radio-inline">
+	                   <input maxlength=100 type="radio" name="gender" value="restricted" >Prefer not to say
                 </label>
        </div>
         
@@ -83,7 +89,8 @@ email : ranihaileydesai@gmail.com
         <font color="white"><h4>Set Password<span class="ast" >*</span></h4></font>
         <input type="password" name="password" align="right" required>
         <font color="white"><h4>Confirm Password<span class="ast" >*</span></h4></font>
-        <input type="password" name="confirmpassword" required> <br> both passwords should match <br>
+        <input type="password" name="confirmpassword" required> 
+	<font color="white" size="1"><p>Both Passwords must match</p></font>
         
         <font color="white"><h4>Phone<span class="ast" >*</span></h4></font>
         <input type="tel" name="phone" align="right" required>
