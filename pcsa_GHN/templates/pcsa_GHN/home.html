@@ -5,15 +5,15 @@
     <center><h2><font color="#2c0f00"> Get Help Now : Posts </font></h2></center>
 {% if post_list %}
     <div class="well">
-        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">New Post</a>
+        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">ADD NEW POST</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        <h3 class="inverted-font">Post</h3>
+                        <h3 class="inverted-font"><font color="black">POST</font></h3>
                     </th>
                     <th>
-                        <h3 class="inverted-font">Action</h3>
+                        <h3 class="inverted-font"><font color="black">DESCRIPTION</font></h3>
                     </th>
                 </tr>
             </thead>
@@ -21,14 +21,19 @@
                 {% for post in post_list %}
                     <tr>
                         <td>
-                            <h4 class="inverted-font">
+                            <h3 class="inverted-font">
                                 {{ post.title }}
-                            </h4>
+                            </h3>
                         </td>
+			<td>
+                        <h3 class="inverted-font">
+				{{ post.description|truncatewords:25|linebreaks }}
+			</h3>
+                    </td>
                         <td>
-                            <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-default">View</a>
-                            <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                            <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-default">VIEW</a>
+                            <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">EDIT</a>
+                            <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">DELETE</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -37,7 +42,7 @@
     </div>
 {% else %}
     <div class="well">
-        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">New Post</a>
+        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">NEW POST</a>
         <h3 class="text-center inverted-font">No Posts</h3>
     </div>
 {% endif %}
@@ -45,15 +50,15 @@
     <center><h2><font color="#2c0f00"> Get Help Now : Contacts </font></h2></center>
      {% if contact_list %}
         <div class="well">
-        <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-default">Add new Contact</a>
+        <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-default pull-right">ADD NEW CONTACT</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        <h3 class="inverted-font">Office</h3>
+                        <h3 class="inverted-font"><font color="black">OFFICE</font></h3>
                     </th>
                     <th>
-                        <h3 class="inverted-font">Contact Number</h3>
+                        <h3 class="inverted-font"><font color="black">CONTACT NUMBER</font></h3>
                     </th>
                 </tr>
             </thead>
