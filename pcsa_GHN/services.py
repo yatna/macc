@@ -42,7 +42,6 @@ def create_contact_from_form(form):
     contact = None
     if form:
         contact = form.save(commit=True)
-        contact.owner = owner
         contact.save()
     return contact
 
