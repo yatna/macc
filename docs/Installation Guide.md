@@ -167,6 +167,9 @@ Or install one by one
     sudo pip install autoenv
     echo "source `which activate.sh`" >> ~/.bashrc
     
+    cd ..
+    cd macc (cloned directory)
+    
 ## Setup PostgreSQL
 
 We will now setup PostgreSQL by first running the postgres client as root:
