@@ -64,7 +64,7 @@ def signup_do(request):
     try:
         if len(User.objects.filter(email=email))<>0:
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                                  "text":'<p>Someone has already registered using this email.</p><p>If you have forgotten your password, click <a href=\'/forgot_pass/\'</p><p>Click <a href=\'/signup_page/\'>here</a> to go back to signup page.</p>',"link":'0'}))
+                                                                                  "text":'<p>Someone has already registered using this email.</p><p>If you have forgotten your password, click <a href=\'/signup_page/\'></p><p>Click here</a> to go back to signup page.</p>',"link":'0'}))
     except:
         pass
     
