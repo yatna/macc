@@ -88,7 +88,7 @@ def signup_do(request):
     send_verification_email(request)
     
     return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'<p>Verification email sent. check your inbox and verify the account.</p>',"text1":'<p>Go Back or click OK to go to signup page.</p>',"link":'/signup_page/'}))
+                                                                              "text":'<p>Verification Email sent! Please Check your email inbox.</p><p>To re-send verification email, click <a href=\'/send_verification_email/\'>here</a>.</p><p>Click <a href=\'/logout_do/\'>here</a> to go to the homepage and log-in again</p>', "link":'0'}))
     
 
     
