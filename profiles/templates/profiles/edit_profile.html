@@ -60,15 +60,27 @@ email : ranihaileydesai@gmail.com
 		 <tr>
                     <td><label> <b><font color="black">Gender:</font></b></label></td> 
                     <td>
-			<input type="radio" name="gender" value="Male" checked>Male
-			<input type="radio" name="gender" value="Female" checked>Female
-			<input type="radio" name="gender" value="Restricted" checked>Prefer not to say
+
+		{% if pcuser.gender == "Male" %}
+		<h4><input type="radio" name="gender" value="Male" checked>Male</h4>
+		<h4><input type="radio" name="gender" value="Female" >Female</h4>
+		<h4><input type="radio" name="gender" value="Restricted">Prefer not to say</h4>
+		{% elif pcuser.gender == "Female" %}
+		<h4><input type="radio" name="gender" value="Male" >Male</h4>
+		<h4><input type="radio" name="gender" value="Female" checked>Female</h4>
+		<h4><input type="radio" name="gender" value="Restricted" >Prefer not to say</h4>
+		{% elif  pcuser.gender == "Restricted"%}
+		<h4><input type="radio" name="gender" value="Male" >Male</h4>
+		<h4><input type="radio" name="gender" value="Female" >Female</h4>
+		<h4><input type="radio" name="gender" value="Restricted" checked>Prefer not to say</h4>
+		{% endif %}
 		</td>
                 </tr>
-            <tr>
-                <td><label><font color="black">Location: </font></label></td>
-                   <td> <input type="text" name="location" value="{{pcuser.location}}"></td>
-            </tr>
+                <tr>
+                    <td><label> <h4><b><font color="white">Location:</font></b> </label></td></h4>
+                    <td><h4><input type="text" name="location" value="{{pcuser.location}}" required></h4></td>
+
+            	</tr>
 		</table>              
                 
                 <div class="options">
