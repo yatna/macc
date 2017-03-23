@@ -166,8 +166,9 @@ Or install one by one
 
     sudo pip install autoenv
     echo "source `which activate.sh`" >> ~/.bashrc
-    
-    cd ..
+	
+Changing Directory to the cloned directory will automatically resolve export settings error
+
     cd macc (cloned directory)
     
 ## Setup PostgreSQL
