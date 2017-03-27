@@ -4,7 +4,7 @@ import uuid
 import jinja2
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from jinja2.ext import loopcontrols
 from rest_framework import status, viewsets
@@ -33,7 +33,7 @@ def signup_page(request):
         return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":redirect_url}))
 
     else:
-        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None}))
+        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None, "text":' '}))
     
     
 #Called when a user clicks submit button in signup. Here a verification mail is also sent to the user.
@@ -49,10 +49,9 @@ def signup_do(request):
     username = request.REQUEST['username']
     password = request.REQUEST['password']
     confirmpassword = request.REQUEST['confirmpassword']
-        
+ 
     if password <> confirmpassword:
-      return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                            "text":'<p>Passwords don\'t match. Please Enter again.</p>',"text1":'<p>Click here to go back to signup page.</p>',"link":'/signup_page/'}))
+        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None, "text":'<p>Passwords don\'t match. Please Enter again.</p>'}))
     
     first_name = request.REQUEST['first_name']
     last_name = request.REQUEST['last_name']
@@ -88,7 +87,7 @@ def signup_do(request):
     send_verification_email(request)
     
     return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'<p>Verification Email sent! Please Check your email inbox.</p><p>To re-send verification email, click <a href=\'/send_verification_email/\'>here</a>.</p><p>Click <a href=\'/logout_do/\'>here</a> to go to the homepage and log-in again</p>', "link":'0'}))
+                                                                              "text":'<p>Verification email sent. check your inbox and verify the account.</p>',"text1":'<p>Go Back or click OK to go to signup page.</p>',"link":'/signup_page/'}))
     
 
     
