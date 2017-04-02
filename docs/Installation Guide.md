@@ -255,10 +255,10 @@ EMAIL_HOST_USER = 'pc.mobile.control.center.com'
 EMAIL_HOST_PASSWORD = 'alphadeltaepsilon'
 EMAIL_PORT = 465
 ```
-Comment out the following lines like so:
+The following lines need to be commented or kept as such if already commented:
 ```
 #import dj_database_url
-#DATABASES['default'] =  dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 ```
 
 ## Generate Database Tables Corresponding to Django Models
