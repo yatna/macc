@@ -50,13 +50,13 @@ email : ranihaileydesai@gmail.com
                   <td>  <input type="text" name="last_name" value="{{pcuser.user.last_name}}"></td>
 		</tr>
             <tr>
-               <td> <label> <font color="black">Mobile:</font></label></td>
-                  <td>  <input type="text" name="phone" value="{{pcuser.phone}}"></td>
+               <td> <label> <font color="black">Mobile:<span class="ast">*</span></font></label></td>
+                  <td>  <input type="text" name="phone" value="{{pcuser.phone}}" required></td>
             </tr>
                 <tr>
-              <td>  <label><font color="black">Email:</font></label></td>
-                  <td>  <input type="text" name="email" value="{{pcuser.user.email}}"></td>
-            	</tr>
+              <td>  <label><font color="black">Email:<span class="ast">*</span></font></label></td>
+                  <td>  <input type="text" name="email" value="{{pcuser.user.email}}" required></td>
+              </tr>
 		 <tr>
                     <td><label> <b><font color="black">Gender:</font></b></label></td> 
                     <td>
@@ -77,7 +77,7 @@ email : ranihaileydesai@gmail.com
 		</td>
                 </tr>
                 <tr>
-                    <td><label> <h4><b><font color="white">Location:</font></b> </label></td></h4>
+                    <td><label><font color="black">Location:<span class="ast">*</span> </font></label></td>
                     <td><h4><input type="text" name="location" value="{{pcuser.location}}" required></h4></td>
 
             	</tr>
