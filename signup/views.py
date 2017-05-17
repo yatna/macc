@@ -47,6 +47,12 @@ def signup_do(request):
         return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":redirect_url}))
     
     username = request.REQUEST['username']
+
+
+    if not username.isalnum():
+        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None,
+                                                                              "text":'<p>Invalid username. Only alphanumeric characters allowed, please Enter again.</p>'}))
+
     password = request.REQUEST['password']
     confirmpassword = request.REQUEST['confirmpassword']
  
