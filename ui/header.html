@@ -1,24 +1,37 @@
-<style>
-	{% include "resets.css" %}
+<style>{% include "resets.css" %} 
 	{% include "style.css" %}
 </style>
-
 
 
 <section class="header" id="top">
 		<div class="container">
 			<div class="logo"><a href="/"><img src="http://i.imgur.com/KKTKQJv.png?1" class="img-responsive"></a></div>
 			<div class="macc">
-			<a class="navbar-brand" href="/" ><h2>Mobile App Control Center</h2></a>
+			<a href="/" >
+				<h1> Mobile App Control Center</h1>
+			</a>
+			
+
 			<input id="toogle" type="checkbox">
 			<label for="toogle">&#9776</label>
 			<!-- {% if pcuser %} -->
-			<nav class="prim-nav">
+			
+			<nav class="prim-nav text-uppercase">
+				
 				<ul>	
+					<p> &nbsp; </p>
 					{% if pcuser.user.first_name %}
-					<li><a href="/profile/?id={{pcuser.user.id}}">Welcome, <b>{{pcuser.user.first_name}}</b> !</a></li>
+					<li>
+						<a href="/profile/?id={{pcuser.user.id}}">  
+							<h3> <b> {{ pcuser.user.first_name }} </b></h3>
+						</a>
+					</li>
 					{% else %}
-					<li><a href="/profile/?id={{pcuser.user.id}}">Welcome, <b>User</b> !</a></li>
+					<li>
+						<a href="/profile/?id={{pcuser.user.id}}">  
+							<h3> <b> User </b></h3>
+						</a>
+					</li>
 					{% endif %}
 					<li><a href="/logout_do/">Logout</a></li>
 				</ul>

@@ -1,17 +1,29 @@
-{% extends "infohub/base.html" %}    
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{% block content %}
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script> 
 $(window).load(funtion()
 {
 	$('form').get(0).reset();
 });
 </script>
-<br><br><br><br><br><br>
+</head>
+<body>
+    <div>
+    {% include "malaria/header.html" %}
+</div>
+<br><br><br>
 <center><h2><font color="#2c0f00"> pcsa : infoHub</font></h2></center>
 <div class="well">
     <h2 class="text-center inverted-font">View Post</h2>
-    <br>
+    <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
             <h4 class="inverted-font"><strong>Title:</strong></h4>
@@ -32,7 +44,7 @@ $(window).load(funtion()
             </h4>
         </div>
     </div>
-    <br>
+    <p> &nbsp; </p>
     <div class="row">
         <div class="col-sm-12 col-sm-offset-2">
             <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-default">Back to Post List</a>
@@ -41,4 +53,12 @@ $(window).load(funtion()
         </div>
     </div>
 </div>
-{% endblock %}
+
+<br>
+<div>
+{% include "malaria/footer.html" %}
+</div>
+
+    
+</body>
+</html>

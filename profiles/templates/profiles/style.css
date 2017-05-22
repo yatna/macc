@@ -4,24 +4,26 @@ img{
 	border-radius: 6px;
 	border: 1px solid #aaa;
 }
+
+.navbar-default {
+    background-color: #e2d7bb;
+    height: 110px;
+}
+
 .container{
 	width: 400px;
-	margin: 0 auto;
-		
+	margin: 0 auto;		
 }
+
 .header img{
-	height: 50px;
-	width: 50px;
+	width: 85px;
+    height: 80px;
 	border-width: 0;
 }
 body{
 	font: 18px/24px arial, verdana;
-	background-color: #cccc88;
-	background-color: #e2d7bb;
-	
-	
+	background-color: #e2d7bb;	
 }
-
 
 .logo{
 	float: left;
@@ -53,7 +55,6 @@ body{
 
 }
 
-
 label{
 	float: right;
 	color:#555555;
@@ -67,8 +68,9 @@ label:hover{
 input:checked + label{
 	color: #009688;	
 }
-.macc h2{
+.macc h1{
 	display: inline-block;
+	padding: 30px 100px 30px 0px;
 }
 
 
@@ -92,11 +94,8 @@ input:checked + label{
 }
 h1{
 	font-size: 30px;
-	text-align: center;
-	padding: 30px 0;
-	border-bottom : 1px solid #999999;
-	
-	margin-bottom: 50px;
+	padding: 30px 0px;
+	margin-top: 10px;
 }
 
 .box{
@@ -147,21 +146,24 @@ a{
 }
 
 a:hover{
-	color: #009688;
 	cursor: pointer;
+	color: #0d8b97;
 }
+
 .box h3 a:hover{
 		color: #fff;
-	}
+}
 
 .footer{
 	clear: both;
 }
+
 .row{
 	padding: 50px 0;
 	overflow: contain;
 	
 }
+
 .row p{
 	text-align: center;
 	clear: both;
@@ -172,6 +174,7 @@ a:hover{
 	margin: 30px 0;
 	text-align: center;
 }
+
 .footer a, .footer p{
 	font-size: 14px;
 	margin: 30px;
@@ -214,9 +217,12 @@ a:hover{
 	
 
 	.container{
-		width: 950px;
+		width: 1110px;
+		text-align: center;
 	}
 	.box{
 		width: 400px;
 	}
 }
+
+

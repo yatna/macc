@@ -1,14 +1,18 @@
-{% extends "infohub/base.html" %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{% block content %}
-<style>  
- .ast{
-	color:red;
-	size:11;
-	padding:3;
-    }
-</style>
-<br><br><br><br><br><br>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+    {% include "malaria/header.html" %}
+</div>
+<br><br><br>
 <center><h2><font color="#2c0f00"> Malaria : infoHub</font></h2></center>
 <div class="well">
     <h2 class="text-center inverted-font">New Post</h2>
@@ -17,7 +21,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title <span class="ast" >*</span></label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <input class="form-control" type="text" name="title_post" value="{% if form.title_post.value %}{{ form.title_post.value }}{% endif %}">
                 <p class="help-block inverted-font">
                     <strong>
@@ -32,7 +36,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Description <span class="ast" >*</span></label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <textarea class="form-control" rows="18" name="description_post" minlength=100>{% if form.description_post.value %}{{ form.description_post.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">
                     <strong>
@@ -54,4 +58,10 @@
     </form>
 </div>
 <br><br><br>
-{% endblock %}
+<div>
+{% include "malaria/footer.html" %}
+</div>
+
+    
+</body>
+</html>
