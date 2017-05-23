@@ -25,10 +25,16 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
+                    <div class = "row">
+                    <div class="col-md-2">
                     <a class="navbar-brand" href="{% url 'webhub:dashboard' %}">
                         <img class="navbar-brand-img" src="http://i.imgur.com/KKTKQJv.png?1">
                     </a>
+                    </div>
+                    <div class="col-md-5">
                     <a class="navbar-brand hidden-xs" href="{% url 'webhub:dashboard' %}"><h1>Mobile App Control Center</h1></a>
+                    </div>
+                    </div>
                 </div>
                 {% if user.is_authenticated %}
                     <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -37,13 +43,13 @@
                               <div class = "row">
                                 <div class="col-md-5">
                                     <!--Update profile url so that itsnot hardcoded-->
-                                    <a class="btn btn-primary" href="/profile/?id={{ user.id }}" role="button">
-                                        <h5 class="navbar-btn-text">Profile</h4>
+                                    <a class="navbar-brand" href="/profile/?id={{ user.id }}">
+                                        <h4>  {{ user.first_name }} </h4>
                                     </a>
                                 </div>
-                                <div class="col-md-5 text-right">
-                                    <a class="btn btn-primary" href="{% url 'webhub:logout_do' %}" role="button">
-                                        <h5 class="navbar-btn-text">Log Out</h4>
+                                <div class="col-md-7 text-right">
+                                    <a class="navbar-brand" href="{% url 'webhub:logout_do' %}">
+                                        <h4> LogOut </h4>
                                     </a>
                                 </div>
                               </div>

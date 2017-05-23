@@ -1,7 +1,19 @@
-{% extends "infohub/base.html" %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{% block content %}
-<br><br><br><br><br><br>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div>
+    {% include "malaria/header.html" %}
+</div>
+<br>
 <center><h2><font color="#2c0f00"> pcsa : infoHub</font> </h2></center>
 <div class="well">
     <h2 class="text-center inverted-font">Edit Post</h2>
@@ -48,4 +60,8 @@
     <br>    
 </div>
 <br><br>
-{% endblock %}
+<div>
+{% include "malaria/footer.html" %}
+</div>
+</body>
+</html>

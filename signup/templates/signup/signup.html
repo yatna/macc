@@ -37,9 +37,10 @@ email : ranihaileydesai@gmail.com
     </style>
 </head>
 <body>
-    
-    {% include "header.html" %}
-    <br><br><br><br><br><br><br>
+    <div>
+    {% include "malaria/header.html" %}
+    </div>
+    <br><br><br>
     <center class= "error"><p> {{text}}</p></center>
     <br>
     
@@ -62,7 +63,7 @@ email : ranihaileydesai@gmail.com
                 <label class="radio-inline">
                        <input maxlength=100 type="radio" name="gender" value="female">Female
                 </label>
-        <label class="radio-inline">
+                <label class="radio-inline">
                        <input maxlength=100 type="radio" name="gender" value="restricted">Prefer not to say
                 </label>
        </div>
@@ -101,8 +102,8 @@ email : ranihaileydesai@gmail.com
     
     </center>
     
-    <br><br><br><br><br><br>
-    {% include "footer.html" %}
+    <br><br><br>
+    {% include "malaria/footer.html" %}
 
 
     
