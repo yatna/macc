@@ -39,14 +39,14 @@ email : ranihaileydesai@gmail.com
             
                 <h3><b>User Profile</b></h3>
                
-                <ul>
+                <ol>
                     <li><span><font color="black">  First Name </span>: </font>{{profiler.user.first_name}}</li>
                     <li><span><font color="black">Last Name </span>: </font>{{profiler.user.last_name}}</li>
                     <li><span><font color="black">Email Address </span>: </font>{{profiler.user.email}}</li>
                     <li><span><font color="black">Mobile </span>:   </font>{{profiler.phone}} </li>
                     <li><span><font color="black">Gender </span>:  </font> {{profiler.gender}}</li>
                     <li><span><font color="black">Location </span>:   </font>{{profiler.location}} </li>
-                </ul>
+                </ol>
                 <div class="options">
                     {% if profiler.user.username == pcuser.user.username %}
                     <a href="javascript:void(0)" onclick="window.location.href='/edit_profile_page/?id={{profiler.id}}'" class="btn">Edit Profile</a>

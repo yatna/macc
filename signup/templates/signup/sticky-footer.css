@@ -16,7 +16,8 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   /* Set margin-bottom of body to this value as well */
-  min-height: 110px;
+  min-height: 150px;
+  max-height: auto;
   background-color: #DCDCDC;
   text-align: center;
   padding: 15px;
