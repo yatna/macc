@@ -59,8 +59,8 @@ def signup_do(request):
     if password <> confirmpassword:
         return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None, "text":'<p>Passwords don\'t match. Please Enter again.</p>'}))
     
-    first_name = request.REQUEST['first_name']
-    last_name = request.REQUEST['last_name']
+    first_name = "" ""
+    last_name = "" ""
     phone = request.REQUEST['phone']
     email = request.REQUEST['email']
     gender = request.REQUEST['gender']

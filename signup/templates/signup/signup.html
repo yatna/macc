@@ -21,8 +21,8 @@ email : ranihaileydesai@gmail.com
     <style>
     .form-outline{
         width:600px;
-        height:900px;
-        margin:0 auto;
+        height:580px;
+        
         background-color:#0d8b97;
     }
     .error{
@@ -40,7 +40,7 @@ email : ranihaileydesai@gmail.com
     <div>
     {% include "header.html" %}
     </div>
-    <br><br><br>
+    <br>
     <center class= "error"><p> {{text}}</p></center>
     <br>
     
@@ -50,11 +50,8 @@ email : ranihaileydesai@gmail.com
     <div class="form-outline" >
     <br>
     <form action="/signup_do/" method="post">
-        <h2>Sign Up Form</h2>
+        <h2>Sign Up</h2>
         <br>
-        
-        <label class="control-label" id="gender" for="radios"><h4>Gender<span class="ast" >*</span></h4>
-        </label>
         
         <div class="controls">
                 <label class="radio-inline">
@@ -64,33 +61,33 @@ email : ranihaileydesai@gmail.com
                        <input maxlength=100 type="radio" name="gender" value="female">Female
                 </label>
                 <label class="radio-inline">
-                       <input maxlength=100 type="radio" name="gender" value="restricted">Prefer not to say
+                       <input maxlength=100 type="radio" name="gender" value="restricted">Others
                 </label>
        </div>
+        <br>
+        <font color="black">
+        <input type="text" name="username" align="right" placeholder=" Username" required>
+        <br>
+        <br>
+        <input type="email" name="email" placeholder=" Email" required>
+  
         
-        <h4>Username<span class="ast" >*</span></h4></font>
-        <input type="text" name="username" align="right" required>
-        <font color="white"><h4>Email id<span class="ast" >*</span></h4></font>
-        <input type="email" name="email" required>
+        <br>
+        <br>
         
+        <input type="password" name="password" align="right" placeholder="Set Password" required>
+        <br>
+        <br>
         
+        <input type="password" name="confirmpassword" placeholder="Confirm Password" required> 
         
-        <font color="white"><h4>First name</h4></font>
-        <input type="text" name="first_name" align="right">
-        <font color="white"><h4>Last name</h4></font>
-        <input type="text" name="last_name">
-        
-        
-        <font color="white"><h4>Set Password<span class="ast" >*</span></h4></font>
-        <input type="password" name="password" align="right" required>
-        <font color="white"><h4>Confirm Password<span class="ast" >*</span></h4></font>
-        <input type="password" name="confirmpassword" required> <br> both passwords should match <br>
-        
-        <font color="white"><h4>Phone<span class="ast" >*</span></h4></font>
-        <input type="tel" name="phone" align="right" required>
-        <font color="white"><h4>Location<span class="ast" >*</span></h4></font>
-        <input type="text" name="location" required>
-        
+        <br>
+        <br>
+        <input type="tel" name="phone" align="right" placeholder="Phone Number" required>
+        <br>
+        <br>
+        <input type="text" name="location" placeholder="Location" required>
+        </font>
         
         
         <br><br>
@@ -102,7 +99,7 @@ email : ranihaileydesai@gmail.com
     
     </center>
     
-    <br><br><br>
+    <br><br>
     {% include "malaria/footer.html" %}
 
 

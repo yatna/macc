@@ -16,7 +16,7 @@ body{
 }
 
 .header, .footer {
-	background-color: #e2d7bb;
+	background-color: #DCDCDC;
 }
 
 .logo{
@@ -136,13 +136,17 @@ a:hover{
 }
 
 .well {
-    background-color: #0d8b97;
-    border: 1px solid #0a6d76;
+    background-color: #DCDCDC;
+    border: 0;
     max-width: 80%;
     margin: auto;
 }
 
 .inverted-font {
-    color: white;
+    color: black;
 }
 
+.table tbody tr td:last-child {
+    white-space: nowrap;
+    width: 1%
+}
