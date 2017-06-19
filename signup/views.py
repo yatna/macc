@@ -56,7 +56,7 @@ def signup_do(request):
     password = request.REQUEST['password']
     confirmpassword = request.REQUEST['confirmpassword']
  
-    if password <> confirmpassword:
+    if password != confirmpassword:
         return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None, "text":'<p>Passwords don\'t match. Please Enter again.</p>'}))
     
     first_name = "" ""
@@ -67,7 +67,7 @@ def signup_do(request):
     location = request.REQUEST['location']
 
     try:
-        if len(User.objects.filter(email=email))<>0:
+        if len(User.objects.filter(email=email)) != 0:
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                                   "text":'<p>Someone has already registered using this email.</p><p>If you have forgotten your password, click <a href=\'/signup_page/\'></p><p>Click here</a> to go back to signup page.</p>',"link":'0'}))
     except:

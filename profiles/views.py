@@ -85,7 +85,7 @@ def edit_profile(request):
     #To remove profile picture
     if 'reset_image' in request.REQUEST.keys():
         request.user.pcuser.image = "http://vfcstatic.r.worldssl.net/assets/car_icon-e0df962a717a5db6ebc8b37e80b05713.png"
-        if str(request.user.pcuser.imageobj) <> '':
+        if str(request.user.pcuser.imageobj) != '':
             path = '/vagrant/submit/media/propics/' + request.user.username + request.user.pcuser.imageobj.url[request.user.pcuser.imageobj.url.rfind('.'):]
             if os.path.isfile(path):
                 os.remove(path)
@@ -95,7 +95,7 @@ def edit_profile(request):
     
     if 'image' in request.FILES.keys():
         #delete old file
-        if str(request.user.pcuser.imageobj) <> '':
+        if str(request.user.pcuser.imageobj) != '':
             path = '/vagrant/submit/media/propics/' + request.user.username + ".jpg"
             if os.path.isfile(path):
                 os.remove(path)
@@ -147,7 +147,7 @@ def forgot_pass(request):
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'User Does not exist. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
     user = user[0]
-    if user.email <> request.REQUEST['email']:
+    if user.email != request.REQUEST['email']:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'Invalid email. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
     user.pcuser.reset_pass = uuid.uuid4().hex
@@ -190,7 +190,7 @@ def reset_pass_page(request):
     
     user = user[0].user
     
-    if user.email <> request.REQUEST['email']:
+    if user.email != request.REQUEST['email']:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                                 "text":'Invalid Email.',"text1":'Please go back or click here to go to the homepage',"link":'/'}))
     return HttpResponse(jinja_environ.get_template('reset_password.html').render({'pcuser':None, 'reset_pass':reset_pass}))
@@ -220,7 +220,7 @@ def change_pass(request):
                                                                               "text":'Password Changed.',"text1":'Please click here to go to the homepage and log in again.',"link":'/logout_do/'}))
     else:
         retval = check(request)
-        if retval <> None:
+        if retval != None:
             return retval
         if "pass" not in request.REQUEST.keys() or "oldpass" not in request.REQUEST.keys():
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
@@ -240,6 +240,6 @@ def change_pass(request):
 @login_required(login_url='/login_do/') 
 def change_pass_page(request):
     retval = check(request)
-    if retval <> None:
+    if retval != None:
         return retval
     return HttpResponse(jinja_environ.get_template('change_password.html').render({"pcuser":request.user.pcuser}))
