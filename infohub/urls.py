@@ -1,9 +1,9 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns(
+urlpatterns = [
     '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('webhub.urls')),
@@ -15,4 +15,4 @@ urlpatterns = patterns(
     url(r'^pcsa/', include('pcsa.urls', namespace='pcsa')),
     url(r'^gethelpnow/', include('pcsa_GHN.urls', namespace='pcsa_GHN')),
     url(r'^safetytools/', include('pcsa_safety_tools.urls', namespace='pcsa_safety_tools'))
-)
+]

@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from malaria_web import views
 
-urlpatterns = patterns(
+urlpatterns = [
     '',
     url(r'^create_post/$',
         views.create_post,
@@ -19,4 +19,4 @@ urlpatterns = patterns(
     url(r'^view_post/(?P<post_id>\d+)$',
         views.view_post,
         name='view_post'),
-)
+]

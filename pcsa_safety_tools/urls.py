@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from pcsa_safety_tools import views
 
-urlpatterns = patterns(
+urlpatterns = [
     '',
     url(r'^create_post/$',
         views.create_post,
@@ -20,4 +20,4 @@ urlpatterns = patterns(
         views.view_post,
         name='view_post'),
     url(r'^home/$', views.home, name='home')
-)
+]
