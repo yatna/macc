@@ -88,21 +88,21 @@ def dashboard(request):
 #Called when a user clicks login button. 
 @csrf_exempt
 def login_do(request):
-    username = request.REQUEST['username']
-    password = request.REQUEST['password']
+    username = request.POST['username']
+    password = request.POST['password']
     user = authenticate(username=username, password=password)
     
     if user is not None:
         if user.is_active:
             login(request, user)
-            if 'redirect' in request.REQUEST.keys():
-                return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.REQUEST['redirect'].replace("!!__!!","&")}))
+            if 'redirect' in request.POST.keys():
+                return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
             return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
             
     else:
         # Return an 'invalid login' error message.
-        if "js" in request.REQUEST.keys():
-            if len(User.objects.filter(username=request.REQUEST['username'])) == 0:
+        if "js" in request.POST.keys():
+            if len(User.objects.filter(username=request.POST['username'])) == 0:
                 return HttpResponse("inv_user")
             return HttpResponse("inv_pass")
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
@@ -113,15 +113,15 @@ def login_do(request):
 def logout_do(request):
     logout(request)
     redirect_url = "/"
-    if 'redirect_url' in request.REQUEST.keys():
-        redirect_url = request.REQUEST['redirect_url']
+    if 'redirect_url' in request.POST.keys():
+        redirect_url = request.POST['redirect_url']
     return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":redirect_url}))
     
     
 def profile(request):
     
     try:
-        pcuserid = request.REQUEST['id']
+        pcuserid = request.POST['id']
         if pcuserid == request.user.pcuser.pk:
             return HttpResponse(jinja_environ.get_template('profile.html').render({"pcuser":request.user.pcuser, "profiler":request.user.pcuser}))
         else:
@@ -134,7 +134,7 @@ def profile(request):
 def edit_profile_page(request):
     if not request.user.is_authenticated():
         return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":None}))
-    pcuserid = request.REQUEST['id']
+    pcuserid = request.POST['id']
     return HttpResponse(jinja_environ.get_template('edit_profile.html').render({"pcuser":Pcuser.objects.get(pk=pcuserid)}))
 
 #Edit profile function. Called after a user presses done in edit profile. New data is requested from frontend and stored.
@@ -145,7 +145,7 @@ def edit_profile(request):
 
     
     #To remove profile picture
-    if 'reset_image' in request.REQUEST.keys():
+    if 'reset_image' in request.POST.keys():
         request.user.pcuser.image = "http://vfcstatic.r.worldssl.net/assets/car_icon-e0df962a717a5db6ebc8b37e80b05713.png"
         if str(request.user.pcuser.imageobj) != '':
             path = '/vagrant/submit/media/propics/' + request.user.username + request.user.pcuser.imageobj.url[request.user.pcuser.imageobj.url.rfind('.'):]
@@ -169,12 +169,12 @@ def edit_profile(request):
     
     
     
-    request.user.pcuser.gender = request.REQUEST['gender']
-    request.user.pcuser.phone = request.REQUEST['phone']
-    request.user.pcuser.email = request.REQUEST['email']
-    request.user.pcuser.location = request.REQUEST['location']
-    request.user.first_name = request.REQUEST['first_name']
-    request.user.last_name = request.REQUEST['last_name']
+    request.user.pcuser.gender = request.POST['gender']
+    request.user.pcuser.phone = request.POST['phone']
+    request.user.pcuser.email = request.POST['email']
+    request.user.pcuser.location = request.POST['location']
+    request.user.first_name = request.POST['first_name']
+    request.user.last_name = request.POST['last_name']
     
     request.user.pcuser.save()
     
@@ -201,15 +201,15 @@ def forgot_pass(request):
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'<p>Please log out in order to request for a password reset.</p>\
                                                                                   <p>Please go back or click here to go to the homepage</p>',"link":'/'}))
-    if 'username' not in request.REQUEST.keys() or 'email' not in request.REQUEST.keys():
+    if 'username' not in request.POST.keys() or 'email' not in request.POST.keys():
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'Invalid Request. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
-    user = User.objects.filter(username=request.REQUEST['username'])
+    user = User.objects.filter(username=request.POST['username'])
     if len(user) == 0:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'User Does not exist. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
     user = user[0]
-    if user.email != request.REQUEST['email']:
+    if user.email != request.POST['email']:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'Invalid email. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
     user.pcuser.reset_pass = uuid.uuid4().hex
@@ -238,10 +238,10 @@ def reset_pass_page(request):
     if request.user.is_authenticated():
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
                                                                               "text":'<p>Please log out before requesting reset in password.</p>',"text1":'<p>Click here to go to the homepage</p>',"link":'/'}))
-    if "reset_pass" not in request.REQUEST.keys() or 'email' not in request.REQUEST.keys():
+    if "reset_pass" not in request.POST.keys() or 'email' not in request.POST.keys():
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'<p>Invalid Request</p>',"text1":'Click here to go to the homepage</p>', "link":'/'}))
-    reset_pass = request.REQUEST['reset_pass']
+    reset_pass = request.POST['reset_pass']
     if reset_pass == "":
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'<p>Invalid Request</p>',"text1":'<p>click here to go to the homepage</p>', "link":'/'}))
@@ -252,7 +252,7 @@ def reset_pass_page(request):
     
     user = user[0].user
     
-    if user.email != request.REQUEST['email']:
+    if user.email != request.POST['email']:
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                                 "text":'Invalid Email.',"text1":'Please go back or click here to go to the homepage',"link":'/'}))
     return HttpResponse(jinja_environ.get_template('reset_password.html').render({'pcuser':None, 'reset_pass':reset_pass}))
@@ -262,17 +262,17 @@ def reset_pass_page(request):
 #Called when the user clicks change password button. Checks if the previous password is valid or not.
 @csrf_exempt
 def change_pass(request):
-    if "reset_pass" in request.REQUEST.keys():
-        reset_pass = request.REQUEST['reset_pass']
+    if "reset_pass" in request.POST.keys():
+        reset_pass = request.POST['reset_pass']
         if reset_pass == "":
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                                   "text":'<p>Invalid Request</p>', "text1":'<p>click here to go to the homepage</p>',"link":'/'}))
         user = Pcuser.objects.filter(reset_pass=reset_pass)
-        if len(user)==0 or 'pass' not in request.REQUEST.keys():
+        if len(user)==0 or 'pass' not in request.Policies.keys():
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                                   "text":'Invalid Request.',"text1":'Please go back or click here to go to the homepage',"link":'/'}))
         user = user[0].user
-        user.set_password(request.REQUEST['pass'])
+        user.set_password(request.POST['pass'])
         user.save()
         user.pcuser.reset_pass = ""
         user.pcuser.save()
@@ -283,13 +283,13 @@ def change_pass(request):
         retval = check(request)
         if retval != None:
             return retval
-        if "pass" not in request.REQUEST.keys() or "oldpass" not in request.REQUEST.keys():
+        if "pass" not in request.POST.keys() or "oldpass" not in request.POST.keys():
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
                                                                                   "text":'Invalid Request.', "text1":'Please go back or click here to go to the homepage',"link":'/'}))
-        if not request.user.check_password(request.REQUEST['oldpass']):
+        if not request.user.check_password(request.POST['oldpass']):
             return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
                                                                                   "text":'Invalid Old Password.',"text1":'Click here to go to the homepage',"link":'/'}))
-        request.user.set_password(request.REQUEST['pass'])
+        request.user.set_password(request.POST['pass'])
         request.user.save()
         logout(request)
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,

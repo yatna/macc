@@ -3,7 +3,6 @@ from django.conf.urls import url
 from pcsa_safety_tools import views
 
 urlpatterns = [
-    '',
     url(r'^create_post/$',
         views.create_post,
         name='create_post'),

@@ -5,7 +5,6 @@ from pcsa import views
 from pcsa_GHN import views as ghn_views
 
 urlpatterns = [
-    '',
     url(r'^create_post/$',
         views.create_post,
         name='create_post'),

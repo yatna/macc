@@ -19,7 +19,6 @@ router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
 
 urlpatterns = [
-    '',
     url(r'^index/$',
         views.index,
         name='index'),

@@ -28,8 +28,8 @@ website = "http://systerspcweb.herokuapp.com/"
 def signup_page(request):
     if request.user.is_authenticated():
         redirect_url = "/"
-        if 'redirect_url' in request.REQUEST.keys():
-            redirect_url = request.REQUEST['redirect_url']
+        if 'redirect_url' in request.POST.keys():
+            redirect_url = request.POST['redirect_url']
         return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":redirect_url}))
 
     else:
@@ -42,29 +42,29 @@ def signup_do(request):
     if request.user.is_authenticated():
         logout(request)
         redirect_url = "/"
-        if 'redirect_url' in request.REQUEST.keys():
-            redirect_url = request.REQUEST['redirect_url']
+        if 'redirect_url' in request.POST.keys():
+            redirect_url = request.POST['redirect_url']
         return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":redirect_url}))
     
-    username = request.REQUEST['username']
+    username = request.POST['username']
 
 
     if not username.isalnum():
         return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None,
                                                                               "text":'<p>Invalid username. Only alphanumeric characters allowed, please Enter again.</p>'}))
 
-    password = request.REQUEST['password']
-    confirmpassword = request.REQUEST['confirmpassword']
+    password = request.POST['password']
+    confirmpassword = request.POST['confirmpassword']
  
     if password != confirmpassword:
         return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None, "text":'<p>Passwords don\'t match. Please Enter again.</p>'}))
     
     first_name = "" ""
     last_name = "" ""
-    phone = request.REQUEST['phone']
-    email = request.REQUEST['email']
-    gender = request.REQUEST['gender']
-    location = request.REQUEST['location']
+    phone = request.POST['phone']
+    email = request.POST['email']
+    gender = request.POST['gender']
+    location = request.POST['location']
 
     try:
         if len(User.objects.filter(email=email)) != 0:
@@ -141,7 +141,7 @@ def verify(request):
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                               "text":'Verification Successful.',"text1":'Go to homepage' , "link": '/'}))
 #        return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":Non,
-#                                                                                   "code":request.REQUEST['code']}))
+#                                                                                   "code":request.POST['code']}))
 #        index(request)
     try:
         request.user.pcuser
@@ -149,7 +149,7 @@ def verify(request):
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
                                                                              "text":'<p>No Pcuser associated.</p>',"text1":'<p>Please click here to go to the homepage</p>',"link":'/'}))
     
-    code = request.REQUEST['code']
+    code = request.POST['code']
     pcuser = request.user.pcuser
     if pcuser.verified == '1':
         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
