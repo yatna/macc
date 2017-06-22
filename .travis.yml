@@ -1,8 +1,8 @@
 sudo: false
 language: python
 python:
-  - "2.6"
-  - "2.7"
+#  - "2.6"
+#  - "2.7"
   - "3.6"
 install:
   - "pip3 install -r requirements.txt"
@@ -10,4 +10,7 @@ before_script:
   - psql -c "create role myuser with createrole createdb login password 'mypassword';" -U postgres
   - psql -c "create database webapp;" -U postgres
   - export DJANGO_SETTINGS_MODULE="infohub.settings"
-script: python3 manage.py test --settings=infohub.settings
+script: 
+ - python3 manage.py makemigrations
+ - python3 manage.py migrate --fake-initial
+ - python3 manage.py test --settings=infohub.settings
