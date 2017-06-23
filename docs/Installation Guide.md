@@ -4,19 +4,43 @@
 This tutorial assumes that the user is installing and running the project under the Ubuntu Virtual Machine that is provided by PeaceCorps.
 
 ## Table of Contents
-1. [Install git](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-git)
-2. [Clone Project](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#clone-project)
-3. [Install Django and PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-django-and-postgresql)
-4. [Install VirtualBox and Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
-5. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
-6. [Using Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#using-vagrant)
-7. [Install Project Dependencies](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-project-dependencies)
-8. [Setup PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#setup-postgresql)
-9. [Update settings.py](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#update-settingspy)
-10. [Generate Database Tables Corresponding to Django Models](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
-11. [Run Development Server](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#run-development-server)
-12. [Try out Mobile App Control Center](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
-13. [Exit the Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#exit-the-virtual-machine)
+1. [Install Python3.6](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-python3.6)
+2. [Install git](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-git)
+3. [Clone Project](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#clone-project)
+4. [Install Django and PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-django-and-postgresql)
+5. [Install VirtualBox and Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
+6. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
+7. [Using Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#using-vagrant)
+8. [Install Project Dependencies](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-project-dependencies)
+9. [Setup PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#setup-postgresql)
+10. [Update settings.py](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#update-settingspy)
+11. [Generate Database Tables Corresponding to Django Models](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
+12. [Run Development Server](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#run-development-server)
+13. [Try out Mobile App Control Center](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
+14. [Exit the Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#exit-the-virtual-machine)
+
+## Install Python3.6
+
+By default, your PC has Python 2.7 installed. To install Python 3.6, follow the steps below:
+
+To install some build dependencies:
+
+    sudo apt install build-essential checkinstall
+    sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
+Then, download Python 3.6 source code from python.org by the following command:
+    
+    wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+
+Next, we extract the tarball:
+
+   tar xvf Python-3.6.0.tar.xz
+
+Now change directory into the source directory, configure the build environment and install:
+
+    cd Python-3.6.0/
+    ./configure
+    sudo make install
 
 ## Install git
 
