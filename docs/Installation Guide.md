@@ -36,8 +36,8 @@ For our project, this would correspond to:
 
 If you are installing and running the project on your local machine and not on the PeaceCorps VM, then you will need to download and install the following software:
 
-1. [Django](https://www.djangoproject.com/download/) (version == 1.6.5)
-2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.3.4)
+1. [Django](https://www.djangoproject.com/download/) (version == 1.11)
+2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.3.4, version 9.6 preferred)
 
 Skip the next two sections if not using the PeaceCorps VM and jump to the section '**Install Project Dependencies**'. 
 
@@ -121,14 +121,14 @@ On the VM, update and upgrade:
 
 Install project dependencies:
 
-    sudo apt-get install python-dev
-    sudo apt-get install python-psycopg2
+    sudo apt-get install python3-dev
+    sudo apt-get install python3-psycopg2
     sudo apt-get install libpq-dev
-    sudo apt-get install python-pip
-
+    sudo apt-get install python3-pip
+    
 Install Python's Virtual Environment (**Only for users not using Peacecorp's VM**)
 
-    sudo pip install virtualenv
+    sudo pip3 install virtualenv
     
 Create Python's Virtual Environment (**Only for users not using Peacecorp's VM**), by moving to the top level directory of the project containing **manage.py** and create your virtual environment, type :
 
@@ -144,27 +144,27 @@ Now, your prompt will change to indicate that you are now operating within the v
 
 Install all Python dependencies specified in the [requirements.txt](https://github.com/systers/app-web-server/blob/develop/requirements.txt) file using pip:
     
-    sudo pip install -r requirements.txt
+    sudo pip3 install -r requirements.txt
     
 Or install one by one
 
-    sudo pip install Django==1.6.5
-    sudo pip install Jinja2==2.7.3
-    sudo pip install MarkupSafe==0.23
-    sudo pip install Pillow==2.5.1
-    sudo pip install dj-database-url==0.3.0
-    sudo pip install dj-static==0.0.6
-    sudo pip install django-toolbelt==0.0.1
-    sudo pip install djangorestframework==2.3.14
-    sudo pip install gunicorn==19.1.0
-    sudo pip install psycopg2==2.5.3
-    sudo pip install static3==0.5.1
-    sudo pip install django-rest-swagger==0.3.2
-    sudo pip install PyYAML==3.11
+    sudo pip3 install Django==1.11
+    sudo pip3 install Jinja2==2.9.6
+    sudo pip3 install MarkupSafe==1.0
+    sudo pip3 install Pillow==4.1.1
+    sudo pip3 install dj-database-url==0.4.2
+    sudo pip3 install dj-static==0.0.6
+    sudo pip3 install django-toolbelt==0.0.1
+    sudo pip3 install djangorestframework==3.6.3
+    sudo pip3 install gunicorn==19.7.1
+    sudo pip3 install psycopg2==2.7.1
+    sudo pip3 install static3==0.7.0
+    sudo pip3 install django-rest-swagger==2.1.2
+    sudo pip3 install PyYAML==3.12
 
 **Configure autoenv**
 
-    sudo pip install autoenv
+    sudo pip3 install autoenv
     echo "source `which activate.sh`" >> ~/.bashrc
 	
 Changing Directory to the cloned directory will automatically resolve export settings error
@@ -267,11 +267,12 @@ Change directory to where you can find the **manage.py** file (this is located i
 
 To view the sql commands that will be generated from `syncdb`, run the command:
 
-    python manage.py sqlall app_name_here
+    python3 manage.py sqlall app_name_here
 
 To generate the database tables that correspond to the Django models, run the command:
 
-    python manage.py syncdb
+    python3 manage.py makemigrations app_name_here
+    Python3 manage.py migrate
 
 After running the `syncdb` command, you should get the following prompt. Type in `yes`:
 
@@ -287,8 +288,9 @@ Password: mypassword
 
 If the models are updated in any way, you need to delete the database and then migrating the fields once more. This can be done by:
 
-    python manage.py flush
-    python manage.py syncdb
+    python3 manage.py flush
+    python3 manage.py makemigrations
+    python3 manage..py migrate
 
 Check that the tables were created by starting the postgres client and viewing the tables using the `\dt` command.
 ```
@@ -307,7 +309,7 @@ Change directory to where you can find the **manage.py** file (this is located i
 
 Start the development server by running the command (this runs the development server on the VM):
 
-    python manage.py runserver [::]:8000
+    python3 manage.py runserver [::]:8000
 
 
 ## Try out Mobile App Control Center
