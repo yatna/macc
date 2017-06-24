@@ -289,19 +289,22 @@ The following lines need to be commented or kept as such if already commented:
 
 Change directory to where you can find the **manage.py** file (this is located in the top level directory for the project). If you are installing the project on the VM, the project will be located within the **/vagrant** directory.
 
-To view the sql commands that will be generated from `syncdb`, run the command:
+To view the sql commands that will be generated from `migrate`, run the command:
 
-    python3 manage.py sqlall app_name_here
+    python3 manage.py sqlmigrate app_name_here migration_name
+
+For example, 
+    
+    python3 manage.py sqlmigrate malaria_web 0001_initial
 
 To generate the database tables that correspond to the Django models, run the command:
 
-    python3 manage.py makemigrations app_name_here
+    python3 manage.py makemigrations
     Python3 manage.py migrate
 
-After running the `syncdb` command, you should get the following prompt. Type in `yes`:
+After running the `migrate` command, you should run the following command to create a superuser:
 
-    You just installed Djano's auth system, which means you don't have any superusers defined.
-    Would you like to create one now? (yes/no): yes
+    python3 manage.py createsuperuser
 
 Create a superuser with the following credentials (for now):
 ```
@@ -314,7 +317,7 @@ If the models are updated in any way, you need to delete the database and then m
 
     python3 manage.py flush
     python3 manage.py makemigrations
-    python3 manage..py migrate
+    python3 manage.py migrate
 
 Check that the tables were created by starting the postgres client and viewing the tables using the `\dt` command.
 ```
