@@ -37,7 +37,7 @@ For our project, this would correspond to:
 If you are installing and running the project on your local machine and not on the PeaceCorps VM, then you will need to download and install the following software:
 
 1. [Django](https://www.djangoproject.com/download/) (version == 1.6.5)
-2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.3.4)
+2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.5.5)
 
 Skip the next two sections if not using the PeaceCorps VM and jump to the section '**Install Project Dependencies**'. 
 
