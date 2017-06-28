@@ -88,6 +88,7 @@ input:checked + label{
 
 .macc {
 	text-align: center;
+	margin-right: 70px;
 }
 
 .macc input:checked ~ nav{
