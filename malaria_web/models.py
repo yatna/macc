@@ -26,7 +26,7 @@ class Post(models.Model):
     # field to note the timestamp when the post was last updated
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.owner.user.username
         
     class Meta:
@@ -58,7 +58,7 @@ class RevPost(models.Model):
     # field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.owner_rev.user.username
         
     class Meta:
@@ -72,5 +72,5 @@ class MalariaUsers(models.Model):
     age = models.IntegerField()
     medicineType = models.CharField(max_length=100)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

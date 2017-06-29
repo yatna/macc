@@ -25,7 +25,7 @@ class Pcuser(models.Model):
     #any other number = verification code
     verified = models.CharField(max_length=100)
      
-    def __unicode__(self):
+    def __str__(self):
         return self.user.username
         
     class Meta:

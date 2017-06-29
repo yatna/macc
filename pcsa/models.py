@@ -10,7 +10,7 @@ class PcsaPost(models.Model):
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.owner.user.username
         
     class Meta:
