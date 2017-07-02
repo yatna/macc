@@ -1,9 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from pcsa_GHN import views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^create_post/$',
         views.create_post,
         name='create_post'),
@@ -36,4 +35,4 @@ urlpatterns = patterns(
     url(r'^$',
         views.home,
         name = 'home')
-)
+]

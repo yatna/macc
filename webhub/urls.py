@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from rest_framework import routers
 
 from malaria_api import views as malaria_api_views
@@ -18,8 +18,7 @@ router.register(r'gethelpnow/posts', ghn_views.ghnPostsViewSet)
 router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^index/$',
         views.index,
         name='index'),
@@ -94,4 +93,4 @@ urlpatterns = patterns(
     url(r'^helpPC/$',
         views.helpPC,
         name='helpPC'),
-)
+]

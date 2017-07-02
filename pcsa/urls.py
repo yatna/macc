@@ -1,11 +1,10 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from rest_framework import routers
 
 from pcsa import views
 from pcsa_GHN import views as ghn_views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^create_post/$',
         views.create_post,
         name='create_post'),
@@ -26,4 +25,4 @@ urlpatterns = patterns(
         views.view_post,
         name='view_post'),
 
-)
+]
