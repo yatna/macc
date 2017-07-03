@@ -56,9 +56,9 @@ INSTALLED_APPS = (
     'pcsa',
     'pcsa_GHN',
     'pcsa_safety_tools',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
     'django.contrib.sites',
     'social_django'
 

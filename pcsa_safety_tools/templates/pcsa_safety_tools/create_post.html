@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label inverted-font">Description</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" rows="18" name="description" minlength=100>{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                        <textarea class="form-control" rows="18" name="description" >{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
                         <p class="help-block inverted-font">
                             <strong>
                                 {% if form.description.errors %}
@@ -74,9 +74,42 @@
                 </div>
             </form>
         </div>
+<!-- <<<<<<< HEAD -->
         <br><br><br>
         <div>
             {% include "malaria/footer.html" %}
         </div>        
     </body>
+<!-- =======
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Description</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="18" name="description" >{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.description.errors %}
+                            {% for error in form.description.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+<div>
+{% include "malaria/footer.html" %}
+</div>
+
+    
+</body>
+>>>>>>> Extended Info Hub posts to support Images and External Links -->
 </html>

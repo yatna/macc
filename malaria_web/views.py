@@ -80,16 +80,18 @@ def create_post(request):
 
     form = PostForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST,request.FILES)
         if form.is_valid():
 
             title = form.cleaned_data['title_post']
             description = form.cleaned_data['description_post']
+            link = form.cleaned_data['link_post']
+            photo = form.cleaned_data['photo']
             owner = request.user.pcuser
             post = create_post_from_form(form, owner)
 
             if post:
-                revpost = create_revpost(owner, post, title, description)
+                revpost = create_revpost(owner, post, title, description,link, photo)
                 if revpost:
                     return HttpResponseRedirect(reverse('malaria:list_posts'))
                 else:
@@ -117,16 +119,22 @@ def create_post(request):
             # before it is changed when calling instance on PostForm
             orig_title = post.title_post
             orig_desc = post.description_post
-            form = PostForm(request.POST, instance=post)
+            orig_link = post.link_post
+            orig_photo = post.photo
+            form = PostForm(request.POST, request.FILES, instance=post)
 
             if form.is_valid():
 
                 owner = request.user.pcuser
                 edited_title = form.cleaned_data['title_post']
                 edited_desc = form.cleaned_data['description_post']
+                edited_link = form.cleaned_data['link_post']
+                edited_photo = form.cleaned_data['photo']
 
                 if (orig_title != edited_title) or \
-                   (orig_desc != edited_desc):
+                   (orig_desc != edited_desc)   or \
+                   (orig_link != edited_link)   or \
+                   (orig_photo != edited_photo) :
 
                     post = create_post_from_form(form, owner)
 
@@ -134,7 +142,9 @@ def create_post(request):
                         revpost = create_revpost(owner,
                                                  post,
                                                  edited_title,
-                                                 edited_desc)
+                                                 edited_desc,
+                                                 edited_link,
+                                                 edited_photo)
                         if not revpost:
                             raise Http404
                     else:

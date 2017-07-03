@@ -132,7 +132,7 @@ def home(request):
 
     form = ghnPostForm()
     if request.method == 'POST':
-        form = ghnPostForm(request.POST)
+        form = ghnPostForm(request.POST,request.FILES)
         if form.is_valid():
             owner = request.user.pcuser
             post = create_post_from_form(form, owner)
@@ -178,16 +178,23 @@ def edit_post(request, post_id):
             # before it is changed when calling instance on PostForm
             orig_title = post.title
             orig_desc = post.description
-            form = ghnPostForm(request.POST, instance=post)
+            orig_link = post.link
+            orig_photo = post.photo
+            form = ghnPostForm(request.POST, request.FILES,instance=post)
 
             if form.is_valid():
 
                 owner = request.user.pcuser
                 edited_title = form.cleaned_data['title']
                 edited_desc = form.cleaned_data['description']
+                edited_link = form.cleaned_data['link']
+                edited_photo = form.cleaned_data['photo']
 
                 if (orig_title != edited_title) or \
-                        (orig_desc != edited_desc):
+                    (orig_desc != edited_desc) or \
+                    (orig_link != edited_link) or \
+                    (orig_photo != edited_photo) :
+
                     post = create_post_from_form(form, owner)
 
                 return HttpResponseRedirect(reverse('pcsa_GHN:view_post',
