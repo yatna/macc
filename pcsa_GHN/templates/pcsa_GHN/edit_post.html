@@ -24,7 +24,7 @@ $(window).load(funtion()
 <div class="well">
     <h2 class="text-center inverted-font">Edit Post</h2>
     <br>
-    <form class="form-horizontal" action="{% url 'pcsa_GHN:edit_post' post.id %}" autocomplete="off" method="post">
+    <form class="form-horizontal" action="{% url 'pcsa_GHN:edit_post' ghnpost.id %}" autocomplete="off" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title</label>

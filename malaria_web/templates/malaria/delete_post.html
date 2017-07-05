@@ -22,10 +22,10 @@
 <div class="well">
     <h2 class="text-center inverted-font">Delete Post</h2>
     <p> &nbsp;</p>
-    <form action="{% url 'malaria:delete_post' post_id %}" method="post">
+    <form action="{% url 'malaria:delete_post' post.id %}" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label class="col-sm-offset-2 inverted-font" style="color:white;">Are you sure you want to delete this Post?</label>
+            <label class="col-sm-offset-2 inverted-font">Are you sure you want to delete this Post?</label>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2">

@@ -19,13 +19,16 @@
 {% for category in categories %}
     {% if category %}
         <div class="well">
-            <center><h2><font color="#2c0f00">  </font></h2></center>
+            <center><h2><font color="#2c0f00">   </font></h2></center>
             <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success pull-right">New Post</a>
             <table class="table">
                 <thead>
                 <tr>
                     <th>
                         <h3 class="inverted-font">Post</h3>
+                    </th>
+                    <th>
+                        <h3 class="inverted-font">Description</h3>
                     </th>
                     <th>
                         <h3 class="inverted-font">Action</h3>
@@ -37,7 +40,12 @@
                     <tr>
                         <td>
                             <h4 class="inverted-font">
-                                {{ post.title }}
+                                {{ post.title|linebreaks }}
+                            </h4>
+                        </td>
+                        <td>
+                            <h4 class="inverted-font">
+                                {{ post.description|truncatechars:40|linebreaks }}
                             </h4>
                         </td>
                         <td>
@@ -50,6 +58,7 @@
                 </tbody>
             </table>
         </div>
+        <br>
     {% else %}
         <div class="well">
             <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success pull-right">New Post</a>

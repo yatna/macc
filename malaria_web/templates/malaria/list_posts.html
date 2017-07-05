@@ -44,12 +44,12 @@
                     <tr>
                         <td>
                             <h4 class="inverted-font">
-                                {{ post.title_post }}
+                                {{ post.title_post |truncatechars:20}}
                             </h4>
                         </td>
                         <td>
                             <h4 class="inverted-font">
-                                {{ post.description_post|truncatewords:5|linebreaks }}
+                                {{ post.description_post|truncatechars:40|linebreaks }}
                             </h4>
                         </td>
                         <td>

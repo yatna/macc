@@ -7,31 +7,135 @@ from .forms import ContactForm, ghnPostForm
 from .models import Contact, ghnPost
 from .serializers import ContactSerializer, ghnPostSerializer
 from .services import *
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-# Create your views here.
 
 class ghnPostsViewSet(viewsets.ReadOnlyModelViewSet):
+
     queryset = ghnPost.objects.all()
     serializer_class = ghnPostSerializer
 
+
 class ContactViewSet(viewsets.ReadOnlyModelViewSet):
+    
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
-post_list = ghnPost.objects.all()
-contact_list = Contact.objects.all()
+
+class ListPostView(LoginRequiredMixin, ListView):
+
+    model = ghnPost
+    template_name = 'pcsa_GHN/home.html'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListPostView, self).get_context_data(**kwargs)
+        context['post_list'] = ghnPost.objects.all()
+        context['contact_list'] = Contact.objects.all()
+        return context
 
 
+class CreatePostView(LoginRequiredMixin, CreateView):
+    
+    model = ghnPost
+    form_class = ghnPostForm
+    template_name = 'pcsa_GHN/create_post.html'
+    success_url='/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(CreatePostView, self).form_valid(form)
+
+
+class UpdatePostView(LoginRequiredMixin, UpdateView):
+    
+    model = ghnPost
+    form_class = ghnPostForm
+    template_name = "pcsa_GHN/edit_post.html"
+    success_url='/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(UpdatePostView, self).form_valid(form)
+
+
+class DeletePostView(LoginRequiredMixin, DeleteView):
+
+    model = ghnPost
+    template_name = "pcsa_GHN/delete_post.html"
+    success_url = '/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+class ViewPostView(LoginRequiredMixin, DetailView):
+    model = ghnPost
+    template_name = "pcsa_GHN/view_post.html"
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+class CreateContactView(LoginRequiredMixin, CreateView):
+    
+    model = Contact
+    form_class = ContactForm
+    template_name = 'pcsa_GHN/create_contact.html'
+    success_url='/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(CreateContactView, self).form_valid(form)
+
+
+class UpdateContactView(LoginRequiredMixin, UpdateView):
+    
+    model = Contact
+    form_class = ContactForm
+    template_name = "pcsa_GHN/edit_contact.html"
+    success_url='/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(UpdateContactView, self).form_valid(form)
+
+
+class DeleteContactView(LoginRequiredMixin, DeleteView):
+
+    model = Contact
+    template_name = "pcsa_GHN/delete_contact.html"
+    success_url = '/gethelpnow/'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+class ViewContactView(LoginRequiredMixin, DetailView):
+    model = Contact
+    template_name = "pcsa_GHN/view_contact.html"
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+'''
 def home(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
     post_list = ghnPost.objects.all()
     contact_list = Contact.objects.all()
     return render(request, 'pcsa_GHN/home.html', {'post_list': post_list, 'contact_list': contact_list})
+'''
 
 
-def create_post(request):
+'''def create_post(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
 
@@ -47,9 +151,9 @@ def create_post(request):
 
     return render(request,
                   'pcsa_GHN/create_post.html',
-                  {'form': form})
+                  {'form': form})'''
 
-
+'''
 def create_contact(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -67,8 +171,10 @@ def create_contact(request):
     return render(request,
                   'pcsa_GHN/create_contact.html',
                   {'form': form})
+'''
 
 
+'''
 def edit_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -106,8 +212,10 @@ def edit_post(request, post_id):
                           {'form': form, 'post': post})
     else:
         raise Http404
+'''
 
 
+'''
 def edit_contact(request, contact_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -144,8 +252,10 @@ def edit_contact(request, contact_id):
                           {'form': form, 'contact': contact})
     else:
         raise Http404
+'''
 
 
+'''
 def delete_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -159,8 +269,8 @@ def delete_post(request, post_id):
         return render(request,
                       'pcsa_GHN/delete_post.html',
                       {'post_id': post_id})
-
-
+'''
+'''
 def delete_contact(request, contact_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -176,8 +286,9 @@ def delete_contact(request, contact_id):
         return render(request,
                       'pcsa_GHN/delete_contact.html',
                       {'contact_id': contact_id})
+'''
 
-
+'''
 def view_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -189,7 +300,9 @@ def view_post(request, post_id):
                       {'post': post})
     else:
         raise Http404
+'''
 
+'''
 def view_contact(request, contact_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -201,3 +314,4 @@ def view_contact(request, contact_id):
                       {'contact': contact})
     else:
         raise Http404
+'''

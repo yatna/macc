@@ -7,8 +7,65 @@ from malaria_web.models import Post
 from malaria_web.services import (create_post_from_form, create_revpost,
                                   delete_post_by_id, get_post_by_id,
                                   get_revposts_of_owner)
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+class ListPostView(LoginRequiredMixin, ListView):
+
+    model = Post
+    template_name = 'malaria/list_posts.html'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+class CreatePostView(LoginRequiredMixin, CreateView):
+
+    model = Post
+    form_class = PostForm
+    template_name = 'malaria/create_post.html'
+    success_url='/malaria/list_posts'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(CreatePostView, self).form_valid(form)
+
+
+class UpdatePostView(LoginRequiredMixin, UpdateView):
+    
+    model = Post
+    form_class = PostForm
+    template_name = "malaria/edit_post.html"
+    success_url='/malaria/list_posts'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(UpdatePostView, self).form_valid(form)
+
+
+class DeletePostView(LoginRequiredMixin, DeleteView):
+
+    model = Post
+    template_name = "malaria/delete_post.html"
+    success_url = '/malaria/list_posts'
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+class ViewPostView(LoginRequiredMixin, DetailView):
+
+    model = Post
+    template_name = "malaria/view_post.html"
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+
+
+"""
 def list_posts(request):
 
     if not request.user.is_authenticated():
@@ -17,9 +74,10 @@ def list_posts(request):
     post_list = Post.objects.all()
     return render(request,
                   'malaria/list_posts.html',
-                  {'post_list': post_list})
+                  {'post_list': post_list})"""
 
 
+"""
 def create_post(request):
 
     if not request.user.is_authenticated():
@@ -47,9 +105,11 @@ def create_post(request):
     return render(request,
                   'malaria/create_post.html',
                   {'form': form})
+"""
 
 
-def edit_post(request, post_id):
+
+'''def edit_post(request, post_id):
 
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -97,9 +157,10 @@ def edit_post(request, post_id):
                           'malaria/edit_post.html',
                           {'form': form, 'post': post})
     else:
-        raise Http404
+        raise Http404'''
 
 
+'''
 def delete_post(request, post_id):
 
     if not request.user.is_authenticated():
@@ -114,8 +175,10 @@ def delete_post(request, post_id):
         return render(request,
                       'malaria/delete_post.html',
                       {'post_id': post_id})
+'''
 
 
+'''
 def view_post(request, post_id):
 
     if not request.user.is_authenticated():
@@ -131,3 +194,4 @@ def view_post(request, post_id):
                        'revpost_list': revpost_list})
     else:
         raise Http404
+'''

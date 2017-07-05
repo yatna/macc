@@ -16,7 +16,7 @@ from webhub.checker import check
 from webhub.models import *
 from webhub.serializers import *
 
-jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['signup/templates/signup', 'malaria_web/templates']), extensions=[loopcontrols])
+jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['signup/templates/signup', 'malaria/templates']), extensions=[loopcontrols])
 
 # SMTP port for sending emails
 SMTP_PORT = 465

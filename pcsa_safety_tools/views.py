@@ -7,16 +7,29 @@ from .forms import SafetyToolsPostForm
 from .models import SafetyToolsPost
 from .serializers import SafetyToolsPostSerializer
 from .services import *
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-# Create your views here.
 
 class SafetyToolsPostViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = SafetyToolsPost.objects.all()
     serializer_class = SafetyToolsPostSerializer
 
 
-post_list = SafetyToolsPost.objects.all()
+'''class ListPostView(LoginRequiredMixin, ListView):
+
+    model = SafetyToolsPost
+    template_name = 'pcsa_safety_tools/home.html'
+
+    radar = SafetyToolsPost.objects.filter(category_id=1)
+    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2)
+    tactics = SafetyToolsPost.objects.filter(category_id=3)
+    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
+    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
+    safety_plan = SafetyToolsPost.objects.filter(category_id=6)
+
+    def get_object(self, **kwargs):
+        return reverse('pcsa_safety_tools:home', kwargs = { 'categories': categories })'''
 
 
 def home(request):
@@ -33,6 +46,35 @@ def home(request):
     return render(request, 'pcsa_safety_tools/home.html', {'categories': categories})
 
 
+class CreatePostView(LoginRequiredMixin, CreateView):
+    
+    model = SafetyToolsPost
+    form_class = SafetyToolsPostForm
+    template_name = 'pcsa_safety_tools/create_post.html'
+    success_url='/safetytools/home/'
+
+
+class UpdatePostView(LoginRequiredMixin, UpdateView):
+    
+    model = SafetyToolsPost
+    form_class= SafetyToolsPostForm
+    template_name = "pcsa_safety_tools/edit_post.html"
+    success_url='/safetytools/home/'
+
+
+class DeletePostView(LoginRequiredMixin, DeleteView):
+
+    model = SafetyToolsPost
+    template_name = "pcsa_safety_tools/delete_post.html"
+    success_url = '/safetytools/home/'
+
+
+class ViewPostView(LoginRequiredMixin, DetailView):
+    model = SafetyToolsPost
+    template_name = "pcsa_safety_tools/view_post.html"
+
+
+'''
 def create_post(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -49,9 +91,14 @@ def create_post(request):
     return render(request,
                   'pcsa_safety_tools/create_post.html',
                   {'form': form})
+'''
 
+"""
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.pcuser
+        return super(UpdatePostView, self).form_valid(form)"""
 
-
+'''
 def edit_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -89,8 +136,10 @@ def edit_post(request, post_id):
                           {'form': form, 'post': post})
     else:
         raise Http404
+'''
 
 
+'''
 def delete_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -104,8 +153,9 @@ def delete_post(request, post_id):
         return render(request,
                       'pcsa_safety_tools/delete_post.html',
                       {'post_id': post_id})
+'''
 
-
+'''
 def view_post(request, post_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('webhub:index'))
@@ -117,3 +167,4 @@ def view_post(request, post_id):
                       {'post': post})
     else:
         raise Http404
+'''
