@@ -16,34 +16,22 @@ class SafetyToolsPostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SafetyToolsPostSerializer
 
 
-'''class ListPostView(LoginRequiredMixin, ListView):
+class ListPostView(LoginRequiredMixin, ListView):
 
     model = SafetyToolsPost
     template_name = 'pcsa_safety_tools/home.html'
 
-    radar = SafetyToolsPost.objects.filter(category_id=1)
-    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2)
-    tactics = SafetyToolsPost.objects.filter(category_id=3)
-    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
-    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
-    safety_plan = SafetyToolsPost.objects.filter(category_id=6)
-
-    def get_object(self, **kwargs):
-        return reverse('pcsa_safety_tools:home', kwargs = { 'categories': categories })'''
-
-
-def home(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('webhub:index'))
-    radar = SafetyToolsPost.objects.filter(category_id=1)
-    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2)
-    tactics = SafetyToolsPost.objects.filter(category_id=3)
-    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
-    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
-    safety_plan = SafetyToolsPost.objects.filter(category_id=6)
-    categories = [radar, unwanted_attention, tactics, bystander_intervention, safety_plan_basics, safety_plan]
-
-    return render(request, 'pcsa_safety_tools/home.html', {'categories': categories})
+    def get_context_data(self, **kwargs):
+        radar = SafetyToolsPost.objects.filter(category_id=1)
+        unwanted_attention = SafetyToolsPost.objects.filter(category_id=2)
+        tactics = SafetyToolsPost.objects.filter(category_id=3)
+        bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
+        safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
+        safety_plan = SafetyToolsPost.objects.filter(category_id=6)
+        categories = [radar, unwanted_attention, tactics, bystander_intervention, safety_plan_basics, safety_plan]
+        context = super(ListPostView, self).get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
@@ -73,6 +61,21 @@ class ViewPostView(LoginRequiredMixin, DetailView):
     model = SafetyToolsPost
     template_name = "pcsa_safety_tools/view_post.html"
 
+
+'''
+def home(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
+    radar = SafetyToolsPost.objects.filter(category_id=1)
+    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2)
+    tactics = SafetyToolsPost.objects.filter(category_id=3)
+    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
+    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
+    safety_plan = SafetyToolsPost.objects.filter(category_id=6)
+    categories = [radar, unwanted_attention, tactics, bystander_intervention, safety_plan_basics, safety_plan]
+
+    return render(request, 'pcsa_safety_tools/home.html', {'categories': categories})
+'''
 
 '''
 def create_post(request):

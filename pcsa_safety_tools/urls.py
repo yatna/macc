@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from pcsa_safety_tools import views
-from pcsa_safety_tools.views import CreatePostView, UpdatePostView, DeletePostView, ViewPostView
+from pcsa_safety_tools.views import CreatePostView, UpdatePostView, DeletePostView, ViewPostView, ListPostView
 
 urlpatterns = [
     url(r'^create_post/$',
@@ -21,6 +21,6 @@ urlpatterns = [
         name='view_post'),
 
     url(r'^home/$', 
-        views.home, 
+        ListPostView.as_view(), 
         name='home')
 ]

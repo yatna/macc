@@ -1,35 +1,30 @@
 <html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-    <div>
-    {% include "malaria/header.html" %}
-</div>
-<br>
-<br>
-<br>
-<center>
-    <h2>
-        <font color="#2c0f00"> PCSA : infoHub</font>
-    </h2>
-</center>
-<br>
-<div style="margin-left:5%"><a href="{% url 'pcsa_GHN:home' %}" class="well">Get Help Now</a>
-<br><br><br><br>
-    <a href="{% url 'pcsa_safety_tools:home' %}" class="well">Safety Tools</a>
-</div>
-<br><br>
-<div>
-{% include "malaria/footer.html" %}
-</div>
-
-</body>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <div>
+            {% include "malaria/header.html" %}
+        </div>
+        <br><br><br>
+        <center>
+            <h2>
+                <font color="#2c0f00"> PCSA : infoHub</font>
+            </h2>
+        </center>
+        <br>
+        <div style="margin-left:5%"><a href="{% url 'pcsa_GHN:home' %}" class="well">Get Help Now</a>
+            <br><br><br><br>
+            <a href="{% url 'pcsa_safety_tools:home' %}" class="well">Safety Tools</a>
+        </div>
+        <br><br>
+        <div>
+            {% include "malaria/footer.html" %}
+        </div>
+    </body>
 </html>

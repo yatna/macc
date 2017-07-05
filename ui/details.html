@@ -1,61 +1,51 @@
-<!-- 
-Version : Phython/Django 2.7.6, PostgreSQL 9.3.4
-Author : Vaibhavi Desai
-Github username : desaivaibhavi
-email : ranihaileydesai@gmail.com
--->
-
-<!-- page for about us -->
 <html>
-<head>
-	<title> Details </title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<head>
+		<title> Details </title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    {% include "header.html" %}
-<div style="width:700px; height:530px; margin:20px auto; padding:30px ;background-color:#0d8b9F;">
-  <center>
-
-  <img src="http://theophostic.org/media/images/promo/promo_p04.jpg" style="width:570px;height:150px; margin: 20px">
-  
-  	<p><font size='5px' color='white'><b>Mobile App Control Center (MACC)</b></font>
-  	</p>
-  	<br>
-  	<font color='white' size='3px'>
-  	<p>
-MACC is a backend platform for the Peace Corps mobile applications - Malaria and FirstAide. The Mobile App Control Center allows the volunteers at Peace Corps HQ to send or edit any information in their mobile applications through a set of APIs.
-	</p>
-	<br>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
 	
-  	<font color='white' size='3px'>
-	  	<p>
-			On Malaria App MACC works on Malaria Prevention application as infoHub, a portal where posts can be added and notified to the mobile app users(volunteers). Posts on infoHub mainly focus on malaria prevention tips and malaria awareness.
-		</p>
-		<p>
-		On FirstAide App MACC works on PCSA mobile and web apps, MACC makes the mobile apps fully dynamic and all the information present in the mobile apps is fetched from MACC through APIs.
-		</p>
-	
- 	</font>
- 	<br>
- 	<br>
-
-  	
-  </center>
-  
-
-  </div>
-    {% include "footer.html" %}
-    
-</body>
+	<body>
+	    <div class="header">
+			{% include "header.html" %}
+		</div>
+		<div style="width:700px; height:530px; margin:20px auto; padding:30px ;background-color:#0d8b9F;">
+			<center>
+				<img src="http://theophostic.org/media/images/promo/promo_p04.jpg" style="width:570px;height:150px; margin: 20px">
+				<p>
+					<font size='5px' color='white'>
+						<b>Mobile App Control Center (MACC)</b>
+					</font>
+				</p>
+				<br>
+				<font color='white' size='3px'>
+					<p>
+						MACC is a backend platform for the Peace Corps mobile applications - Malaria and FirstAide. The Mobile App Control Center allows the volunteers at Peace Corps HQ to send or edit any information in their mobile applications through a set of APIs.
+					</p>
+				</font>
+				<br>
+				<font color='white' size='3px'>
+				  	<p>
+						On Malaria App MACC works on Malaria Prevention application as infoHub, a portal where posts can be added and notified to the mobile app users(volunteers). Posts on infoHub mainly focus on malaria prevention tips and malaria awareness.
+					</p>
+					<p>
+						On FirstAide App MACC works on PCSA mobile and web apps, MACC makes the mobile apps fully dynamic and all the information present in the mobile apps is fetched from MACC through APIs.
+					</p>
+				</font>
+				<br><br>
+			</center>
+		</div>
+	  	<div class="footer">
+	    	{% include "footer.html" %}
+	   	</div>
+	</body>
 </html>
-
