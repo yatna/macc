@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -52,7 +52,11 @@ INSTALLED_APPS = (
     'profiles',
     'pcsa',
     'pcsa_GHN',
-    'pcsa_safety_tools'
+    'pcsa_safety_tools',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django.contrib.sites'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -128,7 +132,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-
 # settings for smtp
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'pc.mobile.control.center@gmail.com'
@@ -141,3 +144,15 @@ EMAIL_PORT = 465
 SWAGGER_SETTINGS = {
     'is_authenticated': True,
 }
+
+
+#Django allauth configurations
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+LOGIN_REDIRECT_URL = '/'

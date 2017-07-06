@@ -8,6 +8,8 @@ from pcsa_safety_tools import views as safetytools_views
 from profiles import views as profiles_views
 from signup import views as signup_views
 from webhub import views
+from django.views.generic import RedirectView
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -19,6 +21,8 @@ router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
 
 urlpatterns = [
+    url(r'^accounts/profile/', RedirectView.as_view(url='/profile/' )),
+
     url(r'^index/$',
         views.index,
         name='index'),

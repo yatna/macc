@@ -15,5 +15,6 @@ urlpatterns = [
 #    url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^pcsa/', include('pcsa.urls', namespace='pcsa')),
     url(r'^gethelpnow/', include('pcsa_GHN.urls', namespace='pcsa_GHN')),
-    url(r'^safetytools/', include('pcsa_safety_tools.urls', namespace='pcsa_safety_tools'))
+    url(r'^safetytools/', include('pcsa_safety_tools.urls', namespace='pcsa_safety_tools')),
+    url(r'^accounts/', include('allauth.urls'))
 ]
