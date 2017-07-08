@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'infohub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'webapp',
+        'NAME': 'webappd',
         'USER': 'myuser',
         'PASSWORD': 'mypassword',
         'HOST': 'localhost',

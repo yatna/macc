@@ -73,6 +73,75 @@ class PcuserDetail(APIView):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+# <<<<<<< HEAD
+# =======
+    
+    
+    
+#     request.user.pcuser.photo =request.FILES['photo']
+    
+#     request.user.pcuser.gender = request.POST['gender']
+#     request.user.pcuser.phone = request.POST['phone']
+#     request.user.pcuser.email = request.POST['email']
+#     request.user.pcuser.location = request.POST['location']
+#     request.user.first_name = request.POST['first_name']
+#     request.user.last_name = request.POST['last_name']
+    
+#     request.user.pcuser.save()
+    
+#     request.user.save()
+    
+#     return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
+#                                                                           "text":'Profile edit successful.',"text1":'Click here to view the profile.',"link":'/profile/?id='+ str(request.user.pcuser.id)}))
+
+# #Forgot Password page call function.
+# def forgot_pass_page(request):
+#     if request.user.is_authenticated():
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":request.user.pcuser,
+#                                                                               "text":'<p>Please log out before requesting reset in password.</p>\
+#                                                                                   <p>Click OK to go to the homepage</p>',"link":'/'}))
+#     return HttpResponse(jinja_environ.get_template('forgot_password.html').render({"pcuser":None}))
+
+
+
+
+# #Called when the user clicks forgot password after the data is validated. This sends a verification mail to the user.
+# @csrf_exempt
+# def forgot_pass(request):
+#     if request.user.is_authenticated():
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'<p>Please log out in order to request for a password reset.</p>\
+#                                                                                   <p>Please go back or click here to go to the homepage</p>',"link":'/'}))
+#     if 'username' not in request.POST.keys() or 'email' not in request.POST.keys():
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'Invalid Request. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
+#     user = User.objects.filter(username=request.POST['username'])
+#     if len(user) == 0:
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'User Does not exist. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
+#     user = user[0]
+#     if user.email != request.POST['email']:
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'Invalid email. Please go back or',"text1":'click here to go to the homepage',"link":'/'}))
+#     user.pcuser.reset_pass = uuid.uuid4().hex
+#     user.pcuser.save()
+    
+#     subject = "Password Reset Request"
+#     msg = 'Subject: %s \n\nYou have requested for a password reset on Mobile App Control Center\n\
+#     Please click on the following link (or copy paste in your browser) to reset your password.\n\n\
+#     %s/reset_pass_page/?reset_pass=%s&email=%s\n\n\
+#     If you have not requested for a reset of password, please ignore.' % (subject, website, user.pcuser.reset_pass, user.email)
+    
+#     x = send_email(msg, user.email)
+#     if x[0] == 0:
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'Could not process request, please try again later by going back or',"text1":'clicking here to go to the homepage', "link":'/'}))
+#     else:
+#         return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
+#                                                                               "text":'<p>An email has been sent to your regestered email address.</p>\
+#                                                                                   <p>Check your email and click on the link to reset your password.</p>',"text1":'<p>Click here to go to the homepage</p>',"link":'/'}))
+    
+# >>>>>>> Added User's Display Picture in profile
 
 class DashboardView(LoginRequiredMixin,TemplateView):
 

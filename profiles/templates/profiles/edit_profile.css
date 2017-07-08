@@ -15,14 +15,16 @@ form label {
 }
 
 form input{
-	display: block;
+
 	text-align: left;
-	width: 200px;
+	width: 25px;
 	margin: 10 auto;
 	border-radius: 6px;
 	line-height: 30px;
 	font-size: 18px;
 	margin: 10px auto;
+	margin-left: 30px;
+
 }
 
 form input{
@@ -46,12 +48,7 @@ form input{
 
 
 }
-.btn{
-	display: flex;
-	padding:10;
-	justify-content: center;
 
-}
 
 
 
@@ -60,7 +57,7 @@ form input{
 		form input,
 		form label{
 			
-			width: 150px;
+			width: 180px;
 		}
 		.image{
 			padding: 10px 0;
@@ -90,9 +87,7 @@ form input{
 			padding: 10px 0;
 		}
 		
-		.btn{
-			height: 30px;	
-		}
+		
 
 }
 .ast{
