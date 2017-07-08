@@ -1,4 +1,5 @@
 import os
+from infohub.config import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -26,6 +27,9 @@ TEMPLATES = [
                     'django.template.context_processors.request',
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
+
+                    'social_django.context_processors.backends',  # <--
+                    'social_django.context_processors.login_redirect', # <--
                 ],
             },
 
@@ -52,7 +56,8 @@ INSTALLED_APPS = (
     'profiles',
     'pcsa',
     'pcsa_GHN',
-    'pcsa_safety_tools'
+    'pcsa_safety_tools',
+    'social_django'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,6 +67,16 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'infohub.urls'

@@ -93,4 +93,6 @@ urlpatterns = [
     url(r'^helpPC/$',
         views.helpPC,
         name='helpPC'),
+    url(r'^login_real/$', views.login_real, name = 'login_real'),
+    url(r'^login_social/$', views.login_social, name = 'login_social'),
 ]

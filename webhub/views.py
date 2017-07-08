@@ -10,10 +10,12 @@ from jinja2.ext import loopcontrols
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.shortcuts import render
 
 from webhub.checker import check
 from webhub.models import *
 from webhub.serializers import *
+from webhub import views as webhub_view
 
 # SMTP port for sending emails
 SMTP_PORT = 465
@@ -320,3 +322,33 @@ def details(request):
 #called when user wishes to go to the Help
 def helpPC(request):
     return HttpResponse(jinja_environ.get_template('helpPC.html').render({"pcuser":None}))  
+
+def login_real(request):
+    print("yolo")
+    return render(request,"login_real.html")
+
+def login_social(request):
+    username= request.POST['uname']
+    user=User.objects.get(username=username)
+    print(user.email)
+    print(username)
+    gender="Restricted"
+    location= "N.A"
+    phone="N.A"
+    num_results = Pcuser.objects.filter(user=user).count()
+    if num_results ==0:
+           
+        print("num rsults")
+        print(num_results)
+    
+        entry = Pcuser(user=user, phone=phone, gender=gender, location=location, verified = uuid.uuid4().hex)      
+        entry.save()
+    else:
+        pcuser=Pcuser.objects.get(user=user)
+        entry=pcuser
+
+    
+    if 'redirect' in request.POST.keys():
+        return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
+    return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
+
