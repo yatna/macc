@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title> Sign Out </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            .form-outline{
+                width:600px;
+                height:580px;
+                background-color:#0d8b97;
+            }
+        </style>
+    </head>
+    <body>
+    	<div>
+		    {% include "ui/header.html" %}
+		</div>
+		<center>
+			<h1>Sign Out</h1>
+			<br><br><br>
+			<p>Are you sure you want to sign out?</p>
+
+			<form method="post" action="{% url 'account_logout' %}">
+			  {% csrf_token %}
+			  {% if redirect_field_value %}
+			  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+			  {% endif %}
+			  <button type="submit">Sign Out</button>
+			</form>
+		</center> 
+		<div>
+            {% include "ui/footer.html" %}
+        </div>
+    </body>
+</html>

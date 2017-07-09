@@ -1,7 +1,7 @@
 from django.core.validators import RegexValidator
 from django.db import models
 
-from signup.models import Pcuser
+from profiles.models import Pcuser
 
 
 class Post(models.Model):

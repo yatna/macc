@@ -2,7 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from pcsa_GHN.models import Contact, ghnPost
 
-from signup.models import Pcuser
+from profiles.models import Pcuser
 
 
 def create_post_from_form(form, owner):

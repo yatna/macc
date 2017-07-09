@@ -36,7 +36,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'pcsa/create_post.html'
     success_url='/pcsa/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -50,7 +49,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
     fields = ['title','description']
     template_name = "pcsa/edit_post.html"
     success_url='/pcsa/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -63,7 +61,6 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     model = PcsaPost
     template_name = "pcsa/delete_post.html"
     success_url = '/pcsa/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
@@ -71,7 +68,6 @@ class ViewPostView(LoginRequiredMixin, DetailView):
 
     model = PcsaPost
     template_name = "pcsa/view_post.html"
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 

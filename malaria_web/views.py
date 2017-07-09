@@ -16,7 +16,6 @@ class ListPostView(LoginRequiredMixin, ListView):
 
     model = Post
     template_name = 'malaria/list_posts.html'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
@@ -26,7 +25,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'malaria/create_post.html'
     success_url='/malaria/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -40,7 +38,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     template_name = "malaria/edit_post.html"
     success_url='/malaria/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -53,7 +50,6 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = "malaria/delete_post.html"
     success_url = '/malaria/list_posts'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
@@ -61,7 +57,6 @@ class ViewPostView(LoginRequiredMixin, DetailView):
 
     model = Post
     template_name = "malaria/view_post.html"
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 

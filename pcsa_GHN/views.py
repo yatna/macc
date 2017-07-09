@@ -27,7 +27,6 @@ class ListPostView(LoginRequiredMixin, ListView):
 
     model = ghnPost
     template_name = 'pcsa_GHN/home.html'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs):
@@ -43,7 +42,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = ghnPostForm
     template_name = 'pcsa_GHN/create_post.html'
     success_url='/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -57,7 +55,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
     form_class = ghnPostForm
     template_name = "pcsa_GHN/edit_post.html"
     success_url='/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -70,14 +67,12 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     model = ghnPost
     template_name = "pcsa_GHN/delete_post.html"
     success_url = '/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
 class ViewPostView(LoginRequiredMixin, DetailView):
     model = ghnPost
     template_name = "pcsa_GHN/view_post.html"
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
@@ -87,7 +82,6 @@ class CreateContactView(LoginRequiredMixin, CreateView):
     form_class = ContactForm
     template_name = 'pcsa_GHN/create_contact.html'
     success_url='/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -101,7 +95,6 @@ class UpdateContactView(LoginRequiredMixin, UpdateView):
     form_class = ContactForm
     template_name = "pcsa_GHN/edit_contact.html"
     success_url='/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
     def form_valid(self, form):
@@ -114,14 +107,12 @@ class DeleteContactView(LoginRequiredMixin, DeleteView):
     model = Contact
     template_name = "pcsa_GHN/delete_contact.html"
     success_url = '/gethelpnow/'
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 
 class ViewContactView(LoginRequiredMixin, DetailView):
     model = Contact
     template_name = "pcsa_GHN/view_contact.html"
-    login_url = '/'
     redirect_field_name = 'redirect_to'
 
 

@@ -1,6 +1,6 @@
 from django.db import models
 
-from signup.models import Pcuser
+from profiles.models import Pcuser
 
 
 class PcsaPost(models.Model):

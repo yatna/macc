@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'malaria_web',
     'malaria_api',
     'webhub',
-    'signup',
     'profiles',
     'pcsa',
     'pcsa_GHN',
@@ -156,3 +155,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_EMAIL_VERIFICATION ="none"
