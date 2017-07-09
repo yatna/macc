@@ -1,0 +1,40 @@
+<section class="header" id="top">
+	<div class="container">
+		<div class="logo">
+			<a href="/"><img src="http://i.imgur.com/KKTKQJv.png?1" class="img-responsive">
+			</a>
+		</div>
+		<div class="macc">
+			<a href="/" >
+				<h1> Mobile App Control Center</h1>
+			</a>
+
+			<input id="toogle" type="checkbox">
+			<label for="toogle">&#9776</label>
+
+			<!-- {% if pcuser %} -->
+				<nav class="prim-nav text-uppercase">
+					<ul>	
+						<p> &nbsp; </p>
+						{% if pcuser.user.first_name %}
+							<li>
+								<a href="/profile/">  
+									<h3> <b> {{ pcuser.user.first_name }} </b></h3>
+								</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="/profile/">  
+									<h3> <b> User </b></h3>
+								</a>
+							</li>
+						{% endif %}
+						<li>
+							<a href="{% url 'account_logout' %}">Logout</a>
+						</li>
+					</ul>
+				</nav> 
+			<!-- {% endif %}-->
+		</div>
+	</div>
+</section>

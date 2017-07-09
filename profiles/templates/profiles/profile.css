@@ -25,18 +25,20 @@
 	margin-bottom: 30px;
 }
 
-.content ul{
+.content ol{
 	text-align: left;
-	width: 200px;
-	margin: 0 auto 40px auto;
+	margin-left: 40px;
+    margin-bottom: 0px;
 }
 .content li{
 	padding: 0 10px;
-	line-height: 40px;
+	line-height: 35px;
 }
 .content span{
 	
 	font-variant: small-caps;
+	float:left;
+  	width:250px;
 }
 .image h4{
 	width: 200px;
@@ -68,7 +70,7 @@
 	.content ul{
 		
 		width: 350px;
-		
+		list-style-type: none;
 		float: left;
 		padding-left: 30px;
 	}
@@ -80,8 +82,9 @@
 	}
 	.content .btn{
 			display: inline-block;
-			width: 200px;
-			margin: 0  30px;
+			width: 150px;
+ 			margin: 0  10px;
+ 			margin-top: 30px;
 	}
 	.image h4{
 		width: 125px;

@@ -1,100 +1,142 @@
-<!-- 
-Version : Phython/Django 2.7.6, PostgreSQL 9.3.4
-Author : Vaibhavi Desai
-Github username : desaivaibhavi
-email : ranihaileydesai@gmail.com
--->
-
-
-<!-- this page enables the user to edit his profile -->
-
 <html>
     <head>
-        <title>Edit Profile | {{pcuser.user}}</title>
+        <title>Edit Profile | {{ pcuser }}</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-	<style type="text/css">
-        .form-outline{
-            width:800px; 
-            height:600px; 
-            margin:0 auto; 
-            background-color:#0d8b97;
-        }
-	{% include "resets.css" %}
-	{% include "style.css" %}
-	{% include "profile.css" %}
-	{% include "edit_profile.css" %}
-	</style>
+	    <style type="text/css">
+            .form-outline{
+                width:800px; 
+                height:600px; 
+                margin:0 auto; 
+                background-color:#0d8b97;
+            }
+            {% include "profiles/edit_profile.css" %}
+	    </style>
     </head>
+    
     <body>
-    <!--header-->
-    {% include "header.html" %}
-    <!--content-->
-
-
-         <section class="row">
+        <div>
+            {% include "profiles/header.html" %}
+        </div>
+        <br><br><br>
+        <section class="row">
             <div class="container">
-            <div class="content">
-            <h3>Edit Profile</h3>
-            
-             <form action="/edit_profile/?id={{pcuser.user.id}}" method="post" enctype="multipart/form-data">
-		<table>
-		<tr>
-             <td>   <label for="first_name"><font color="black">First name:</font></label> </td>
-                   <td> <input id="first_name" type="text" name="first_name" value="{{pcuser.user.first_name}}"></td>
-		</tr>
-            <tr>
-             <td>   <label for="last_name"><font color="black">Last Name: </font></label></td>
-                  <td>  <input type="text" name="last_name" value="{{pcuser.user.last_name}}"></td>
-		</tr>
-            <tr>
-               <td> <label> <font color="black">Mobile:<span class="ast">*</span></font></label></td>
-                  <td>  <input type="text" name="phone" value="{{pcuser.phone}}" required></td>
-            </tr>
-                <tr>
-              <td>  <label><font color="black">Email:<span class="ast">*</span></font></label></td>
-                  <td>  <input type="text" name="email" value="{{pcuser.user.email}}" required></td>
-              </tr>
-		 <tr>
-                    <td><label> <b><font color="black">Gender:</font></b></label></td> 
-                    <td>
+                <div class="content">
+                    <h3>Edit Profile</h3>
+                    <form action="" method="post" >
+                        {% csrf_token %}
 
-		{% if pcuser.gender == "Male" %}
-		<h4><input type="radio" name="gender" value="Male" checked>Male</h4>
-		<h4><input type="radio" name="gender" value="Female" >Female</h4>
-		<h4><input type="radio" name="gender" value="Restricted">Prefer not to say</h4>
-		{% elif pcuser.gender == "Female" %}
-		<h4><input type="radio" name="gender" value="Male" >Male</h4>
-		<h4><input type="radio" name="gender" value="Female" checked>Female</h4>
-		<h4><input type="radio" name="gender" value="Restricted" >Prefer not to say</h4>
-		{% elif  pcuser.gender == "Restricted"%}
-		<h4><input type="radio" name="gender" value="Male" >Male</h4>
-		<h4><input type="radio" name="gender" value="Female" >Female</h4>
-		<h4><input type="radio" name="gender" value="Restricted" checked>Prefer not to say</h4>
-		{% endif %}
-		</td>
-                </tr>
-                <tr>
-                    <td><label><font color="black">Location:<span class="ast">*</span> </font></label></td>
-                    <td><h4><input type="text" name="location" value="{{pcuser.location}}" required></h4></td>
-
-            	</tr>
-		</table>              
-                
-                <div class="options">
-                   
-                    <div class="btn">
-                    <input type="submit" name="submit" value="Update"><font color="black"></font></div>
-                    
-                    <div><a href="/profile/?id={{pcuser.user.id}}" class="btn"><font color="black">Cancel</font></a></div>
+                        
+                        
+                		<table>
+                    		<tr>
+                                <td>   
+                                    <label for="first_name">
+                                        <font color="black">First name:</font>
+                                    </label> 
+                                </td>
+                                <td> 
+                                    <input id="first_name" type="text" name="first_name" value="{{form.instance.user.first_name}}">
+                                    {% if form.first_name.errors %}
+                                   {{form.first_name.errors}}
+                                {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>   
+                                    <label for="last_name">
+                                        <font color="black">Last Name: </font>
+                                    </label>
+                                </td>
+                                <td>  
+                                    <input type="text" name="last_name" value="{{form.instance.user.last_name}}">
+                                     {% if form.last_name.errors %}
+                                   {{form.last_name.errors}}
+                                {% endif %}
+                                </td>
+                		    </tr>
+                            <tr>
+                               <td> 
+                                <label> 
+                                    <font color="black">Mobile:</font>
+                                </label>
+                                </td>
+                                <td>  
+                                    <input type="tel" name="phone" value="{{form.instance.phone}}" required>
+                                     {% if form.phone.errors %}
+                                   {{form.phone.errors}}
+                                {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>  
+                                    <label>
+                                        <font color="black">Email:</font>
+                                    </label>
+                                </td>
+                                <td>  
+                                    <input type="email" name="email" value="{{form.instance.user.email}}" required>
+                                     {% if form.email.errors %}
+                                   {{form.email.errors}}
+                                {% endif %}
+                                </td>
+                            </tr>
+                		    <tr>
+                                <td>
+                                    <label>
+                                        <b>
+                                            <font color="black">Gender:</font>
+                                        </b>
+                                    </label>
+                                </td> 
+                                <td>
+                            		{% if form.instance.gender == "Male" %}
+                                		<h4><input type="radio" name="gender" value="Male" checked>Male</h4>
+                                		<h4><input type="radio" name="gender" value="Female" >Female</h4>
+                                		<h4><input type="radio" name="gender" value="Restricted">Others</h4>
+                            		{% elif form.instance.gender == "Female" %}
+                                		<h4><input type="radio" name="gender" value="Male" >Male</h4>
+                                		<h4><input type="radio" name="gender" value="Female" checked>Female</h4>
+                                		<h4><input type="radio" name="gender" value="Restricted" >Others</h4>
+                            		{% else %}
+                                		<h4><input type="radio" name="gender" value="Male" >Male</h4>
+                                		<h4><input type="radio" name="gender" value="Female" >Female</h4>
+                            		    <h4><input type="radio" name="gender" value="Restricted" checked>Others</h4>
+                            		{% endif %}
+                            	</td>
+                            </tr>
+                            <tr>
+                                <td><label><font color="black">Location:</font></label></td>
+                                <td><h4><input type="text" name="location" value="{{form.instance.location}}" required>
+                                 {% if form.location.errors %}
+                                   {{form.location.errors}}
+                                {% endif %}</h4></td>
+                            </tr>
+                		</table>              
+                        <div class="options">
+                            <div class="btn">
+                                <input type="submit" name="submit" value="Update">
+                                <font color="black"></font>
+                            </div>
+                            <div>
+                                <a href="/edit_profile/{{pcuser.user.id}}" class="btn">
+                                    <font color="black">Reset</font>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/profile/" class="btn">
+                                    <font color="black">Cancel</font>
+                                </a>
+                            </div>
+                        </div>
+    		        </form>
                 </div>
-		</form>
-             </div>
              </div>
         </section>
-    <!--footer-->
-    {% include "footer.html" %}      
+        <br><br><br>
+        <div>
+            {% include "profiles/footer.html" %}   
+        </div>   
     </body>
 </html>

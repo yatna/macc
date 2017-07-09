@@ -1,7 +1,8 @@
 import os
+from infohub.config import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -12,9 +13,27 @@ SECRET_KEY = '@0kjw@u5rv7mf!s2j8ix7lq@n%w&v$6p8ku%8hkmmxxj$w44ys'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR,'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'debug': DEBUG,
+            },
+            'OPTIONS': {
+                    'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+                    'social_django.context_processors.backends',  # <--
+                    'social_django.context_processors.login_redirect', # <--
+                ],
+            },
+
+        },]
 
 # ALLOWED_HOSTS = ['0.0.0.0','localhost','192.168.33.10','192.168.33.10:8000']
 
@@ -33,11 +52,16 @@ INSTALLED_APPS = (
     'malaria_web',
     'malaria_api',
     'webhub',
-    'signup',
     'profiles',
     'pcsa',
     'pcsa_GHN',
-    'pcsa_safety_tools'
+    'pcsa_safety_tools',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django.contrib.sites',
+    'social_django'
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,6 +71,16 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'infohub.urls'
@@ -113,7 +147,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-
 # settings for smtp
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'pc.mobile.control.center@gmail.com'
@@ -126,3 +159,18 @@ EMAIL_PORT = 465
 SWAGGER_SETTINGS = {
     'is_authenticated': True,
 }
+
+
+#Django allauth configurations
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_EMAIL_VERIFICATION ="none"

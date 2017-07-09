@@ -1,53 +1,74 @@
-{% extends "infohub/base.html" %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{% block content %}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center>
-    <h2>
-        <font color="#2c0f00"> Malaria : infoHub</font>
-    </h2>
-</center>
-{% if post_list %}
-    <div class="well">
-        <a href="{% url 'malaria:create_post' %}" class="btn btn-default pull-right">New Post</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        <h3 class="inverted-font">Post</h3>
-                    </th>
-                    <th>
-                        <h3 class="inverted-font">Action</h3>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for post in post_list %}
-                    <tr>
-                        <td>
-                            <h4 class="inverted-font">
-                                {{ post.title_post }}
-                            </h4>
-                        </td>
-                        <td>
-                            <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-default">View</a>
-                            <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                            <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-{% else %}
-    <div class="well">
-        <a href="{% url 'malaria:create_post' %}" class="btn btn-default pull-right">New Post</a>
-        <h3 class="text-center inverted-font">No Posts</h3>
-    </div>
-{% endif %}
-{% endblock %}
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <div>
+            {% include "malaria/header.html" %}
+        </div>
+        <br><br><br>
+        <center>
+            <h2>
+                <font color="#2c0f00"> Malaria : infoHub</font>
+            </h2>
+        </center>
+        {% if post_list %}
+            <div class="well">
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success pull-right">New Post</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h3 class="inverted-font">Post</h3>
+                            </th>
+                            <th>
+                                <h3 class="inverted-font">Description</h3>
+                            </th>
+                            <th>
+                                <h3 class="inverted-font">Action</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                            <tr>
+                                <td>
+                                    <h4 class="inverted-font">
+                                        {{ post.title_post |truncatechars:20}}
+                                    </h4>
+                                </td>
+                                <td>
+                                    <h4 class="inverted-font">
+                                        {{ post.description_post|truncatechars:40|linebreaks }}
+                                    </h4>
+                                </td>
+                                <td>
+                                    <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                    <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="well">
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success pull-right">New Post</a>
+                <h3 class="text-center inverted-font">No Posts</h3>
+            </div>
+        {% endif %}
+        </center>
+        <br><br>
+        <div>
+            {% include "malaria/footer.html" %}
+        </div>
+    </body>
+</html>

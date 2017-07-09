@@ -1,23 +1,28 @@
 <style>
-	{% include "resets.css" %} 
-	{% include "style.css" %}
-	{% include "profile.css" %}
+	{% include "ui/resets.css" %} 
+	{% include "ui/style.css" %}
+	{% include "profiles/profile.css" %}
+	{% include "ui/sticky-footer.css" %}
 </style>
 
-
-
-
 <section class="footer">
-		<div class="container">
-			<nav>
-				<ul>
-					<li><a href="/aboutPC" title="Home" >About Peace Corps</a> </li>
-					<li><a href="/policies/" title="Know about our team" >Policies </a></li>
-					<li><a href="/details/" title="FAQs">Important Details</a></li>
-					<li><a href="/helpPC/" title="Contact Us"">Help</a></li>
-				</ul>
-			<nav>
-			<p>&copy 2017 PeaceCorps</p>
-			<a href="#top">Return to top</a>
-		</div>
-	</section>
+	<div>
+		<nav>
+			<ul style="list-style:none;">
+				<li>
+					<a href="/aboutPC" title="Home" >About Peace Corps</a> 
+				</li>
+				<li>
+					<a href="/policies/" title="Know about our team" >Policies </a>
+				</li>
+				<li>
+					<a href="/details/" title="FAQs">Important Details</a>
+				</li>
+				<li>
+					<a href="/helpPC/" title="Contact Us">Help</a>
+				</li>
+			</ul>
+		</nav>
+		<p>&copy 2017 PeaceCorps</p>
+	</div>
+</section>

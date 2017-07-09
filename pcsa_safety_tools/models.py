@@ -7,7 +7,7 @@ class SafetyToolsCategory(models.Model):
     category_id = models.IntegerField()
     category_name = models.TextField(max_length=500)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.category_name
         
     class Meta:
@@ -21,7 +21,7 @@ class SafetyToolsPost(models.Model):
     description = models.TextField(max_length=30000)
     created_date = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
         
     class Meta:

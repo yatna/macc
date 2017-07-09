@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title> Welcome ! </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <div>
+            {% include "ui/header.html" %}
+        </div>
+        <br><br><br>
+        <center>
+            <div style="width:600px; height:450px;  background-color:#0d8b97;">
+                <br>
+                <font color="white">
+                    <h2>Log in</h2>
+                </font>
+                 <form method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {% if not field.name == "remember" %}
+                                {{ field }}
+                            {% else %}
+                               Remember Me : {{ field }} 
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <br/>
+                    <button class="primaryAction" type="submit">Sign In </button>
+                    <br><br>
+                    <font size="2.5 px">
+                        <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="color:white"> Forgot Password?</a>
+                    </font>
+                    <br/>
+                    <font size="2.5 px" color="white">New User? 
+                        <a href={{ signup_url }} style="color:#cccc88; font-style: oblique;">
+                            <u>Click here</u>
+                        </a> to Sign Up!
+                    </font>
+                </form>
+            </div>
+        </center>
+        <br><br>
+        <div>
+            {% include "ui/footer.html" %}
+        </div>
+    </body>
+</html>
