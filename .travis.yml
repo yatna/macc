@@ -11,8 +11,8 @@ before_script:
   - psql -c "create database webapp;" -U postgres
   - export DJANGO_SETTINGS_MODULE="infohub.settings"
 script: 
- - python3 manage.py makemigrations signup
+ - python3 manage.py makemigrations profiles
  - python3 manage.py migrate --fake-initial
- - python3 manage.py makemigrations profiles infohub malaria_web pcsa pcsa_GHN pcsa_safety_tools
+ - python3 manage.py makemigrations infohub malaria_web pcsa pcsa_GHN pcsa_safety_tools
  - python3 manage.py migrate --fake-initial
 # - python3 manage.py test --settings=infohub.settings
