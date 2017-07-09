@@ -8,7 +8,7 @@ from pcsa_safety_tools import views as safetytools_views
 from profiles import views as profiles_views
 from webhub import views
 from django.views.generic import RedirectView
-from webhub.views import DashboardView, IndexView, ListUsers, PcuserDetail, AboutPC, Policies, Details, HelpPC
+from webhub.views import DashboardView, ListUsers, PcuserDetail, AboutPC, Policies, Details, HelpPC
 from profiles.views import ProfileView, EditProfile
 
 
@@ -22,9 +22,6 @@ router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
 
 urlpatterns = [
-    url(r'^login/$',
-        IndexView.as_view(),
-        name='account_login'),
     url(r'^$',
         DashboardView.as_view(),
         name='dashboard'),
@@ -57,4 +54,6 @@ urlpatterns = [
     url(r'^helpPC/$',
         HelpPC.as_view(),
         name='helpPC'),
+    url(r'^login_real/$', views.login_real, name = 'login_real'),
+    url(r'^login_social/$', views.login_social, name = 'login_social'),
 ]

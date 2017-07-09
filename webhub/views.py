@@ -3,6 +3,9 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import status, viewsets
 
+from rest_framework.decorators import api_view
+
+from django.shortcuts import render
 
 from webhub.serializers import *
 from django.views.generic import TemplateView
@@ -11,6 +14,8 @@ from rest_framework.views import APIView
 from profiles.models import Pcuser
 from django.http import Http404
 from django.http import HttpResponseRedirect
+from webhub import views as webhub_view
+
 
 # SMTP port for sending emails
 SMTP_PORT = 465
@@ -67,17 +72,6 @@ class PcuserDetail(APIView):
         snippet = self.get_object(pk)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class IndexView(TemplateView):
-    
-    template_name = 'account/login.html'
-    success_url = 'accounts/login/'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return HttpResponseRedirect('/')
-        return super(IndexView, self).dispatch(request, *args, **kwargs)
 
 
 class DashboardView(LoginRequiredMixin,TemplateView):
@@ -143,3 +137,34 @@ class HelpPC(TemplateView):
         except:
             context['pcuser'] = None
         return context
+
+
+def login_real(request):
+    print("yolo")
+    return render(request,"login_real.html")
+
+def login_social(request):
+    username= request.POST['uname']
+    user=User.objects.get(username=username)
+    print(user.email)
+    print(username)
+    gender="Restricted"
+    location= "N.A"
+    phone="N.A"
+    num_results = Pcuser.objects.filter(user=user).count()
+    if num_results ==0:
+           
+        print("num rsults")
+        print(num_results)
+    
+        entry = Pcuser(user=user, phone=phone, gender=gender, location=location, verified = uuid.uuid4().hex)      
+        entry.save()
+    else:
+        pcuser=Pcuser.objects.get(user=user)
+        entry=pcuser
+
+    
+    if 'redirect' in request.POST.keys():
+        return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
+    return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
+
