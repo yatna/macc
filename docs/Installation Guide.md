@@ -299,7 +299,7 @@ For example,
 
 To generate the database tables that correspond to the Django models, run the command:
 
-    python3 manage.py makemigrations malaria_web malaria_api webhub signup profiles pcsa pcsa_GHN pcsa_safety_tools social_django
+    python3 manage.py makemigrations malaria_web malaria_api webhub profiles pcsa pcsa_GHN pcsa_safety_tools social_django allauth
     python3 manage.py migrate
 
 After running the `migrate` command, you should run the following command to create a superuser:
