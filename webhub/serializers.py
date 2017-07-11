@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from signup.models import *
+from profiles.models import *
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

@@ -8,3 +8,5 @@
 *.txt
 .vagrant*
 submit/
+*.DS_Store
+*/migrations/

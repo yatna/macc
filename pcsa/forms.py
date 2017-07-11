@@ -38,6 +38,7 @@ class StripWhitespaceMixin(object):
 			if name is self.cleaned_data:
 				del self.cleaned_data[name]
 
+
 class PostForm(StripTextField, ModelForm):
 
     strip_field = StripTextField()

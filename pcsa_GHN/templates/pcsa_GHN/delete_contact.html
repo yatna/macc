@@ -1,45 +1,43 @@
 <html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-    <div>
-    {% include "malaria/header.html" %}
-</div>
-<br><br><br>
-<center>
-    <h2>
-        <font color="#2c0f00">Get Help Now</font>
-    </h2>
-</center>
-<div class="well">
-    <h2 class="text-center inverted-font">Delete Contact</h2>
-    <br>
-    <form action="{% url 'pcsa_GHN:delete_contact' contact_id %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label class="col-sm-offset-2 inverted-font">Are you sure you want to delete this Contact?</label>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <div>
+            {% include "malaria/header.html" %}
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2">
-                <button type="submit" class="btn btn-danger">Yes, delete this Contact</button>
-                <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-primary">Cancel</a>
-            </div>
+        <br><br><br>
+        <center>
+            <h2>
+                <font color="#2c0f00">Get Help Now</font>
+            </h2>
+        </center>
+        <div class="well">
+            <h2 class="text-center inverted-font">Delete Contact</h2>
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="col-sm-offset-2 inverted-font">Are you sure you want to delete this Contact?</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2">
+                        <button type="submit" class="btn btn-danger">Yes, delete this Contact</button>
+                        <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-primary">Cancel</a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<br>
-<div>
-{% include "malaria/footer.html" %}
-</div>
+        <br>
+        <div>
+            {% include "malaria/footer.html" %}
+        </div>
 
- </body>   
+    </body>   
 
 </html>

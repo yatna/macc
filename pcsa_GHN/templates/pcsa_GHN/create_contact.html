@@ -1,69 +1,67 @@
 <html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-    <div>
-    {% include "malaria/header.html" %}
-</div>
-<br><br><br><br>
-
-<center><h2><font color="#2c0f00"> Get Help Now </font></h2></center>
-<div class="well">
-    <h2 class="text-center inverted-font">New Contact</h2>
-    
-    <form class="form-horizontal" action="{% url 'pcsa_GHN:create_contact' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Office Name</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}">
-                <p class="help-block inverted-font">
-                    <strong>
-                        {% if form.office_name.errors %}
-                            {% for error in form.office_name.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        {% endif %}
-                    </strong>
-                </p>
-            </div>
+    <body>
+        <div>
+            {% include "malaria/header.html" %}
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Phone Number</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="number" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}">
-                <p class="help-block inverted-font">
-                    <strong>
-                        {% if form.contact_number.errors %}
-                            {% for error in form.contact_number.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        {% endif %}
-                    </strong>
-                </p>
-            </div>
+        <br><br><br><br>
+        <center>
+            <h2>
+                <font color="#2c0f00"> Get Help Now </font>
+            </h2>
+        </center>
+        <div class="well">
+            <h2 class="text-center inverted-font">New Contact</h2>
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label inverted-font">Office Name</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}">
+                        <p class="help-block inverted-font">
+                            <strong>
+                                {% if form.office_name.errors %}
+                                    {% for error in form.office_name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                {% endif %}
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label inverted-font">Phone Number</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="number" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}">
+                        <p class="help-block inverted-font">
+                            <strong>
+                                {% if form.contact_number.errors %}
+                                    {% for error in form.contact_number.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                {% endif %}
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-offset-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <div class="col-sm-12 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-danger">Cancel</a>
-            </div>
+        <br>
+        <div>
+            {% include "malaria/footer.html" %}
         </div>
-    </form>
-</div>
-<br>
-<div>
-{% include "malaria/footer.html" %}
-</div>
-
-    
-</body>
+    </body>
 </html>
