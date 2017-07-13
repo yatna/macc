@@ -1,0 +1,55 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+<br><br><br>
+<center>
+    <h2>
+        <font color="#2c0f00">Get Help Now</font> 
+    </h2>
+</center>
+<div class="well">
+    <h2 class="text-center inverted-font">Edit Contact</h2>
+    <br>
+    <form class="form-horizontal" autocomplete="off" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Office address</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}">
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.office_name.errors %}
+                            {% for error in form.office_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Phone Number</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="number" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}" >
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.contact_number.errors %}
+                            {% for error in form.contact_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>
+<br><br>
+{% endblock %}

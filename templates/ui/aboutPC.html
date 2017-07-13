@@ -1,58 +1,40 @@
-<html>
-	<head>
-		<title> About PC </title>
-		 <!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
-	
-	<body>
-	    <div>
-		    {% include "ui/header.html" %}
-		</div>
-	    <div style="width:700px; height:530px; margin:20px auto; padding:30px ;background-color:#0d8b9F;">
-		  	<center>
-		  		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjD6HxXOYTSiQOIqbYXytJWt--_bzrzGCKD5bv8RI-CVShYatZ" style="width:570px;height:150px; margin: 20px">
-		  		<p>
-		  			<font size='5px' color='white'>
-		  				<b>Changing lives the world over</b>
-		  			</font>
-		  		</p>
-			  	<br>
-			  	<font color='white' size='3px'>
-			  		<p>
-						The Peace Corps is a service opportunity for motivated changemakers to immerse themselves in a community abroad, working side by side with local leaders to tackle the most pressing challenges of our generation.
-					</p>
-				</font>
-				<hr>
-				<p>
-					<font size='5px' color='white'>
-						<b>The Peace Corps Mission</b>
-					</font>
-		  		</p>
-		  		<br>
-			  	<font color='white' size='3px'>
-				  	<p>
-						To promote world peace and friendship by fulfilling three goals...
-					</p>
-			 	</font>
-			 	<br>
-			 	Continue Reading ?   
-			 	<a href="https://www.peacecorps.gov/about/">
-			 		<u>Click Here </u>
-			 	</a>
-			 	<hr>
-		  	</center>
-	  	</div>
-	    <div>
-	    	{% include "ui/footer.html" %}
-	    </div>
-	</body>
-</html>
+{% include "infohub/index.html" %}
+<head>
+	<title> About PC </title>
+</head>
 
+{% block content %}
+<div style="width:700px; height:530px; margin:20px auto; padding:30px ;background-color:#0d8b9F;">
+  	<center>
+  		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjD6HxXOYTSiQOIqbYXytJWt--_bzrzGCKD5bv8RI-CVShYatZ" style="width:570px;height:150px; margin: 20px">
+  		<p>
+  			<font size='5px' color='white'>
+  				<b>Changing lives the world over</b>
+  			</font>
+  		</p>
+	  	<font color='white' size='3px'>
+	  		<p>
+				The Peace Corps is a service opportunity for motivated changemakers to immerse themselves in a community abroad, working side by side with local leaders to tackle the most pressing challenges of our generation.
+			</p>
+		</font>
+		<hr>
+		<p>
+			<font size='5px' color='white'>
+				<b>The Peace Corps Mission</b>
+			</font>
+  		</p>
+  		<br>
+	  	<font color='white' size='3px'>
+		  	<p>
+				To promote world peace and friendship by fulfilling three goals...
+			</p>
+	 	</font>
+	 	<br>
+	 	Continue Reading ?   
+	 	<a href="https://www.peacecorps.gov/about/">
+	 		<u>Click Here </u>
+	 	</a>
+	 	<hr>
+  	</center>
+</div>
+{% endblock %}

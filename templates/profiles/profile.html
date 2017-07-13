@@ -1,0 +1,33 @@
+{% load static %}
+{% include "infohub/index.html" %}
+
+<head>
+    <title>User Profile | {{pcuser.user}}</title>
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+</head>
+
+{% block content %}
+<section class="row">
+    <br><br>
+    <div class="content">
+        <h3>
+            <b>User Profile</b>
+        </h3>
+        <ol>
+            <font color="black">
+                <li><span>First Name </span>: {{pcuser.user.first_name}}</li>
+                <li><span>Last Name </span>: {{pcuser.user.last_name}}</li>
+                <li><span>Email Address </span>: {{pcuser.user.email}}</li>
+                <li><span>Mobile </span>: {{pcuser.phone}} </li>
+                <li><span>Gender </span>: {{pcuser.gender}}</li>
+                <li><span>Location </span>: {{pcuser.location}} </li>
+            </font>
+        </ol>
+        <div class="options">
+            <a href="/edit_profile/{{pcuser.id}}" class="btn">Edit Profile</a>
+            <a href="{% url 'account_change_password' %}" class ="btn" >Change Password</a>
+        </div>
+    </div>
+    <br><br>
+</section>
+{% endblock %}
