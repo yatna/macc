@@ -48,8 +48,9 @@ form input{
 }
 .btn{
 	display: flex;
-	padding:5;
+	padding:2px;
 	justify-content: center;
+	border: none;
 
 }
 
