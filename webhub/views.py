@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 from profiles.models import Pcuser
 from django.http import Http404
 from django.http import HttpResponseRedirect
-from webhub import views as webhub_view
+# from webhub import views as webhub_view
 
 
 # SMTP port for sending emails
