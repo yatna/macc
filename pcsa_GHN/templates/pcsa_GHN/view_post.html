@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-sm-7">
                     <h4 class="inverted-font">
-                        <a href="{{ post.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ post.link|linebreaksbr }}</font></a>
+                        <a href="{{ ghnpost.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ ghnpost.link|linebreaksbr }}</font></a>
                     </h4>
                 </div>
             </div>
@@ -68,11 +68,11 @@
                 </div>
                 <div class="col-sm-7">
                     <h4 class="inverted-font">
-                        <img src="{{STATIC_URL}}{{post.photo}}" alt="my_img" >
+                        <img src="/static/{{ghnpost.photo}}" alt="my_img" >
                     </h4>
                 </div>
             </div>
-    
+
 
 
             <p> &nbsp; </p>
@@ -84,39 +84,10 @@
                 </div>
             </div>
         </div>
-<!-- <<<<<<< HEAD -->
         <br>
         <div>
             {% include "malaria/footer.html" %}
-<!-- =======
-    </div>
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font"><strong>Link:</strong></h4>
-        </div>
-        <div class="col-sm-7">
-            <h4 class="inverted-font">
-                <a href="{{ post.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ post.link|linebreaksbr }}</font></a>
-            </h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font"><strong>Image:</strong></h4>
-        </div>
-        <div class="col-sm-7">
-            <h4 class="inverted-font">
-                <img src="{{STATIC_URL}}{{post.photo}}" alt="my_img" >
-            </h4>
-        </div>
-    </div>
-    <p> &nbsp; </p>
-    <div class="row">
-        <div class="col-sm-12 col-sm-offset-2">
-            <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-primary">Back to Post List</a>
-            <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
-            <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
->>>>>>> Extended Info Hub posts to support Images and External Links -->
+
         </div>
     </body>
 </html>

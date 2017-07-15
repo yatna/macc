@@ -15,11 +15,11 @@ def create_post_from_form(form, owner):
     return post
 
 
-def create_revpost(owner, post, title, description, link, test):
+def create_revpost(owner, post, title, description, link, image):
 
     revpost = None
 
-    if owner and post and title and description :
+    if owner and post and image and description :
         # title_change and description_change fields
         # are not being used, may have to remove from model later
         revpost = RevPost(owner_rev=owner,
