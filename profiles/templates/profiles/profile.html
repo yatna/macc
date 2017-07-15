@@ -20,11 +20,10 @@
     <section class="row">
         <br><br>
         <div class="content">
-<<<<<<< HEAD
+
             <div class="myClass" style="margin-right: 30px; margin-left: 80px">
                 <span><h3><b>User Profile</b></h3></span>
             </div>
-
             <img src="/static/{{pcuser.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px">
 
             <ol>
@@ -40,35 +39,7 @@
                 <a href="/edit_profile/{{pcuser.id}}" class="btn">Edit Profile</a>
                 <a href="{% url 'account_change_password' %}" class ="btn" >Change Password</a>
             </div>
-<!-- =======
-            
-                <div class="myClass" style="margin-right: 30px; margin-left: 80px">
-                <span><h3><b>User Profile</b></h3></span>
-                </div>
- 
-  				
-        		<!-- <p>{{profiler.photo}}</p> -->
-                <img src="/static/{{profiler.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px">
-          
-         
 
-               
-                <ol>
-                    <li><span><font color="black">  User Name </span>: </font>{{profiler.user.username}}</li>
-                    <li><span><font color="black">  First Name </span>: </font>{{profiler.user.first_name}}</li>
-                    <li><span><font color="black">Last Name </span>: </font>{{profiler.user.last_name}}</li>
-                    <li><span><font color="black">Email Address </span>: </font>{{profiler.user.email}}</li>
-                    <li><span><font color="black">Mobile </span>:   </font>{{profiler.phone}} </li>
-                    <li><span><font color="black">Gender </span>:  </font> {{profiler.gender}}</li>
-                    <li><span><font color="black">Location </span>:   </font>{{profiler.location}} </li>
-                </ol>
-                <div class="options">
-                    {% if profiler.user.username == pcuser.user.username %}
-                    <a href="javascript:void(0)" onclick="window.location.href='/edit_profile_page/?id={{profiler.id}}'" class="btn">Edit Profile</a>
-                    {% endif %}
-                    <a href="javascript:void(0)" onclick="window.location.href='/change_pass_page/'" class ="btn" >Change Password</a>
-                </div>
->>>>>>> Added User's Display Picture in profile -->
         </div>
         <br><br>
     </section>

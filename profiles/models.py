@@ -3,11 +3,8 @@ import os
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
-# <<<<<<< HEAD:profiles/models.py
 from django.db.models.signals import post_save
-# =======
 from django.core.files.storage import FileSystemStorage
-# >>>>>>> Added User's Display Picture in profile:signup/models.py
 
 
 # Django provides a table called user that stores basic user information like username, password and email id.
