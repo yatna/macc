@@ -71,7 +71,7 @@ def get_contact_by_id(contact_id):
 
     return contact
 
-def create_post(owner, title, description):
+def create_post(owner, title, description,link, photo):
 
     ghnpost = None
 
@@ -80,7 +80,9 @@ def create_post(owner, title, description):
         #when all the 3 things are present
         ghnpost = ghnPost.objects.create(owner=owner,
                                         title=title,
-                                        description=description
+                                        description=description,
+                                        link=link,
+                                        photo= photo
                                         )
         ghnpost.save()
 

@@ -51,6 +51,30 @@
                     </h4>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-2">
+                    <h4 class="inverted-font"><strong>Link:</strong></h4>
+                </div>
+                <div class="col-sm-7">
+                    <h4 class="inverted-font">
+                        <a href="{{ ghnpost.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ ghnpost.link|linebreaksbr }}</font></a>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-2">
+                    <h4 class="inverted-font"><strong>Image:</strong></h4>
+                </div>
+                <div class="col-sm-7">
+                    <h4 class="inverted-font">
+                        <img src="/static/{{ghnpost.photo}}" alt="my_img" >
+                    </h4>
+                </div>
+            </div>
+
+
+
             <p> &nbsp; </p>
             <div class="row">
                 <div class="col-sm-12 col-sm-offset-2">
@@ -63,6 +87,7 @@
         <br>
         <div>
             {% include "malaria/footer.html" %}
+
         </div>
     </body>
 </html>

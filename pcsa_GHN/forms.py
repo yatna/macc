@@ -6,7 +6,7 @@ from pcsa_GHN.models import Contact, ghnPost
 class ghnPostForm(ModelForm):
     class Meta:
         model = ghnPost
-        fields = ['title', 'description']
+        fields = ['title', 'description','link','photo']
 
 class ContactForm(ModelForm):
     class Meta:
