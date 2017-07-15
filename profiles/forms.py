@@ -15,12 +15,13 @@ class PcuserForm(forms.ModelForm):
 	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
 	first_name = forms.CharField(max_length=30,validators=[alphanumeric])
 	last_name = forms.CharField(max_length=30,validators=[alphanumeric])
+	photo = forms.FileField()
 	email = forms.EmailField()
 
 
 	class Meta:
 		model = Pcuser
-		fields = ['first_name','last_name','email','phone', 'gender', 'location']
+		fields = ['first_name','last_name','email','phone', 'gender', 'location','photo']
 
 
 class SignupForm(forms.Form):

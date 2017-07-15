@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	    <style type="text/css">
             .form-outline{
                 width:800px; 
@@ -13,6 +14,16 @@
             }
             {% include "profiles/edit_profile.css" %}
 	    </style>
+
+        <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
     </head>
     
     <body>
@@ -23,14 +34,22 @@
         <section class="row">
             <div class="container">
                 <div class="content">
-                    <h3>Edit Profile</h3>
-                    <form action="" method="post" >
+                    <div  style="margin-right: 30px; margin-left: 80px">
+                    <span><h3>Edit Profile</h3></span>
+                    </div>
+                    <img src="/static/{{form.instance.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px; margin-bottom: 20px"> 
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         
                         
                 		<table>
                     		<tr>
+                                 <td>   <label ><font color="black">Profile Picture:</font></label> </td>
+                                 <td>  <input type="file"  name="photo" accept=".jpg,.png,.jpeg"></td>
+                          </tr>
+
+                            <tr>
                                 <td>   
                                     <label for="first_name">
                                         <font color="black">First name:</font>
@@ -91,7 +110,7 @@
                                     </label>
                                 </td> 
                                 <td>
-                            		{% if form.instance.gender == "Male" %}
+                            		<!-- {% if form.instance.gender == "Male" %}
                                 		<h4><input type="radio" name="gender" value="Male" checked>Male</h4>
                                 		<h4><input type="radio" name="gender" value="Female" >Female</h4>
                                 		<h4><input type="radio" name="gender" value="Restricted">Others</h4>
@@ -103,7 +122,20 @@
                                 		<h4><input type="radio" name="gender" value="Male" >Male</h4>
                                 		<h4><input type="radio" name="gender" value="Female" >Female</h4>
                             		    <h4><input type="radio" name="gender" value="Restricted" checked>Others</h4>
-                            		{% endif %}
+                            		{% endif %} -->
+                                    {% if form.instance.gender == "Male" %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp&nbsp <input type="radio" name="gender" value="Male" checked></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp <input type="radio" name="gender" value="Restricted"></h4>
+                                    {% elif form.instance.gender == "Female" %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp&nbsp <input type="radio" name="gender" value="Male" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" checked></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" ></h4>
+                                    {% else %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp&nbsp <input type="radio" name="gender" value="Male" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" checked></h4>
+                                    {% endif %}
                             	</td>
                             </tr>
                             <tr>
@@ -131,6 +163,7 @@
                             </div>
                         </div>
     		        </form>
+
                 </div>
              </div>
         </section>
@@ -138,5 +171,8 @@
         <div>
             {% include "profiles/footer.html" %}   
         </div>   
+
+        <br>
+
     </body>
 </html>

@@ -53,7 +53,7 @@
 
 @media only screen and (min-width: 950px){
 	.content{
-		width: 600px;
+		width: 580px;
 	}
 	.content .image{
 		float: right;
@@ -64,8 +64,8 @@
 	}
 	.content img{
 		margin: 0;
-		width: 150px;
-		height: 150px;
+		width: 120px;
+		height: 120px;
 	}
 	.content ul{
 		

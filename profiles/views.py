@@ -14,7 +14,6 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         context['pcuser'] = self.request.user.pcuser
         return context
 
-
 class EditProfile(LoginRequiredMixin, UpdateView):
     
     template_name = 'profiles/edit_profile.html'
