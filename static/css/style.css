@@ -115,7 +115,8 @@ a:hover{
 	img{
 		height: 150px;
 		width: 150px;
-		margin: 10px 50px;
+		margin-bottom:  20px ;
+	
 	}
 	.footer li{
 		display: inline-block;

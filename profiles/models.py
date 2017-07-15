@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
+from django.core.files.storage import FileSystemStorage
 
 
 # Django provides a table called user that stores basic user information like username, password and email id.
@@ -20,6 +21,10 @@ class Pcuser(models.Model):
     gender = models.CharField(max_length=10,choices = gender_choices, default='0')
     #for reset_password
     reset_pass = models.CharField(default="",max_length=320)
+
+    #define the file storage system
+    fs = FileSystemStorage(location='static/')
+    photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/example.png',null=True)
      
     #verification status
     #1 - unverified

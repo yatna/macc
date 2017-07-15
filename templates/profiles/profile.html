@@ -10,11 +10,17 @@
 <section class="row">
     <br><br>
     <div class="content">
-        <h3>
-            <b>User Profile</b>
-        </h3>
+        <div class="myClass" style="margin-right: 30px; margin-left: 80px">
+            <span>
+                <h3>
+                    <b>User Profile</b>
+                </h3>
+            </span>
+        </div>
+        <img src="/static/{{pcuser.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px">
         <ol>
             <font color="black">
+                <li><span><font color="black">User Name </span>: </font>{{pcuser.user.username}}</li>
                 <li><span>First Name </span>: {{pcuser.user.first_name}}</li>
                 <li><span>Last Name </span>: {{pcuser.user.last_name}}</li>
                 <li><span>Email Address </span>: {{pcuser.user.email}}</li>

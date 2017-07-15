@@ -1,7 +1,9 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from django.core.files.storage import FileSystemStorage
 
 from profiles.models import Pcuser
+
 
 
 class Post(models.Model):
@@ -20,7 +22,12 @@ class Post(models.Model):
                                             )]
                                         )
     # link to important documents
-    link_post = models.CharField(max_length=2000)
+    link_post = models.CharField(max_length=200)
+
+    fs = FileSystemStorage(location='static/')
+
+    photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
+
     # field to note the timestamp when the post was created
     created = models.DateTimeField(auto_now_add=True)
     # field to note the timestamp when the post was last updated
@@ -55,6 +62,8 @@ class RevPost(models.Model):
                                                     r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                                 )]
                                             )
+
+
     # field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
 
