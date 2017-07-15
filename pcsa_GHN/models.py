@@ -3,6 +3,9 @@ from django.db import models
 from profiles.models import Pcuser
 from django.core.validators import RegexValidator
 
+from django.core.files.storage import FileSystemStorage
+
+
 
 # Create your models here.
 class Contact(models.Model):
@@ -23,10 +26,18 @@ class ghnPost(models.Model):
                                         RegexValidator(
                                             r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                         )])
-    description = models.TextField(max_length=30000)
+    description = models.TextField(max_length=3000)
     created_date = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    # link to important documents
+    link = models.CharField(max_length=200, null = True)
+
+    fs = FileSystemStorage(location='infohub/static/')
+
+    photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
+
+    def __unicode__(self):
+
         return self.title
         
     class Meta:
