@@ -26,6 +26,15 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'infohub.settings'
 django.setup()
 
 
+from recommonmark.parser import CommonMarkParser
+
+source_parsers = {
+    '.md': CommonMarkParser,
+}
+
+source_suffix = ['.rst', '.md']
+
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
