@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{% static "css/style.css" %}" rel="stylesheet">
+		<link href="{% static "css/profile.css" %}" rel="stylesheet">
+		<link href="{% static "css/sticky-footer.css" %}" rel="stylesheet">
+	</head>
+
+	<body>
+		{% include 'infohub/header.html' %}
+		<div>
+			{% block body %}
+			{% endblock %}
+		</div>
+		{% include 'infohub/footer.html' %}
+	</body>
+</html>

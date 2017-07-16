@@ -24,7 +24,7 @@ class Post(models.Model):
     # link to important documents
     link_post = models.CharField(max_length=200)
 
-    fs = FileSystemStorage(location='infohub/static/')
+    fs = FileSystemStorage(location='static/')
 
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
 

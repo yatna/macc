@@ -29,7 +29,7 @@ class ghnPost(models.Model):
     # link to important documents
     link = models.CharField(max_length=200, null = True)
 
-    fs = FileSystemStorage(location='infohub/static/')
+    fs = FileSystemStorage(location='static/')
 
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
 

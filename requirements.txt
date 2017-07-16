@@ -13,4 +13,5 @@ static3==0.7.0
 django-allauth==0.32.0
 social-auth-app-django
 autoenv
+django-bootstrap3
 sphinx

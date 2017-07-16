@@ -23,7 +23,7 @@ class Pcuser(models.Model):
     reset_pass = models.CharField(default="",max_length=320)
 
     #define the file storage system
-    fs = FileSystemStorage(location='infohub/static/')
+    fs = FileSystemStorage(location='static/')
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/example.png',null=True)
      
     #verification status
