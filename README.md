@@ -11,6 +11,8 @@ MACC works on PCSA mobile and web apps, MACC makes the mobile apps fully dynamic
 
 Installation Guide - [here](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md)
 
+Documentation - [Here](https://drive.google.com/open?id=0B6cRm7QFaag1YWNTZ2stcmdieTQ) *(Extract .zip - > open _build/html/index.html )*
+
 API Documentation -  [here](https://docs.google.com/document/d/1uQ42HQGIEOWoD-PtRRGoKLN15S-EhEkWgsIxiceNMGI/edit?usp=sharing)
 
 Contribution Guide - [here](https://github.com/systers/macc/blob/develop/docs/Contribution.md)
