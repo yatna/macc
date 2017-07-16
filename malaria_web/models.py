@@ -15,12 +15,7 @@ class Post(models.Model):
                                           r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                       )]
                                   )
-    description_post = models.TextField(max_length=20000,
-                                        validators=[
-                                            RegexValidator(
-                                                r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)|(\')]+$'
-                                            )]
-                                        )
+    description_post = models.TextField(max_length=20000)
     # link to important documents
     link_post = models.CharField(max_length=200)
 
@@ -49,12 +44,7 @@ class RevPost(models.Model):
     # The user who is editing the post
     owner_rev = models.ForeignKey(Pcuser, null=False, related_name='owner_rev')
     # revised title
-    title_post_rev = models.CharField(max_length=1000,
-                                      validators=[
-                                          RegexValidator(
-                                              r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
-                                          )]
-                                      )
+    title_post_rev = models.CharField(max_length=1000)
     # revised description
     description_post_rev = models.TextField(max_length=20000,
                                             validators=[

@@ -1,6 +1,7 @@
 from django.db import models
 
 from profiles.models import Pcuser
+from django.core.validators import RegexValidator
 
 from django.core.files.storage import FileSystemStorage
 
@@ -21,10 +22,12 @@ class Contact(models.Model):
 
 class ghnPost(models.Model):
     owner = models.ForeignKey(Pcuser, null=False, related_name='xowner')
-    title = models.CharField(max_length=1000)
+    title = models.CharField(max_length=1000, validators=[
+                                        RegexValidator(
+                                            r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                        )])
     description = models.TextField(max_length=3000)
     created_date = models.DateTimeField(auto_now=True)
-
 
     # link to important documents
     link = models.CharField(max_length=200, null = True)

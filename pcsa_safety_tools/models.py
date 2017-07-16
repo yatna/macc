@@ -1,7 +1,6 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
-
-# Create your models here.
 
 class SafetyToolsCategory(models.Model):
     category_id = models.IntegerField()
@@ -17,7 +16,10 @@ class SafetyToolsCategory(models.Model):
 
 class SafetyToolsPost(models.Model):
     category_id = models.ForeignKey(SafetyToolsCategory)
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=500, validators=[
+                                            RegexValidator(
+                                                r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                            )])
     description = models.TextField(max_length=30000)
     created_date = models.DateTimeField(auto_now=True)
 
