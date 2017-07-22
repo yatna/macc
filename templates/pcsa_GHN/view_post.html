@@ -1,55 +1,54 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br><br>
 <center>
     <h2>
         <font color="#2c0f00"> pcsa : infoHub</font>
     </h2>
     </center>
 <div class="well">
-    <h2 class="text-center inverted-font">View Post</h2>
+    <h2 class="text-center ">View Post</h2>
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+            <h4 >
                 <strong>Title:</strong>
             </h4>
         </div>
         <div class="col-sm-2">
-            <h4 class="inverted-font">
+            <h4 >
                 {{ ghnpost.title }}
             </h4>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+            <h4 >
                 <strong>Description:</strong>
             </h4>
         </div>
         <div class="col-sm-7">
-            <h4 class="inverted-font">
+            <h4 >
                 {{ ghnpost.description|linebreaksbr }}
             </h4>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font"><strong>Link:</strong></h4>
+            <h4 ><strong>Link:</strong></h4>
         </div>
         <div class="col-sm-7">
-            <h4 class="inverted-font">
+            <h4 >
                 <a href="{{ ghnpost.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ ghnpost.link|linebreaksbr }}</font></a>
             </h4>
         </div>
         </div>
         <div class="row">
             <div class="col-sm-2 col-sm-offset-2">
-                <h4 class="inverted-font"><strong>Image:</strong></h4>
+                <h4 ><strong>Image:</strong></h4>
             </div>
             <div class="col-sm-7">
-                <h4 class="inverted-font">
+                <h4 >
                     <img src="/static/{{ghnpost.photo}}" alt="my_img" >
                 </h4>
             </div>
@@ -63,5 +62,4 @@
         </div>
     </div>
 </div>
-<br>
 {% endblock %}

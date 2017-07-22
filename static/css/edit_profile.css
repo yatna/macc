@@ -31,25 +31,15 @@ form input{
 	font-size: 0.8em;
 }
 
-.options input{
-	border-width: 0;
-	background-color: transparent;
-	font-size: 16px;
-	
-}
-
 .btn input{
 			text-align: center;
 			align-self: top;
-			
 			width: 100px;
 			padding:0;
 			margin:0;
-
-
 }
 
-.btn{
+.options .btn{
 	display: flex;
 	padding:2px;
 	justify-content: center;
@@ -62,11 +52,10 @@ form input{
 			
 			width: 180px;
 		}
+
 		.image{
 			padding: 10px 0;
 			order: 2;
-
-			
 		}
 
 		form{
@@ -75,18 +64,20 @@ form input{
 			padding: 0 60px;
 			justify-content: center;
 		}
+
 		.options input{
 			display: inline-block;
 		}
+
 		.options{
 			order: 3;
 			display: flex;
 		}
+
 		.details{
 			order: 1;
 			flex-grow: 2;
 			float: left;
-			
 			padding: 10px 0;
 		}
 		

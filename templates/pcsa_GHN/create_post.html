@@ -1,22 +1,21 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br><br>
 <center>
     <h2>
         <font color="#2c0f00"> Get Help Now </font>
     </h2>
 </center>
 <div class="well">
-    <h2 class="text-center inverted-font">New Post</h2>
+    <h2 class="text-center ">New Post</h2>
     <br>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Title</label>
+            <label class="col-sm-2 control-label ">Title <span class="text-danger" >*</span></label>
             <div class="col-sm-9">
                 <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
-                <p class="help-block inverted-font">
+                <p class="help-block ">
                     <strong>
                         {% if form.title.errors %}
                             {% for error in form.title.errors %}
@@ -28,10 +27,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Description</label>
+            <label class="col-sm-2 control-label ">Description <span class="text-danger" >*</span></label>
             <div class="col-sm-9">
                 <textarea class="form-control" rows="18" name="description" minlength=100>{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
-                <p class="help-block inverted-font">
+                <p class="help-block ">
                     <strong>
                         {% if form.description.errors %}
                             {% for error in form.description.errors %}
@@ -43,10 +42,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">External Links </label>
+            <label class="col-sm-2 control-label ">External Links <span class="text-danger" >*</span></label>
             <div class="col-sm-8">
                 <input class="form-control" type="url" name="link" value="{% if form.link.value %}{{ form.link.value }}{% endif %}" placeholder="Enter a URL">
-                <p class="help-block inverted-font">
+                <p class="help-block ">
                     <strong>
                         {% if form.link.errors %}
                             {% for error in form.link.errors %}
@@ -58,10 +57,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Image :</label>
+            <label class="col-sm-2 control-label ">Image </label>
             <div class="col-sm-8">
                 <input type="file"  name="photo" accept=".jpg,.png,.jpeg">
-                <p class="help-block inverted-font">
+                <p class="help-block ">
                     <strong>
                         {% if form.photo.errors %}
                             {% for error in form.photo.errors %}
@@ -80,5 +79,4 @@
         </div>
     </form>
 </div>
-<br><br><br>
 {% endblock %}

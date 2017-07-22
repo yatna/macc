@@ -7,40 +7,32 @@
     
     {% block content %}
 
-    <br><br>
     <center>
-        <div style="width:600px; height:500px;  background-color:#0d8b97;">
+        <div class="content">
+            <h2>Log in</h2>
             <br>
-            <font color="white">
-                <h2>Log in</h2>
-            </font>
-             <form method="POST" action="{% url 'account_login' %}">
+            <form method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="form-group">
-                        {% if not field.name == "remember" %}
-                            {{ field }}
-                        {% else %}
-                           Remember Me : {{ field }} 
-                        {% endif %}
-                    </div>
+                <div class="form-group">
+                        {{ field.label_tag }} &nbsp;
+                        {{ field }}
+                    </div>
                 {% endfor %}
-                
-                <br/>
-                    <button class="primaryAction" type="submit">Sign In </button>
+                <button class="btn btn-primary" type="submit">Sign In </button>
                 <br><br>
-                <font size="3px" color ="white">
-                    <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="color:white"> Forgot Password?</a>
+                <font size="3px">
+                    <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="color:#993333;"> Forgot Password?</a>
                 
                     <br/>
                     New User? 
-                    <a href={{ signup_url }} style="color:#cccc88; font-style: oblique;">
+                    <a href={{ signup_url }} style="color:#993333; font-style: oblique;">
                         <u>Click here</u>
                     </a> to Sign Up!
                 
                     <h4>
                     Got a Social Media account? 
-                    <a href="/login_real/" style="color:#cccc88; font-style: oblique;">
+                    <a href="/login_real/" style="color:#993333; font-style: oblique;">
                         <u>Click here</u>
                     </a> to Login/Sign Up!
                 </font>
@@ -48,8 +40,5 @@
             </form>
         </div>
     </center>
-    <br><br>
-
     {% endblock %}
-
 </html>

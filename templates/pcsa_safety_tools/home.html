@@ -1,7 +1,6 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br>
 <center>
     <h2>
         <font color="#2c0f00"> Safety Tools : Posts </font>
@@ -20,13 +19,13 @@
                 <thead>
                     <tr>
                         <th>
-                            <h3 class="inverted-font">Post</h3>
+                            <h3 >Post</h3>
                         </th>
                         <th>
-                            <h3 class="inverted-font">Description</h3>
+                            <h3 >Description</h3>
                         </th>
                         <th>
-                            <h3 class="inverted-font">Action</h3>
+                            <h3 >Action</h3>
                         </th>
                     </tr>
                 </thead>
@@ -34,12 +33,12 @@
                     {% for post in category %}
                         <tr>
                             <td>
-                                <h4 class="inverted-font">
+                                <h4 >
                                     {{ post.title|linebreaks }}
                                 </h4>
                             </td>
                             <td>
-                                <h4 class="inverted-font">
+                                <h4 >
                                     {{ post.description|truncatechars:40|linebreaks }}
                                 </h4>
                             </td>
@@ -57,10 +56,9 @@
     {% else %}
         <div class="well">
             <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success pull-right">New Post</a>
-            <h3 class="text-center inverted-font">No Posts</h3>
+            <h3 class="text-center ">No Posts</h3>
         </div>
         <br>
     {% endif %}
 {% endfor %}
-<br><br>
 {% endblock %}

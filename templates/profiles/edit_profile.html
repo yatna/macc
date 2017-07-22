@@ -7,7 +7,6 @@
         <link href="{% static "css/edit_profile.css" %}" rel="stylesheet">
     </head>
     {% block content %}
-    <br><br><br>
     <section class="row">
         <div class="container">
             <div class="content">
@@ -114,17 +113,16 @@
             		</table>              
                     <div class="options">
                         <div>
-                            <input type="submit" name="submit" value="Update" class="btn">
-                            <font color="black"></font>
+                            <input type="submit" name="submit" value="Update" class="btn btn-primary">
                         </div>
                         <div>
-                            <a href="/edit_profile/{{pcuser.user.id}}" class="btn">
-                                <font color="black">Reset</font>
+                            <a href="/edit_profile/{{pcuser.user.id}}" class="btn btn-warning">
+                               Reset
                             </a>
                         </div>
                         <div>
-                            <a href="/profile/" class="btn">
-                                <font color="black">Cancel</font>
+                            <a href="/profile/" class="btn btn-danger">
+                                Cancel
                             </a>
                         </div>
                     </div>
@@ -132,6 +130,5 @@
             </div>
          </div>
     </section>
-    <br><br><br>
    {% endblock %}
 </html>

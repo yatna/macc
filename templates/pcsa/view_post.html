@@ -1,35 +1,34 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br><br>
 <center>
     <h2>
         <font color="#2c0f00"> pcsa : infoHub</font>
     </h2>
 </center>
 <div class="well">
-    <h2 class="text-center inverted-font">View Post</h2>
+    <h2 class="text-center ">View Post</h2>
     <br>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+            <h4 >
                 <strong>Title:</strong>
             </h4>
         </div>
         <div class="col-sm-2">
-            <h4 class="inverted-font">
+            <h4 >
                 {{ post.title }}
             </h4>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+            <h4 >
                 <strong>Description:</strong>
             </h4>
         </div>
         <div class="col-sm-7">
-            <h4 class="inverted-font">
+            <h4 >
                 {{ post.description|linebreaksbr }}
             </h4>
         </div>
@@ -43,5 +42,4 @@
         </div>
     </div>
 </div>
-<br><br><br>
 {% endblock %}
