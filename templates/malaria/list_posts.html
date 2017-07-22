@@ -1,11 +1,11 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<center>
-    <h2>
-        Malaria : infoHub
-    </h2>
-</center>
+
+<h2 class="text-center">
+    Malaria : infoHub
+</h2>
+<br>
 {% if post_list %}
     <div class="well">
         <a href="{% url 'malaria:create_post' %}" class="btn btn-success pull-right">New Post</a>
@@ -27,14 +27,14 @@
                 {% for post in post_list %}
                     <tr>
                         <td>
-                            <h4>
+                            <h5>
                                 {{ post.title_post |truncatechars:20}}
-                            </h4>
+                            </h5>
                         </td>
                         <td>
-                            <h4>
+                            <h5>
                                 {{ post.description_post|truncatechars:40|linebreaks }}
-                            </h4>
+                            </h5>
                         </td>
                         <td>
                             <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>

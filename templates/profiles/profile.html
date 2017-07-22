@@ -7,7 +7,7 @@
 </head>
 
 {% block content %}
-<section class="row">
+<section class="container">
     <div class="content">
         <div class="myClass">
             <span>
@@ -27,8 +27,8 @@
             <li><span>Location </span>: {{pcuser.location}} </li>
         </ol>
         <div class="options">
-            <a class="btn btn-primary" href="/edit_profile/{{pcuser.id}}" class="btn">Edit Profile</a>
-            <a class="btn btn-danger" href="{% url 'account_change_password' %}" class ="btn" >Change Password</a>
+            <a class="btn btn-primary" href="/edit_profile/{{pcuser.id}}">Edit Profile</a>
+            <a class="btn btn-danger" href="{% url 'account_change_password' %}">Change Password</a>
         </div>
     </div>
 </section>

@@ -1,18 +1,16 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<center>
-    <h2>
-        Malaria : infoHub
-    </h2>
-</center>
+
+<h2 class="text-center">
+    Malaria : infoHub
+</h2>
 <div class="well">
-    <h2 class="text-center ">Edit Post</h2>
-    <br>
+    <h2 class="text-center">Edit Post</h2>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Title <span class="text-danger" >*</span></label>
+            <label class="col-sm-3 control-label ">Title <span class="text-danger" >*</span></label>
             <div class="col-sm-8">
                 <input class="form-control" type="text" name="title_post" value="{% if form.title_post.value %}{{ form.title_post.value }}{% endif %}">
                 <p class="help-block ">
@@ -27,7 +25,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Description <span class="text-danger" >*</span></label>
+            <label class="col-sm-3 control-label ">Description <span class="text-danger" >*</span></label>
             <div class="col-sm-8">
                 <textarea class="form-control" rows="18" name="description_post" minlength=100>{% if form.title_post.value %}{{ form.description_post.value }}{% endif %}</textarea>
                 <p class="help-block ">    
@@ -42,7 +40,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Important Links <span class="text-danger" >*</span></label>
+            <label class="col-sm-3 control-label ">Important Links <span class="text-danger" >*</span></label>
             <div class="col-sm-8">
                 <input class="form-control" type="url" name="link_post" value="{% if form.link_post.value %}{{ form.link_post.value }}{% endif %}">
                 <p class="help-block ">
@@ -57,7 +55,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Image:</label>
+            <label class="col-sm-3 control-label ">Image:</label>
             <div class="col-sm-8">
                 {% if form.photo.value %}<img src="/static/{{post.photo}}" alt="my_img" height="16" width="16">{% endif %}
                 <input type="file"  name="photo" accept=".jpg,.png,.jpeg">
@@ -73,7 +71,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-12 col-sm-offset-2">
+            <div class="col-sm-12 col-sm-offset-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{% url 'malaria:list_posts' %}" class="btn btn-danger">Cancel</a>
             </div>

@@ -7,14 +7,14 @@
         <link href="{% static "css/edit_profile.css" %}" rel="stylesheet">
     </head>
     {% block content %}
-    <section class="row">
-        <div class="container">
+    <section class="container">
+        <div class="row">
             <div class="content">
                 <div  style="margin-right: 30px; margin-left: 80px">
                     <span><h3>Edit Profile</h3></span>
                 </div>
                 <img src="/static/{{form.instance.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px; margin-bottom: 20px"> 
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
                     {% csrf_token %}
             		<table>
                 		<tr>
@@ -89,18 +89,36 @@
                             </td> 
                             <td>
                         		{% if form.instance.gender == "Male" %}
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp<input type="radio" name="gender" value="Male" checked></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp <input type="radio" name="gender" value="Restricted"></h4>
-                                    {% elif form.instance.gender == "Female" %}
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Male    &nbsp&nbsp&nbsp<input type="radio" name="gender" value="Male" ></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Female <input type="radio" name="gender" value="Female" checked></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" ></h4>
-                                    {% else %}
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp&nbsp <input type="radio" name="gender" value="Male" ></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
-                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" checked></h4>
-                                    {% endif %}
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Male" checked>
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                        <input class="col-sm-2" type="radio" name="gender" value="Female">
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Restricted">
+                                    </h4>
+                                {% elif form.instance.gender == "Female" %}
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Male">
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                        <input class="col-sm-2" type="radio" name="gender" value="Female" checked>
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Restricted">
+                                    </h4>
+                                {% else %}
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Male">
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                        <input class="col-sm-2" type="radio" name="gender" value="Female">
+                                    </h4>
+                                    <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                        <input class="col-sm-2" type="radio" name="gender" value="Restricted" checked>
+                                    </h4>
+                                {% endif %}
                         	</td>
                         </tr>
                         <tr>

@@ -90,4 +90,8 @@ form input{
 	color:red;
 	size:11;
 	padding:3;
-    }
+}
+
+.col{
+	float: none;
+}

@@ -1,14 +1,12 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<center>
-    <h2>
-        <font color="#2c0f00"> pcsa : infoHub</font> 
-    </h2>
-</center>
+
+<h2 class="text-center">
+    PCSA : infoHub
+</h2>
 <div class="well">
-    <h2 class="text-center ">Edit Post</h2>
-    <br>
+    <h2 class="text-center">Edit Post</h2>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         <div class="form-group">

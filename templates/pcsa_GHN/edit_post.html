@@ -1,19 +1,17 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<center>
-    <h2>
-        <font color="#2c0f00"> pcsa : infoHub</font> 
-    </h2>
-</center>
+
+<h2 class="text-center">
+    PCSA : infoHub 
+</h2>
 <div class="well">
     <h2 class="text-center ">Edit Post</h2>
-    <br>
     <form class="form-horizontal" autocomplete="off" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Title <span class="text-danger" >*</span></label>
-            <div class="col-sm-9">
+            <label class="col-sm-3 control-label ">Title <span class="text-danger" >*</span></label>
+            <div class="col-sm-8">
                 <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
                 <p class="help-block ">
                     <strong>
@@ -27,8 +25,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Description <span class="text-danger" >*</span></label>
-            <div class="col-sm-9">
+            <label class="col-sm-3 control-label ">Description <span class="text-danger" >*</span></label>
+            <div class="col-sm-8">
                 <textarea class="form-control" rows="18" name="description" minlength=100>{% if form.title.value %}{{ form.description.value }}{% endif %}</textarea>
                 <p class="help-block ">    
                     <strong>
@@ -42,7 +40,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Important Links <span class="text-danger" >*</span></label>
+            <label class="col-sm-3 control-label ">Important Links <span class="text-danger" >*</span></label>
             <div class="col-sm-8">
                 <input class="form-control" type="url" name="link" value="{% if form.link.value %}{{ form.link.value }}{% endif %}">
                 <p class="help-block ">
@@ -57,7 +55,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label ">Image:</label>
+            <label class="col-sm-3 control-label ">Image:</label>
             <div class="col-sm-8">
                 {% if form.photo.value %}<img src="/static/{{ghnpost.photo}}" alt="my_img" height="16" width="16">{% endif %}
                 <input type="file"  name="photo" accept=".jpg,.png,.jpeg">
@@ -73,7 +71,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-12 col-sm-offset-2">
+            <div class="col-sm-12 col-sm-offset-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-danger">Cancel</a>
             </div>

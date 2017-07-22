@@ -1,14 +1,12 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<center>
-    <h2>
-        <font color="#2c0f00"> Safety Tools </font>
-    </h2>
-</center>
+
+<h2 class="text-center">
+    Safety Tools
+</h2>
 <div class="well">
     <h2 class="text-center ">New Post</h2>
-    <br>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         <div class="form-group">
