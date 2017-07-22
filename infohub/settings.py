@@ -60,8 +60,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'django.contrib.sites',
-    'social_django'
-
+    'social_django',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -123,10 +123,9 @@ STATIC_ROOT = ''
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/vagrant/submit/media/propics/',
-    '/vagrant/submit/app-web-server/ui/bootstrap/fonts',
-    'lol',
+    os.path.join(BASE_DIR,'static'),
 )
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',

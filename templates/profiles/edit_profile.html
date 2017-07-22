@@ -1,0 +1,137 @@
+{% load static %}
+<html>
+    {% include "infohub/index.html" %}
+    <head>
+        <title>Edit Profile | {{ pcuser }}</title>
+        <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+        <link href="{% static "css/edit_profile.css" %}" rel="stylesheet">
+    </head>
+    {% block content %}
+    <br><br><br>
+    <section class="row">
+        <div class="container">
+            <div class="content">
+                <div  style="margin-right: 30px; margin-left: 80px">
+                    <span><h3>Edit Profile</h3></span>
+                </div>
+                <img src="/static/{{form.instance.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px; margin-bottom: 20px"> 
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+            		<table>
+                		<tr>
+                            <td>   
+                                <label >
+                                    <font color="black">Profile Picture:</font>
+                                </label> 
+                            </td>
+                            <td>  
+                                <input type="file"  name="photo" accept=".jpg,.png,.jpeg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   
+                                <label for="first_name">
+                                    <font color="black">First name:</font>
+                                </label> 
+                            </td>
+                            <td> 
+                                <input id="first_name" type="text" name="first_name" value="{{form.instance.user.first_name}}">
+                                {% if form.first_name.errors %}
+                               {{form.first_name.errors}}
+                            {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   
+                                <label for="last_name">
+                                    <font color="black">Last Name: </font>
+                                </label>
+                            </td>
+                            <td>  
+                                <input type="text" name="last_name" value="{{form.instance.user.last_name}}">
+                                 {% if form.last_name.errors %}
+                               {{form.last_name.errors}}
+                            {% endif %}
+                            </td>
+            		    </tr>
+                        <tr>
+                           <td> 
+                            <label> 
+                                <font color="black">Mobile:</font>
+                            </label>
+                            </td>
+                            <td>  
+                                <input type="tel" name="phone" value="{{form.instance.phone}}" required>
+                                 {% if form.phone.errors %}
+                               {{form.phone.errors}}
+                            {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>  
+                                <label>
+                                    <font color="black">Email:</font>
+                                </label>
+                            </td>
+                            <td>  
+                                <input type="email" name="email" value="{{form.instance.user.email}}" required >
+                                 {% if form.email.errors %}
+                               {{form.email.errors}}
+                            {% endif %}
+                            </td>
+                        </tr>
+            		    <tr>
+                            <td>
+                                <label>
+                                    <b>
+                                        <font color="black">Gender:</font>
+                                    </b>
+                                </label>
+                            </td> 
+                            <td>
+                        		{% if form.instance.gender == "Male" %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp<input type="radio" name="gender" value="Male" checked></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp <input type="radio" name="gender" value="Restricted"></h4>
+                                    {% elif form.instance.gender == "Female" %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male    &nbsp&nbsp&nbsp<input type="radio" name="gender" value="Male" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female <input type="radio" name="gender" value="Female" checked></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" ></h4>
+                                    {% else %}
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Male   &nbsp&nbsp&nbsp&nbsp <input type="radio" name="gender" value="Male" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Female &nbsp<input type="radio" name="gender" value="Female" ></h4>
+                                    <h4> &nbsp &nbsp&nbsp&nbsp Others &nbsp<input type="radio" name="gender" value="Restricted" checked></h4>
+                                    {% endif %}
+                        	</td>
+                        </tr>
+                        <tr>
+                            <td><label><font color="black">Location:</font></label></td>
+                            <td><h4><input type="text" name="location" value="{{form.instance.location}}" required>
+                             {% if form.location.errors %}
+                               {{form.location.errors}}
+                            {% endif %}</h4></td>
+                        </tr>
+            		</table>              
+                    <div class="options">
+                        <div>
+                            <input type="submit" name="submit" value="Update" class="btn">
+                            <font color="black"></font>
+                        </div>
+                        <div>
+                            <a href="/edit_profile/{{pcuser.user.id}}" class="btn">
+                                <font color="black">Reset</font>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="/profile/" class="btn">
+                                <font color="black">Cancel</font>
+                            </a>
+                        </div>
+                    </div>
+		        </form>
+            </div>
+         </div>
+    </section>
+    <br><br><br>
+   {% endblock %}
+</html>

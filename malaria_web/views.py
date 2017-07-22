@@ -58,4 +58,3 @@ class ViewPostView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = "malaria/view_post.html"
     redirect_field_name = 'redirect_to'
-    
