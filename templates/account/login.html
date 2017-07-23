@@ -1,47 +1,45 @@
 {% include "infohub/index.html" %}
 
-<html>
-    <head>
-        <title> Welcome ! </title>
-    </head>
-    
-    {% block content %}
-    <center>
-        <div class="content">
-            <div class ="row">
-                <h2>Log in</h2>
-                <form class ="form-horizontal" method="POST" action="{% url 'account_login' %}">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="text-danger small">{{ field.errors }}</div>
-                            </div>
-                            <label class="control-label col-sm-5">{{ field.label_tag }}</label>
-                            <span class="col-sm-12">{{ field }}</span>
+
+<title> Welcome ! </title>
+
+{% block content %}
+<center>
+    <div class="content">
+        <div class ="row">
+            <h2>Log in</h2>
+            <form class ="form-horizontal" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="text-danger small">{{ field.errors }}</div>
                         </div>
-                    {% endfor %}
-                    <button class="btn btn-primary" type="submit">Sign In </button>
-                    <br><br>
-                    <font size="3px">
-                        <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="color:#993333;"> Forgot Password?</a>
-                    
-                        <br/>
-                        New User? 
-                        <a href={{ signup_url }} style="color:#993333; font-style: oblique;">
-                            <u>Click here</u>
-                        </a> to Sign Up!
-                    
-                        <h4>
-                        Got a Social Media account? 
-                        <a href="/login_real/" style="color:#993333; font-style: oblique;">
-                            <u>Click here</u>
-                        </a> to Login/Sign Up!
-                    </font>
-                    </h4>
-                </form>
-            </div>
+                        <label class="control-label col-sm-5">{{ field.label_tag }}</label>
+                        <span class="col-sm-12">{{ field }}</span>
+                    </div>
+                {% endfor %}
+                <button class="btn btn-primary" type="submit">Sign In </button>
+                <br><br>
+                <font size="3px">
+                    <a class="button secondaryAction" href="{% url 'account_reset_password' %}" style="color:#993333;"> Forgot Password?</a>
+                
+                    <br/>
+                    New User? 
+                    <a href={{ signup_url }} style="color:#993333; font-style: oblique;">
+                        <u>Click here</u>
+                    </a> to Sign Up!
+                
+                    <h4>
+                    Got a Social Media account? 
+                    <a href="/login_real/" style="color:#993333; font-style: oblique;">
+                        <u>Click here</u>
+                    </a> to Login/Sign Up!
+                </font>
+                </h4>
+            </form>
         </div>
-    </center>
-    {% endblock %}
-</html>
+    </div>
+</center>
+<br><br><br>
+{% endblock %}

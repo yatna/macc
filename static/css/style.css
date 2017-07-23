@@ -5,28 +5,31 @@ img{
 	border: 1px solid #aaa;
 }
 
-.header img{
-	width: 85px;
-    height: 80px;
+.navbar-brand img{
+	width: 80px;
+    height: 75px;
 	border-width: 0;
+	margin-bottom: 0px;
+	margin-left: 5px;
 }
 
-.header, .footer{
+.navbar .container, .footer{
 	background-color: #e8eaf6;
 }
 
-.header .container{
-	height: 86px;
+.navbar .container{
+	height: auto;
 	margin: 0px;
 	width: auto;
 	padding-right: 0px;
 	padding-left: 0px;
-	margin-bottom: 30px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
 }
 
-.header .col-sm-11 {
-	padding-right: 0px;
-	padding-left: 0px;
+.navbar{
+	height: auto !important;
 }
 
 body{
@@ -37,68 +40,54 @@ body{
 	float: left;
 }
 
-.macc a {
+.navbar-brand a {
 	color: #003c78;
 }
 
-.macc h4{
+nav .navbar-nav h4{
 	font-size: 15px;
-}
-
-.macc h1{
-	font-size: 25px;
+	color: #003c78;
+	text-shadow: none;
+	text-decoration: none;
 	margin: 0px;
-	padding-top: 25px;
+	font-weight: normal;
 }
 
-.macc h2,
-.macc label{
-	line-height: 30px;
-	padding: 10px;
-	font-size: 24px;	
-}
-
-.macc .logout{
-	background-color: #993333;
-	border-radius: 0px;
+nav .logout h4{
 	color: white;
 }
 
-.prim-nav{
-	line-height: 30px;
-	float:right;
+.navbar-nav li a {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
 }
 
-.prim-nav ul{
-	float: right;
+.container h1{
+	font-size: 15px;
+	margin: 15px 0px;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	color: #003c78;
 }
 
-.prim-nav li{
-	text-align: right;
+.name:hover{
+	text-decoration: none !important;
+}
+
+.logout{
+	background-color: #993333;
+	border-radius: 0px !important;
+	border: none !important;
+}
+
+.nav a:hover{
+	box-shadow:none;
 }
 
 input:checked + label{
 	color: #009688;	
 }
 
-.macc h1{
-	display: inline-block;
-}
-
-.header nav{
-	max-height:0;
-	display:none;
-	transition: all 1s linear;
-}
-
-#toogle{
-	display:none;
-}
-
-.macc input:checked ~ nav{
-	display: block;
-	max-height: 500px;
-}
 h1{
 	font-size: 30px;
 	padding-bottom: 30px;
@@ -127,7 +116,7 @@ a:hover{
 
 .footer{
 	clear: both;
-	padding: 10px;
+	padding-top: 10px;
 	text-align: center;
 }
 
@@ -138,14 +127,13 @@ a:hover{
 	font-weight: bold;
 }
 
-@media only screen and (min-width: 950px){
-	.header nav{
-		max-height: 100px;
-		display: block;
-		float: right;
-	}
+.container .navbar-brand{
+	padding: 0px;
+}
 
-	.header li{
+@media only screen and (min-width: 950px){
+	
+	.navbar li{
 		display: inline-block;
 	}
 
@@ -187,11 +175,6 @@ a:hover{
 .table tbody tr td:last-child {
     white-space: nowrap;
     width: 1%
-}
-
-.header .row{
-	margin-left: 0px;
-	margin-right: 0px;
 }
 
 ::-webkit-input-placeholder { 

@@ -3,11 +3,7 @@
     height: 110px;
 }
 
-.row .container{
-	text-align: left;
-}
-
-.row .container h1{
+.container .row h1{
 	text-align: center;
 }
 
@@ -20,8 +16,7 @@
 }
 
 .box img{
-	float: right;
-	margin: 0px 40px;
+	margin: 0px 20px;
 	height: 150px;
 	border-width: 0;
 }
@@ -62,7 +57,7 @@ a:hover{
 }
 
 .box h3 a:hover{
-	color: #;
+	color: #c2002f;
 	text-decoration: none;
 }
 
@@ -85,14 +80,8 @@ h2{
 		display: none;
 	}
 	.box{
-		width: 450px;
+		
 		margin: 0 30px;
 		background-color: #e8eaf6;
-	}
-	.box:nth-child(1){
-		float: left;
-	}
-	.box:nth-child(2){
-		float: right;
 	}
 }

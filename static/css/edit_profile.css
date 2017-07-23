@@ -10,7 +10,6 @@ form label {
 	margin: 10 auto;
 	border-radius: 6px;
 	line-height: 30px;
-	font-size: 20px;
 	margin: 10px auto;
 }
 
@@ -73,13 +72,6 @@ form input{
 			order: 3;
 			display: flex;
 		}
-
-		.details{
-			order: 1;
-			flex-grow: 2;
-			float: left;
-			padding: 10px 0;
-		}
 		
 		.btn{
 			height: auto;	
@@ -90,8 +82,4 @@ form input{
 	color:red;
 	size:11;
 	padding:3;
-}
-
-.col{
-	float: none;
 }
