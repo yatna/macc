@@ -11,12 +11,14 @@
     <div class="row">
         <div class="content">
             <div  style="margin-right: 30px; margin-left: 80px">
-                <span><h3>Edit Profile</h3></span>
+                <span>
+                    <h3>Edit Profile</h3>
+                </span>
             </div>
             <img src="/static/{{form.instance.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px; margin-bottom: 20px"> 
             <form method="post" enctype="multipart/form-data" class="form-horizontal">
                 {% csrf_token %}
-        		<table>
+        		<table class="table table-responsive">
             		<tr>
                         <td>   
                             <label >
@@ -126,31 +128,27 @@
                             <label>Location:</label>
                         </td>
                         <td>
-                            <h4>
-                                <input type="text" name="location" value="{{form.instance.location}}" required>
-                                 {% if form.location.errors %}
-                                   {{form.location.errors}}
-                                {% endif %}
-                            </h4>
+                            <input type="text" name="location" value="{{form.instance.location}}" required>
+                             {% if form.location.errors %}
+                               {{form.location.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>     
+                    <tr class="options">
+                        <td colspan="2">
+                            <input type="submit" name="submit" value="Update" class="btn btn-primary">
+                        
+                            <a href="/edit_profile/{{pcuser.user.id}}" class="btn btn-warning">
+                               Reset
+                            </a>
+                        
+                            <a href="/profile/" class="btn btn-danger">
+                                Cancel
+                            </a>
                         </td>
                     </tr>
-        		</table>              
-                <div class="options">
-                    <div>
-                        <input type="submit" name="submit" value="Update" class="btn btn-primary">
-                    </div>
-                    <div>
-                        <a href="/edit_profile/{{pcuser.user.id}}" class="btn btn-warning">
-                           Reset
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/profile/" class="btn btn-danger">
-                            Cancel
-                        </a>
-                    </div>
-                </div>
-	        </form>
+                </table>
+            </form> 
         </div>
      </div>
 </section>

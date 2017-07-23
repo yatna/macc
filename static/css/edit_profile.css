@@ -6,7 +6,6 @@ form{
 form label {
 	display: block;
 	text-align: left;
-	width: 20px;
 	margin: 10 auto;
 	border-radius: 6px;
 	line-height: 30px;
@@ -14,9 +13,7 @@ form label {
 }
 
 form input{
-
 	text-align: left;
-	width: 25px;
 	margin: 10 auto;
 	border-radius: 6px;
 	line-height: 30px;
@@ -39,18 +36,13 @@ form input{
 }
 
 .options .btn{
-	display: flex;
-	padding:2px;
+	margin-left: 0px;
+	padding:2px 25px;
 	justify-content: center;
 	border: none;
 }
 
 @media only screen and (min-width: 950px){
-		form input,
-		form label{
-			
-			width: 180px;
-		}
 
 		.image{
 			padding: 10px 0;
@@ -70,7 +62,6 @@ form input{
 
 		.options{
 			order: 3;
-			display: flex;
 		}
 		
 		.btn{

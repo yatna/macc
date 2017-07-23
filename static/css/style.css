@@ -57,6 +57,10 @@ nav .logout h4{
 	color: white;
 }
 
+.navbar-default .navbar-nav li .logout:hover{
+	background-color: #993333 !important;
+}
+
 .navbar-nav li a {
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
@@ -175,6 +179,10 @@ a:hover{
 .table tbody tr td:last-child {
     white-space: nowrap;
     width: 1%
+}
+
+.borderless td, .borderless th {
+    border: none;
 }
 
 ::-webkit-input-placeholder { 
