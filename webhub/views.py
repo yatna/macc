@@ -8,13 +8,16 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render
 
 from webhub.serializers import *
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.views import APIView
 from profiles.models import Pcuser
 from django.http import Http404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from webhub import views as webhub_view
+from malaria_web.models import Post
+from pcsa_GHN.models import ghnPost
+from pcsa_safety_tools.models import SafetyToolsPost
 
 
 # SMTP port for sending emails
@@ -139,9 +142,39 @@ class HelpPC(TemplateView):
         return context
 
 
+class PostSearchView(ListView):
+
+    template_name = 'ui/result.html'
+    model = Post
+    #paginate_by = 10
+
+    def get_queryset(self):
+        
+        result = super(PostSearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        category = self.request.GET.get('category')
+        
+        if query:
+            if category == 'pcsa':
+                result = ghnPost.objects.filter(title__contains=query).values('title', 'description', 'id')
+            elif category == 'pcsa_safety_tools':
+                result = SafetyToolsPost.objects.filter(title__contains=query).values('title', 'description', 'id')
+            elif category == 'malaria':
+                result = Post.objects.filter(title_post__contains=query).values('title_post', 'description_post', 'id')
+        return result
+
+    def get_context_data(self, **kwargs):
+
+        context = super(PostSearchView, self).get_context_data(*kwargs)
+        category = self.request.GET.get('category')
+        context['category'] = category
+        return context
+
+
 def login_real(request):
     print("yolo")
     return render(request,"login_real.html")
+
 
 def login_social(request):
     username= request.POST['uname']
@@ -163,7 +196,6 @@ def login_social(request):
         pcuser=Pcuser.objects.get(user=user)
         entry=pcuser
 
-    
     if 'redirect' in request.POST.keys():
         return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
     return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
