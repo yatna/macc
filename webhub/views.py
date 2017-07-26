@@ -18,6 +18,7 @@ from webhub import views as webhub_view
 from malaria_web.models import Post
 from pcsa_GHN.models import ghnPost
 from pcsa_safety_tools.models import SafetyToolsPost
+from itertools import chain
 
 
 # SMTP port for sending emails
@@ -161,6 +162,10 @@ class PostSearchView(ListView):
                 result = SafetyToolsPost.objects.filter(title__contains=query).values('title', 'description', 'id')
             elif category == 'malaria':
                 result = Post.objects.filter(title_post__contains=query).values('title_post', 'description_post', 'id')
+            else:
+                result = chain(ghnPost.objects.filter(title__contains=query).values('title', 'description', 'id'),
+                        SafetyToolsPost.objects.filter(title__contains=query).values('title', 'description', 'id'),
+                        Post.objects.filter(title_post__contains=query).values('title_post', 'description_post', 'id'))
         return result
 
     def get_context_data(self, **kwargs):

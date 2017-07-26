@@ -36,7 +36,7 @@ class ghnPost(models.Model):
 
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
 
-    def __unicode__(self):
+    def __str__(self):
 
         return self.title
         
