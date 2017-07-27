@@ -1,55 +1,30 @@
-<html>
-<head>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% load static %}
+{% include "infohub/index.html" %}
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/a92a526874.js"></script>
+<link href="{% static "css/bootstrap-social.css" %}" rel="stylesheet">
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script src="https://use.fontawesome.com/a92a526874.js"></script>
-
-  <style>
-  {% include "bootstrap-social.css" %}
-</style>
-</head>
-<body>
-    
-    {% include "header.html" %}
+{% block content %}
+    {% if user and not user.is_anonymous %}
+        <h1>{{user.username}} ! {{user.first_name}}, {{user.last_name}}, {{user.email}}</h1>
+        <form action="/login_social/" method="POST" id="myprofile">
+            {% csrf_token %}
+            <input type="hidden" name="uname" value="{{user.username}}">
+            <input type="hidden" name="fname" value="{{user.first_name}}">
+            <input type="hidden" name="lname" value="{{user.last_name}}">
+            <input type="hidden" name="email" value="{{user.email}}">
+            {% csrf_token %}
+            <script type="text/javascript">
+                document.getElementById('myprofile').submit();
+            </script>
+        </form> 
+        <p><a href="/logout_do/">Logout</a>
+    {% else %}
+        <center>
+        	<br><br><br><br><br><br><br><br>
+        	<a href="{% url 'social:begin' 'twitter' %}?next={{request.path }}" class="btn btn-social btn-twitter"><span class="fa fa-twitter"></span>Login with Twitter</a>
+            <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-social btn-google">  <span class="fa fa-google"></span>Login with Google</a>
+        </center>  
+    {% endif %}
     <br><br><br>
-
-{% if user and not user.is_anonymous %}
- <h1>{{user.username}} ! {{user.first_name}}, {{user.last_name}}, {{user.email}}</h1>
- <form action="/login_social/" method="POST" id="myprofile">
-  {% csrf_token %}
-  <input type="hidden" name="uname" value="{{user.username}}">
-  <input type="hidden" name="fname" value="{{user.first_name}}">
-  <input type="hidden" name="lname" value="{{user.last_name}}">
-  <input type="hidden" name="email" value="{{user.email}}">
-  {% csrf_token %}
-  <script type="text/javascript">
-  document.getElementById('myprofile').submit();
-  </script>
-  </form> 
-  <p><a href="/logout_do/">Logout</a>
-  
-{% else %}
-<center>
-	<br><br><br><br><br><br><br><br>
-	<a href="{% url 'social:begin' 'twitter' %}?next={{request.path }}" class="btn btn-social btn-twitter"><span class="fa fa-twitter"></span>Login with Twitter</a>
-  <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-social btn-google">  <span class="fa fa-google"></span>Login with Google</a>
-</center>
-  
-{% endif %}
-
-  <br><br>
-    {% include "footer.html" %}
-
-
-    
-</body>
-
-</html>
-
+{% endblock %}

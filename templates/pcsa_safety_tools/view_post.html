@@ -1,53 +1,50 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br><br>
-<center>
-    <h2>
-        <font color="#2c0f00"> pcsa : infoHub</font>
-    </h2>
-</center>
+<h2 class="text-center">
+    PCSA : infoHub
+</h2>
 <div class="well">
-    <h2 class="text-center inverted-font">View Post</h2>
+    <h2 class="text-center ">View Post</h2>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
                 <strong>Category ID:</strong>
             </h4>
         </div>
-        <div class="col-sm-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-7">
+            <h4 >
                 {{ safetytoolspost.category_id.category_id }}
             </h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
                 <strong>Title:</strong>
             </h4>
         </div>
-        <div class="col-sm-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-7">
+            <h4 >
                 {{ safetytoolspost.title }}
             </h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
                 <strong>Description:</strong>
             </h4>
         </div>
         <div class="col-sm-7">
-            <h4 class="inverted-font">
+            <h4 >
                 {{ safetytoolspost.description|linebreaksbr }}
             </h4>
         </div>
     </div>
     <br>
     <div class="row">
-        <div class="col-sm-12 col-sm-offset-2">
+        <div class="col-sm-12 col-sm-offset-1">
             <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-primary">Back to Post List</a>
             <a href="{% url 'pcsa_safety_tools:edit_post' safetytoolspost.id %}" class="btn btn-info">Edit</a>
             <a href="{% url 'pcsa_safety_tools:delete_post' safetytoolspost.id %}" class="btn btn-danger">Delete</a>

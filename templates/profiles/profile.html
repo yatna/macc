@@ -1,16 +1,13 @@
 {% load static %}
 {% include "infohub/index.html" %}
 
-<head>
-    <title>User Profile | {{pcuser.user}}</title>
-    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
-</head>
+<title>User Profile | {{pcuser.user}}</title>
+<link href="{% static "css/dashboard.css" %}" rel="stylesheet">
 
 {% block content %}
-<section class="row">
-    <br><br>
+<section class="container">
     <div class="content">
-        <div class="myClass" style="margin-right: 30px; margin-left: 80px">
+        <div class="myClass">
             <span>
                 <h3>
                     <b>User Profile</b>
@@ -19,21 +16,19 @@
         </div>
         <img src="/static/{{pcuser.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px">
         <ol>
-            <font color="black">
-                <li><span><font color="black">User Name </span>: </font>{{pcuser.user.username}}</li>
-                <li><span>First Name </span>: {{pcuser.user.first_name}}</li>
-                <li><span>Last Name </span>: {{pcuser.user.last_name}}</li>
-                <li><span>Email Address </span>: {{pcuser.user.email}}</li>
-                <li><span>Mobile </span>: {{pcuser.phone}} </li>
-                <li><span>Gender </span>: {{pcuser.gender}}</li>
-                <li><span>Location </span>: {{pcuser.location}} </li>
-            </font>
+            <li><span>User Name </span>: {{pcuser.user.username}}</li>
+            <li><span>First Name </span>: {{pcuser.user.first_name}}</li>
+            <li><span>Last Name </span>: {{pcuser.user.last_name}}</li>
+            <li><span>Email Address </span>: {{pcuser.user.email}}</li>
+            <li><span>Mobile </span>: {{pcuser.phone}} </li>
+            <li><span>Gender </span>: {{pcuser.gender}}</li>
+            <li><span>Location </span>: {{pcuser.location}} </li>
         </ol>
         <div class="options">
-            <a href="/edit_profile/{{pcuser.id}}" class="btn">Edit Profile</a>
-            <a href="{% url 'account_change_password' %}" class ="btn" >Change Password</a>
+            <a class="btn btn-primary" href="/edit_profile/{{pcuser.id}}">Edit Profile</a>
+            <a class="btn btn-danger" href="{% url 'account_change_password' %}">Change Password</a>
         </div>
     </div>
-    <br><br>
 </section>
+<br><br><br>
 {% endblock %}

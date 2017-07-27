@@ -1,67 +1,65 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br><br>
-<center>
-    <h2>
-        <font color="#2c0f00"> pcsa : infoHub</font>
-    </h2>
-    </center>
+
+<h2 class="text-center">
+    PCSA : infoHub
+</h2>
 <div class="well">
-    <h2 class="text-center inverted-font">View Post</h2>
+    <h2 class="text-center ">View Post</h2>
     <p>&nbsp;</p>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h4 >
                 <strong>Title:</strong>
             </h4>
         </div>
-        <div class="col-sm-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-8">
+            <h4 >
                 {{ ghnpost.title }}
             </h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h4 >
                 <strong>Description:</strong>
             </h4>
         </div>
-        <div class="col-sm-7">
-            <h4 class="inverted-font">
+        <div class="col-sm-8">
+            <h4 >
                 {{ ghnpost.description|linebreaksbr }}
             </h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-2">
-            <h4 class="inverted-font"><strong>Link:</strong></h4>
+        <div class="col-sm-2 col-sm-offset-1">
+            <h4 ><strong>Link:</strong></h4>
         </div>
-        <div class="col-sm-7">
-            <h4 class="inverted-font">
+        <div class="col-sm-8">
+            <h4 >
                 <a href="{{ ghnpost.link|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ ghnpost.link|linebreaksbr }}</font></a>
             </h4>
         </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 col-sm-offset-2">
-                <h4 class="inverted-font"><strong>Image:</strong></h4>
-            </div>
-            <div class="col-sm-7">
-                <h4 class="inverted-font">
-                    <img src="/static/{{ghnpost.photo}}" alt="my_img" >
-                </h4>
-            </div>
-        </div>
-    <p> &nbsp; </p>
+    </div>
     <div class="row">
-        <div class="col-sm-12 col-sm-offset-2">
+        <div class="col-sm-2 col-sm-offset-1">
+            <h4 ><strong>Image:</strong></h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                <img src="/static/{{ghnpost.photo}}" alt="my_img" >
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
             <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-primary">Back to Post List</a>
             <a href="{% url 'pcsa_GHN:edit_post' ghnpost.id %}" class="btn btn-info">Edit</a>
             <a href="{% url 'pcsa_GHN:delete_post' ghnpost.id %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>
-<br>
+<br><br><br>
 {% endblock %}

@@ -1,66 +1,62 @@
 {% include "infohub/index.html" %}
 
 {% block content %}
-<br><br>
-<center>
-    <h2>
-        <font color="#2c0f00"> Safety Tools : Posts </font>
-    </h2>
-</center>
+<h2 class="text-center">
+    Safety Tools : Post
+</h2>
 {% for category in categories %}
     {% if category %}
-        <div class="well">
-            <center>
-                <h2>
-                    <font color="#2c0f00">   </font>
-                </h2>
-            </center>
-            <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success pull-right">New Post</a>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            <h3 class="inverted-font">Post</h3>
-                        </th>
-                        <th>
-                            <h3 class="inverted-font">Description</h3>
-                        </th>
-                        <th>
-                            <h3 class="inverted-font">Action</h3>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in category %}
+        <div class="row">
+            <div class=" col-sm-offset-2 col-sm-8">
+                <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
+                <table class="table table-responsive well">
+                    <thead>
                         <tr>
-                            <td>
-                                <h4 class="inverted-font">
-                                    {{ post.title|linebreaks }}
-                                </h4>
-                            </td>
-                            <td>
-                                <h4 class="inverted-font">
-                                    {{ post.description|truncatechars:40|linebreaks }}
-                                </h4>
-                            </td>
-                            <td>
-                                <a href="{% url 'pcsa_safety_tools:view_post' post.id %}" class="btn btn-primary">View</a>
-                                <a href="{% url 'pcsa_safety_tools:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                <a href="{% url 'pcsa_safety_tools:delete_post' post.id %}" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th>
+                                <h3>Post</h3>
+                            </th>
+                            <th>
+                                <h3>Description</h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for post in category %}
+                            <tr>
+                                <td>
+                                    <h5>
+                                        {{ post.title|linebreaks }}
+                                    </h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        {{ post.description|truncatechars:40|linebreaks }}
+                                    </h5>
+                                </td>
+                                <td>
+                                    <a href="{% url 'pcsa_safety_tools:view_post' post.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_safety_tools:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                    <a href="{% url 'pcsa_safety_tools:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
         </div>
-        <br>
     {% else %}
-        <div class="well">
-            <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success pull-right">New Post</a>
-            <h3 class="text-center inverted-font">No Posts</h3>
+        <div class="row">
+            <div class="well">
+                <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success col-sm-offset-9 col-sm-3">New Post</a>
+                <h3 class="text-center ">No Posts</h3>
+            </div>
+            <br>
         </div>
-        <br>
     {% endif %}
 {% endfor %}
-<br><br>
+<br><br><br><br><br><br>
 {% endblock %}
