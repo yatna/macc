@@ -15,6 +15,7 @@ urlpatterns = [
 #    url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^pcsa/', include('pcsa.urls', namespace='pcsa')),
     url(r'^gethelpnow/', include('pcsa_GHN.urls', namespace='pcsa_GHN')),
+    url(r'^firstaide/', include('firstaide.urls', namespace='firstaide')),
     url(r'^safetytools/', include('pcsa_safety_tools.urls', namespace='pcsa_safety_tools')),
     url(r'^accounts/', include('allauth.urls')),
     url('', include('social_django.urls', namespace='social'))

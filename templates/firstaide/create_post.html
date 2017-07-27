@@ -1,0 +1,108 @@
+{% include "infohub/index.html" %}
+<script type="text/javascript">
+function definetype(val) {
+    if(val =="mythbusters"  )
+        document.getElementById('pg_type').value = "multi_segment_vertical_page";
+    else if (val =="services-after-assault" || val =="radar" || val =="sexual-predators" || val =="impact-of-assault" || val =="help-a-friend'" || val =="safety-plan-basics" || val =="unwanted-attention" || val =="bystander-intervention")
+        document.getElementById('pg_type').value = "multi_cards_page";
+    else if( val =="common-questions" || val =="safety-plan-worksheet")
+        document.getElementById('pg_type').value = "multi_segment_page";
+    else
+        document.getElementById('pg_type').value = "full_page_card";
+}
+    
+</script>
+{% block content %}
+<br><br><br>
+<center>
+    <h2>
+        <font color="#2c0f00"> FirstAide APIs : Posts</font>
+    </h2>
+</center>
+<div class="well">
+    <h2 class="text-center inverted-font">New Post</h2>
+    <br>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Post Type</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="post_id" onchange="definetype(this.value)">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="added-soon">added-soon</option>
+                    <option value="seeking-staff-support">seeking-staff-support</option>
+                    <option value="services-after-assault">services-after-assault</option>
+                    <option value="peace-corps-commitment">peace-corps-commitment</option>
+                    <option value="confidentiality">confidentiality</option>
+                    <option value="radar">radar</option>
+                    <option value="sexual-predators">sexual-predators</option>
+                    <option value="safety-plan-basics">safety-plan-basics</option>
+                    <option value="unwanted-attention">unwanted-attention</option>
+                    <option value="bystander-intervention">bystander-intervention</option>
+                    <option value="common-questions">common-questions</option>
+                    <option value="safety-plan-worksheet">safety-plan-worksheet</option>
+                    <option value="sexual-assault">sexual-assault</option>
+                    <option value="sexual-assault-more">sexual-assault-more</option>
+                    <option value="glossary">glossary</option>
+                    <option value="policy-summary">policy-summary</option>
+                    <option value="further-resources">further-resources</option>
+                    <option value="impact-of-assault">impact-of-assault</option>
+                    <option value="help-a-friend">help-a-friend</option>
+                    <option value="mythbusters">mythbusters</option>
+                    <option value="sexual-harassment">sexual-harassment</option>
+                    
+
+                </select>
+                <strong>
+                        {% if form.post_id.errors %}
+                            {% for error in form.post_id.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Title</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Description</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="18" name="content" >{% if form.content.value %}{{ form.content.value }}{% endif %}</textarea>
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.content.errors %}
+                            {% for error in form.content.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <input type="hidden" name="page_type" id="pg_type">
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'firstaide:first_aide_api_home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+{% endblock %}
