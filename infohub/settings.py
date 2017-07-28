@@ -61,6 +61,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'django.contrib.sites',
     'social_django',
+    'firstaide',
+
 )
 
 MIDDLEWARE_CLASSES = (
