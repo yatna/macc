@@ -9,65 +9,67 @@
     
     <br><br>
 </div>
-<div class="row">
-    <br>
-    {% if post_list %}
-        <div class=" col-sm-offset-2 col-sm-8">
-            <form action="" method="GET">
-                <select name="category">
-                    <option value="" disabled selected>Order By</option>
-                    <option value="title_post">Title</option>
-                    <option value="owner">Author</option>
-                    <option value="created">Date Created</option>
-                    <option value="updated"> Date Updated </option>
-                </select>
-                <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
-                <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
-            </form>
-            <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
-            <table class="table table-responsive well">
-                <thead>
-                    <tr>
-                        <th>
-                            <h3>Post</h3>
-                        </th>
-                        <th>
-                            <h3>Description</h3>
-                        </th>
-                        <th>
-                            <h3>Action</h3>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in post_list %}
+<div class="container">
+    <div class="row">
+        <br>
+        {% if post_list %}
+            <div class=" col-sm-offset-2 col-sm-8">
+                <form action="" method="GET">
+                    <select name="category">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="title_post">Title</option>
+                        <option value="owner">Author</option>
+                        <option value="created">Date Created</option>
+                        <option value="updated"> Date Updated </option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
+                <table class="table table-responsive well">
+                    <thead>
                         <tr>
-                            <td>
-                                <h5>
-                                    {{ post.title_post |truncatechars:20}}
-                                </h5>
-                            </td>
-                            <td >
-                                <h5>
-                                    {{ post.description_post|truncatechars:40|linebreaks }}
-                                </h5>
-                            </td>
-                            <td >
-                                <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>
-                                <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th>
+                                <h3>Post</h3>
+                            </th>
+                            <th>
+                                <h3>Description</h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="well col-sm-8">
-            <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
-            <h3 class="text-center">No Posts</h3>
-        </div>
-    {% endif %}
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                            <tr>
+                                <td>
+                                    <h5>
+                                        {{ post.title_post |truncatechars:20}}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <h5>
+                                        {{ post.description_post|truncatechars:40|linebreaks }}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                    <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="well col-sm-8">
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
+                <h3 class="text-center">No Posts</h3>
+            </div>
+        {% endif %}
+    </div>
 </div>
 <br><br><br><br><br><br>
 {% endblock %}
