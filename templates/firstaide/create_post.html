@@ -26,7 +26,7 @@ function definetype(val) {
         {% csrf_token %}
         
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Post Type</label>
+            <label class="col-sm-2 control-label inverted-font">Post Category</label>
             <div class="col-sm-9">
                 <select class="form-control" name="post_id" onchange="definetype(this.value)">
                     <option disabled selected value> -- select an option -- </option>
