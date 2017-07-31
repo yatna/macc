@@ -7,6 +7,7 @@ from pcsa_GHN import views as ghn_views
 from pcsa_safety_tools import views as safetytools_views
 from profiles import views as profiles_views
 from webhub import views
+from firstaide import views as firstaide_views
 from django.views.generic import RedirectView
 from webhub.views import DashboardView, ListUsers, PcuserDetail, AboutPC, Policies, Details, HelpPC
 from profiles.views import ProfileView, EditProfile
@@ -20,6 +21,7 @@ router.register(r'malaria_users', malaria_api_views.MalariaUsersViewSet)
 router.register(r'gethelpnow/posts', ghn_views.ghnPostsViewSet)
 router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
+router.register(r'firstaide/(?P<id>.+)', firstaide_views.FirstAideAPIViewSet,'person')
 
 urlpatterns = [
     url(r'^$',

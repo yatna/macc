@@ -42,7 +42,7 @@ class FirstAideAPI(models.Model):
 
 	page_type = models.CharField(max_length= 30, choices=TYPE_OF_PAGE_CATEGORY)
 	title = models.CharField(max_length=200, null = False)
-	content = models.CharField(max_length= 5000, null= False)
+	card_content = models.CharField(max_length= 5000, null= False)
 
 	def __str__(self):
 		return self.title
