@@ -31,9 +31,26 @@ class ListPostView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListPostView, self).get_context_data(**kwargs)
-        context['post_list'] = ghnPost.objects.all()
         context['contact_list'] = Contact.objects.all()
+        category_contact = self.request.GET.get('category_contact')
+        if category_contact:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    context['contact_list'] = Contact.objects.order_by(category_contact)
+                elif self.request.GET.get('desc'):
+                    context['contact_list'] = Contact.objects.order_by('-'+category_contact)
         return context
+
+    def get_queryset(self):
+        result = super(ListPostView, self).get_queryset()
+        category = self.request.GET.get('category')
+        if category:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    result = ghnPost.objects.order_by(category)
+                elif self.request.GET.get('desc'):
+                   result = ghnPost.objects.order_by('-'+category)
+        return result
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):

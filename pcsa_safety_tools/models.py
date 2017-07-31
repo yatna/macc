@@ -25,6 +25,12 @@ class SafetyToolsPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return '/safetytools/view_post/%i' %self.id
+
+    def model_name(self):
+        return 'PCSA Safety Tools Post'
         
     class Meta:
     	verbose_name = 'Safety Tools Post'

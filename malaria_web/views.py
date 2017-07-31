@@ -18,6 +18,19 @@ class ListPostView(LoginRequiredMixin, ListView):
     template_name = 'malaria/list_posts.html'
     redirect_field_name = 'redirect_to'
 
+    def get_queryset(self):
+        result = super(ListPostView, self).get_queryset()
+        category = self.request.GET.get('category')
+        if category:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    result = Post.objects.order_by(category)
+                elif self.request.GET.get('desc'):
+                   result = Post.objects.order_by('-'+category)
+                print(result)
+
+        return result
+
 
 class CreatePostView(LoginRequiredMixin, CreateView):
 
