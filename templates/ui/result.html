@@ -9,17 +9,25 @@
     <div class="row">
         <br>
         {% if object_list %}
-            <div class=" col-sm-offset-3 col-sm-6">
+            <div class="col-sm-offset-1 col-sm-10">
                 <table class="table table-responsive well">
                     <thead>
                         <tr>
-                            <th class="col-sm-2">
+                            {% if category == '' %}
+                                <th class="col-sm-2">
+                                    <h3>Category</h3>
+                                </th>
+                            {% endif %}
+                            <th class="col-sm-1">
                                 <h3>Post</h3>
                             </th>
-                            <th class="col-sm-6">
+                            <th class="col-sm-4">
                                 <h3>Description</h3>
                             </th>
                             <th class="col-sm-2">
+                                <h3></h3>
+                            </th>
+                            <th class="col-sm-1">
                                 <h3>Action</h3>
                             </th>
                         </tr>
@@ -27,23 +35,35 @@
                     <tbody>
                         {% for post in object_list %}
                             <tr>
-                            	{% for i in post.values %}
+                                {% if category == '' %}
+                                	<td>
+                                        <h5>{{ post.model_name }} </h5>
+                                    </td>
+                                {% endif %}
                                 <td>
-                                	{% if forloop.counter == 3 %}
-                                		{% if category == 'malaria' %}
-                                			<a href="{% url 'malaria:view_post' i %}" class="btn btn-primary">View</a>
-                                		{% elif category == 'pcsa' %}
-                                			<a href="{% url 'pcsa_GHN:view_post' i %}" class="btn btn-primary">View</a>
-                                		{% elif category == 'pcsa_safety_tools' %}
-                                			<a href="{% url 'pcsa_safety_tools:view_post' i %}" class="btn btn-primary">View</a>
-                                		{% endif %}
-                                	{% else %}
-    	                                <h5>
-    	                                    {{ i }}
-    	                                </h5>
-    	                            {% endif %}
+                                    {% if post.title_post %}
+                                	   <h5> {{ post.title_post }}</h5>
+                                    {% else %}
+                                        <h5> {{ post.title }} </h5>
+                                    {% endif %}
                                 </td>
-                                {% endfor %}
+                                <td>
+                                    {% if post.description_post %}
+                                       <h5> {{ post.description_post }}</h5>
+                                    {% else %}
+                                        <h5> {{ post.description }} </h5>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if post.created %}
+                                       <h5> {{ post.created }}</h5>
+                                    {% else %}
+                                        <h5> {{ post.created_date }} </h5>
+                                    {% endif %}
+                                </td>
+                                <td> 
+                                    <a href="{{post.get_absolute_url}}" class="btn btn-primary">View</a> 
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

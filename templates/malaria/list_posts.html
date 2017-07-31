@@ -13,7 +13,7 @@
     <div class="row">
         <br>
         {% if post_list %}
-            <div class=" col-sm-offset-2 col-sm-8">
+            <div class=" col-sm-offset-1 col-sm-10">
                 <form action="" method="GET">
                     <select name="category">
                         <option value="" disabled selected>Order By</option>
@@ -36,6 +36,9 @@
                                 <h3>Description</h3>
                             </th>
                             <th>
+                                <h3></h3>
+                            </th>
+                            <th>
                                 <h3>Action</h3>
                             </th>
                         </tr>
@@ -51,6 +54,11 @@
                                 <td >
                                     <h5>
                                         {{ post.description_post|truncatechars:40|linebreaks }}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <h5>
+                                        {{ post.created }}
                                     </h5>
                                 </td>
                                 <td >

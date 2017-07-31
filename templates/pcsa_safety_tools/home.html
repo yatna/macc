@@ -5,7 +5,7 @@
     Safety Tools : Post
 </h2>
 <div class="container">
-    <form action="" method="GET" class="col-sm-offset-2">
+    <form action="" method="GET" class="col-sm-offset-1">
         <select name="category">
             <option value="" disabled selected>Order By</option>
             <option value="title">Title</option>
@@ -17,7 +17,7 @@
     {% for category in categories %}
         {% if category %}
             <div class="row">
-                <div class=" col-sm-offset-2 col-sm-8">
+                <div class=" col-sm-offset-1 col-sm-10">
                     <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
                     <table class="table table-responsive well">
                         <thead>
@@ -29,7 +29,12 @@
                                     <h3>Description</h3>
                                 </th>
                                 <th>
+                                    <h3></h3>
+                                </th>
+                                <th>
                                     <h3>Action</h3>
+                                </th>
+                                <th>
                                 </th>
                             </tr>
                         </thead>
@@ -44,6 +49,11 @@
                                     <td>
                                         <h5>
                                             {{ post.description|truncatechars:40|linebreaks }}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            {{ post.created_date }}
                                         </h5>
                                     </td>
                                     <td>

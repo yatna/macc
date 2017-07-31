@@ -157,15 +157,15 @@ class PostSearchView(ListView):
         
         if query:
             if category == 'pcsa':
-                result = ghnPost.objects.filter(title__contains=query).values('title', 'description', 'id')
+                result = ghnPost.objects.filter(title__contains=query)
             elif category == 'pcsa_safety_tools':
-                result = SafetyToolsPost.objects.filter(title__contains=query).values('title', 'description', 'id')
+                result = SafetyToolsPost.objects.filter(title__contains=query)
             elif category == 'malaria':
-                result = Post.objects.filter(title_post__contains=query).values('title_post', 'description_post', 'id')
+                result = Post.objects.filter(title_post__contains=query)
             else:
-                result = chain(ghnPost.objects.filter(title__contains=query).values('title', 'description', 'id'),
-                        SafetyToolsPost.objects.filter(title__contains=query).values('title', 'description', 'id'),
-                        Post.objects.filter(title_post__contains=query).values('title_post', 'description_post', 'id'))
+                result = chain(Post.objects.filter(title_post__contains=query),
+                            ghnPost.objects.filter(title__contains=query),
+                            SafetyToolsPost.objects.filter(title__contains=query))
         return result
 
     def get_context_data(self, **kwargs):

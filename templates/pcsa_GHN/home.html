@@ -9,7 +9,7 @@
     <div class="row">
         <br>
         {% if object_list %}
-            <div class=" col-sm-offset-2 col-sm-8">
+            <div class=" col-sm-offset-1 col-sm-10">
                 <form action="" method="GET">
                     <select name="category">
                         <option value="" disabled selected>Order By</option>
@@ -30,6 +30,12 @@
                             <th>
                                 <h3>Description</h3>
                             </th>
+                            <th>
+                                <h3></h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +50,11 @@
                                     <h5>
             				            {{ post.description|truncatechars:40|linebreaks }}
             			            </h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        {{ post.created_date }}
+                                    </h5>
                                 </td>
                                 <td>
                                     <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-primary">View</a>
@@ -69,7 +80,7 @@
     <div class="row">
         <br>
         {% if contact_list %}
-            <div class=" col-sm-offset-2 col-sm-8">
+            <div class=" col-sm-offset-1 col-sm-10">
                <form action="" method="GET">
                     <select name="category_contact">
                         <option value="" disabled selected>Order By</option>
@@ -88,6 +99,9 @@
                             </th>
                             <th>
                                 <h3>Contact Number</h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
                             </th>
                         </tr>
                     </thead>
