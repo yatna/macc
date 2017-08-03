@@ -1,5 +1,8 @@
 from django.forms.fields import CharField
 
+"""Set app configuration by calling function"""
+default_app_config = 'pcsa.apps.PCSAConfig'
+
 def new_clean(self, value):
 	"""
 	Strip leading and trailing whitespaces on all CharFields

@@ -21,7 +21,7 @@ router.register(r'malaria_users', malaria_api_views.MalariaUsersViewSet)
 router.register(r'gethelpnow/posts', ghn_views.ghnPostsViewSet)
 router.register(r'gethelpnow/contacts', ghn_views.ContactViewSet)
 router.register(r'safetytools/posts', safetytools_views.SafetyToolsPostViewSet)
-router.register(r'firstaide/(?P<id>.+)', firstaide_views.FirstAideAPIViewSet,'person')
+router.register(r'firstaide/(?P<id>.+)', firstaide_views.FirstAideAPIViewSet,'base_name_argument')
 
 urlpatterns = [
     url(r'^$',
