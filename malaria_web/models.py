@@ -8,6 +8,7 @@ from django.dispatch import Signal
 
 post_update = Signal()
 
+
 class Post(models.Model):
     # The owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
