@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from .forms import SafetyToolsPostForm
-from .models import SafetyToolsPost
+from .models import SafetyToolsPost, safetyRevPost
 from .serializers import SafetyToolsPostSerializer
 from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
@@ -28,10 +28,31 @@ class ListPostView(LoginRequiredMixin, ListView):
         bystander_intervention = SafetyToolsPost.objects.filter(category_id=4)
         safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
         safety_plan = SafetyToolsPost.objects.filter(category_id=6)
+        category = self.request.GET.get('category')
+        if category:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    radar = SafetyToolsPost.objects.filter(category_id=1).order_by(category)
+                    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2).order_by(category)
+                    tactics = SafetyToolsPost.objects.filter(category_id=3).order_by(category)
+                    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4).order_by(category)
+                    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5).order_by(category)
+                    safety_plan = SafetyToolsPost.objects.filter(category_id=6).order_by(category)
+                elif self.request.GET.get('desc'):
+                    radar = SafetyToolsPost.objects.filter(category_id=1).order_by('-'+category)
+                    unwanted_attention = SafetyToolsPost.objects.filter(category_id=2).order_by('-'+category)
+                    tactics = SafetyToolsPost.objects.filter(category_id=3).order_by('-'+category)
+                    bystander_intervention = SafetyToolsPost.objects.filter(category_id=4).order_by('-'+category)
+                    safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5).order_by('-'+category)
+                    safety_plan = SafetyToolsPost.objects.filter(category_id=6).order_by('-'+category)
         categories = [radar, unwanted_attention, tactics, bystander_intervention, safety_plan_basics, safety_plan]
         context = super(ListPostView, self).get_context_data(**kwargs)
         context['categories'] = categories
         return context
+
+    def get_queryset(self):
+        result = super(ListPostView, self).get_queryset()
+        return result
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
@@ -60,3 +81,9 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
 class ViewPostView(LoginRequiredMixin, DetailView):
     model = SafetyToolsPost
     template_name = "pcsa_safety_tools/view_post.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = safetyRevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context

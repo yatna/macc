@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from .forms import ContactForm, ghnPostForm
-from .models import Contact, ghnPost
+from .models import Contact, ghnPost, ghnRevPost
 from .serializers import ContactSerializer, ghnPostSerializer
 from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
@@ -31,9 +31,26 @@ class ListPostView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListPostView, self).get_context_data(**kwargs)
-        context['post_list'] = ghnPost.objects.all()
         context['contact_list'] = Contact.objects.all()
+        category_contact = self.request.GET.get('category_contact')
+        if category_contact:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    context['contact_list'] = Contact.objects.order_by(category_contact)
+                elif self.request.GET.get('desc'):
+                    context['contact_list'] = Contact.objects.order_by('-'+category_contact)
         return context
+
+    def get_queryset(self):
+        result = super(ListPostView, self).get_queryset()
+        category = self.request.GET.get('category')
+        if category:
+            if self.request.GET:
+                if self.request.GET.get('asc'):
+                    result = ghnPost.objects.order_by(category)
+                elif self.request.GET.get('desc'):
+                   result = ghnPost.objects.order_by('-'+category)
+        return result
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
@@ -74,6 +91,12 @@ class ViewPostView(LoginRequiredMixin, DetailView):
     model = ghnPost
     template_name = "pcsa_GHN/view_post.html"
     redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = ghnRevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context
 
 
 class CreateContactView(LoginRequiredMixin, CreateView):

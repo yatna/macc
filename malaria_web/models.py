@@ -3,8 +3,10 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 
 from profiles.models import Pcuser
+from django.db.models.signals import post_save
+from django.dispatch import Signal
 
-
+post_update = Signal()
 
 class Post(models.Model):
     # The owner of the post
@@ -30,6 +32,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.owner.user.username
+
+    def get_absolute_url(self):
+        return '/malaria/view_post/%i' % self.id
+
+    def model_name(self):
+        return 'Malaria'
         
     class Meta:
     	verbose_name = 'Post'
@@ -63,6 +71,16 @@ class RevPost(models.Model):
     class Meta:
     	verbose_name = 'Reviewed Post'
     	verbose_name_plural = 'Reviewed Posts'
+
+
+def create_revpost(sender, instance, created, **kwargs):
+    RevPost.objects.create(owner_rev=instance.owner,
+                      owner_rev_post=instance,
+                      title_post_rev=instance.title_post,
+                      description_post_rev=instance.description_post)
+
+post_save.connect(create_revpost, sender=Post)
+post_update.connect(create_revpost, sender=Post)
 
 
 class MalariaUsers(models.Model):

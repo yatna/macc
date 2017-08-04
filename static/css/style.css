@@ -169,7 +169,7 @@ a:hover{
 }
 
 .well {
-    border: 0;
+    border: 0px;
     max-width: 65%;
     margin: auto;
     margin-bottom: 80px !important;
