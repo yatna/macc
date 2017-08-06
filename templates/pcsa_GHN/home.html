@@ -48,12 +48,12 @@
                                 </td>
         			            <td>
                                     <h5>
-            				            {{ post.description|truncatechars:40|linebreaks }}
+            				            {{ post.description|truncatechars:50|linebreaks }}
             			            </h5>
                                 </td>
                                 <td>
                                     <h5>
-                                        {{ post.created_date }}
+                                        {{ post.created_date.date }}
                                     </h5>
                                 </td>
                                 <td>
