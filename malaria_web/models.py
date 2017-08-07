@@ -66,6 +66,12 @@ class RevPost(models.Model):
     # field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
 
+    link_rev = models.CharField(max_length=200)
+
+    fs = FileSystemStorage(location='static/')
+
+    photo_rev = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
+
     def __str__(self):
         return self.owner_rev.user.username
         
@@ -78,7 +84,9 @@ def create_revpost(sender, instance, created, **kwargs):
     RevPost.objects.create(owner_rev=instance.owner,
                       owner_rev_post=instance,
                       title_post_rev=instance.title_post,
-                      description_post_rev=instance.description_post)
+                      description_post_rev=instance.description_post,
+                      link_rev=instance.link_post,
+                      photo_rev=instance.photo)
 
 post_save.connect(create_revpost, sender=Post)
 post_update.connect(create_revpost, sender=Post)
