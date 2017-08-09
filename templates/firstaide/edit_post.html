@@ -1,6 +1,6 @@
 {% include "infohub/index.html" %}
 
-{% block content %}
+{% block card_content %}
 <br>
 <center>
     <h2> 
@@ -8,7 +8,7 @@
     </h2>
 </center>
 <div class="well">
-    <h2 class="text-center inverted-font">Edit Post</h2>
+    <h2 class="text-center inverted-font">Edit Card</h2>
     <br>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
@@ -28,26 +28,17 @@
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
-                <p class="help-block inverted-font">
-                    <strong>
-                        {% if form.title.errors %}
-                            {% for error in form.title.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        {% endif %}
-                    </strong>
-                </p>
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}" readonly>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">content</label>
+            <label class="col-sm-2 control-label inverted-font">Card Content</label>
             <div class="col-sm-9">
-                <textarea class="form-control" rows="18" name="content" >{% if form.content.value %}{{ form.content.value }}{% endif %}</textarea>
+                <textarea class="form-control" rows="18" name="card_content" >{% if form.card_content.value %}{{ form.card_content.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">    
                     <strong>
-                        {% if form.content.errors %}
-                            {% for error in form.content.errors %}
+                        {% if form.card_content.errors %}
+                            {% for error in form.card_content.errors %}
                                 {{ error }}
                             {% endfor %}
                         {% endif %}

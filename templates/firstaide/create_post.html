@@ -1,16 +1,94 @@
 {% include "infohub/index.html" %}
 <script type="text/javascript">
 function definetype(val) {
-    if(val =="mythbusters"  )
+    if(val =="mythbusters"  ){
         document.getElementById('pg_type').value = "multi_segment_vertical_page";
-    else if (val =="services-after-assault" || val =="radar" || val =="sexual-predators" || val =="impact-of-assault" || val =="help-a-friend'" || val =="safety-plan-basics" || val =="unwanted-attention" || val =="bystander-intervention")
+        document.getElementById('pg_title').value = "Peace Corps Mythbusters: Assumptions and Facts"
+    }
+    else if (val =="services-after-assault"){
         document.getElementById('pg_type').value = "multi_cards_page";
-    else if( val =="common-questions" || val =="safety-plan-worksheet")
+        document.getElementById('pg_title').value = "Available Services after a Sexual Assault"
+    }
+    else if (val =="radar" ){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "RADAR"
+    }
+    else if( val =="sexual-predators" ){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "Commonalities Of Sexual Predators"
+    }
+    else if(val =="impact-of-assault" ){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "Impact Of Assault"
+    }
+    else if( val =="help-a-friend" ){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "Helping a Friend or Community Member"
+    }
+    else if(val =="safety-plan-basics"){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "Safety Plan Basics"
+    }
+    else if( val =="unwanted-attention"){
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "Coping With Unwanted Attention Strategies"
+    }
+    else if(val =="bystander-intervention"){
+
+        document.getElementById('pg_type').value = "multi_cards_page";
+        document.getElementById('pg_title').value = "By Stander Intervention"
+    }
+    else if( val =="common-questions" ){
         document.getElementById('pg_type').value = "multi_segment_page";
-    else
+        document.getElementById('pg_title').value = "Sexual Assault Common Questions"
+    }
+    else if(val =="safety-plan-worksheet"){
+        document.getElementById('pg_type').value = "multi_segment_page";
+        document.getElementById('pg_title').value = "Safety Plan Worksheet"
+    }
+    else if(val="added-soon"){
         document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "To Be Added Soon"
+    }
+    else if(val="seeking-staff-support"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Benefits of Seeking Staff Support"
+    }
+    else if(val="sexual-assault-more"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "What is Sexual Assault"
+    }
+    else if(val="sexual-harassment"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Sexual Harrasment"
+    }
+    else if(val="glossary"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Glossary"
+    }
+    else if(val="policy-summary"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Peace Corps Policy Summary Sheet"
+    }
+    else if(val="sexual-assault"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "What is Sexual Assault"
+    }
+    else if(val="further-resources"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Further Resources"
+    }
+    else if(val="peace-corps-commitment"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Peace Corps Commitment to Victims of Sexual Assualt"
+    }
+    else if(val="confidentiality"){
+        document.getElementById('pg_type').value = "full_page_card";
+        document.getElementById('pg_title').value = "Confidentiality"
+    }
+
 }
-    
+  
 </script>
 {% block content %}
 <br><br><br>
@@ -20,7 +98,7 @@ function definetype(val) {
     </h2>
 </center>
 <div class="well">
-    <h2 class="text-center inverted-font">New Post</h2>
+    <h2 class="text-center inverted-font">New Card</h2>
     <br>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
@@ -66,28 +144,13 @@ function definetype(val) {
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Title</label>
+            <label class="col-sm-2 control-label inverted-font">Card Content</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+                <textarea class="form-control" rows="18" name="card_content" >{% if form.card_content.value %}{{ form.card_content.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">
                     <strong>
-                        {% if form.title.errors %}
-                            {% for error in form.title.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        {% endif %}
-                    </strong>
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Description</label>
-            <div class="col-sm-9">
-                <textarea class="form-control" rows="18" name="content" >{% if form.content.value %}{{ form.content.value }}{% endif %}</textarea>
-                <p class="help-block inverted-font">
-                    <strong>
-                        {% if form.content.errors %}
-                            {% for error in form.content.errors %}
+                        {% if form.card_content.errors %}
+                            {% for error in form.card_content.errors %}
                                 {{ error }}
                             {% endfor %}
                         {% endif %}
@@ -96,6 +159,7 @@ function definetype(val) {
             </div>
         </div>
         <input type="hidden" name="page_type" id="pg_type">
+        <input type="hidden" name="title" id="pg_title">
         <div class="form-group">
             <div class="col-sm-12 col-sm-offset-2">
                 <button type="submit" class="btn btn-primary">Submit</button>

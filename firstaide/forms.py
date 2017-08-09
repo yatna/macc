@@ -4,5 +4,5 @@ from firstaide.models import *
 class FirstAideAPIForm(ModelForm):
 	class Meta:
 		model = FirstAideAPI
-		fields = ['post_id','page_type','title','content']
+		fields = ['post_id','page_type','title','card_content']
 
