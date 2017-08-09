@@ -18,5 +18,5 @@ class PcsaPost(models.Model):
         return self.owner.user.username
         
     class Meta:
-    	verbose_name = 'Pcsa Post'
-    	verbose_name_plural = 'Pcsa Posts'
+    	verbose_name = 'FirstAide Post'
+    	verbose_name_plural = 'FirstAide Posts'

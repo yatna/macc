@@ -1,5 +1,10 @@
 from django.forms.fields import CharField, IntegerField
 
+
+"""Set app configuration by calling function"""
+
+default_app_config = "pcsa_GHN.apps.PCSA_GHNConfig"
+
 """
 Helper method so that user cannot enter a white space to save data anywhere
 """
