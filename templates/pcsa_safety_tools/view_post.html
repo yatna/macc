@@ -1,4 +1,7 @@
+{% load static %}
 {% include "infohub/index.html" %}
+
+<link href="{% static "css/modal.css" %}" rel="stylesheet">
 
 {% block content %}
 <h2 class="text-center">
@@ -59,9 +62,18 @@
         <div class="col-sm-12 col-sm-offset-1">
             <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-primary">Back to Post List</a>
             <a href="{% url 'pcsa_safety_tools:edit_post' safetytoolspost.id %}" class="btn btn-info">Edit</a>
-            <a href="{% url 'pcsa_safety_tools:delete_post' safetytoolspost.id %}" class="btn btn-danger">Delete</a>
+            <button id="myBtn" class="btn btn-danger">Delete</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>{% include "pcsa_safety_tools/delete_post.html" %}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script src="{% static "js/modal.js" %}"></script>
+
 <br><br><br>
 {% endblock %}

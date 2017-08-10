@@ -1,4 +1,7 @@
+{% load static %}
 {% include "infohub/index.html" %}
+
+<link href="{% static "css/modal.css" %}" rel="stylesheet">
 
 {% block content %}
 
@@ -64,7 +67,13 @@
                                 <td >
                                     <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>
                                     <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                    <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                    <button id="myBtn" class="btn btn-danger">Delete</button>
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <p>{% include "malaria/delete_post.html" %}</p>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -79,5 +88,8 @@
         {% endif %}
     </div>
 </div>
+
+<script src="{% static "js/modal.js" %}"></script>
+
 <br><br><br><br><br><br>
 {% endblock %}
