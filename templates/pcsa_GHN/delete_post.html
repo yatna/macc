@@ -3,7 +3,7 @@
 </h2>
 <div class="well">
     <h2 class="text-center">Delete Post</h2>
-    <form method="post" action="{% url 'pcsa_GHN:delete_post' ghnpost.id %}">
+    <form method="post" action="{% url 'pcsa_GHN:delete_post' ghnpost.id %}" >
         {% csrf_token %}
         <div class="form-group">
             <label class="col-sm-offset-1">Are you sure you want to delete this Post?</label>

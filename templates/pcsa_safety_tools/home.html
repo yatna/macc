@@ -1,7 +1,4 @@
-{% load static %}
 {% include "infohub/index.html" %}
-
-<link href="{% static "css/modal.css" %}" rel="stylesheet">
 
 {% block content %}
 <h2 class="text-center">
@@ -40,32 +37,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for post in category %}
+                            {% for safetytoolspost in category %}
                                 <tr>
                                     <td>
                                         <h5>
-                                            {{ post.title|linebreaks }}
+                                            {{ safetytoolspost.title|linebreaks }}
                                         </h5>
                                     </td>
                                     <td>
                                         <h5>
-                                            {{ post.description|truncatechars:50|linebreaks }}
+                                            {{ safetytoolspost.description|truncatechars:50|linebreaks }}
                                         </h5>
                                     </td>
                                     <td>
                                         <h5>
-                                            {{ post.created_date.date }}
+                                            {{ safetytoolspost.created_date.date }}
                                         </h5>
                                     </td>
                                     <td>
-                                        <a href="{% url 'pcsa_safety_tools:view_post' post.id %}" class="btn btn-primary">View</a>
-                                        <a href="{% url 'pcsa_safety_tools:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                        <button id="myBtn" class="btn btn-danger">Delete</button>
-                                        <div id="myModal" class="modal">
+                                        <a href="{% url 'pcsa_safety_tools:view_post' safetytoolspost.id %}" class="btn btn-primary">View</a>
+                                        <a href="{% url 'pcsa_safety_tools:edit_post' safetytoolspost.id %}" class="btn btn-info">Edit</a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{safetytoolspost.id}}">Delete</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal{{safetytoolspost.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                          <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                                <span class="close">&times;</span>
                                                 <p>{% include "pcsa_safety_tools/delete_post.html" %}</p>
                                             </div>
+                                          </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -86,8 +85,5 @@
         {% endif %}
     {% endfor %}
 </div>
-
-<script src="{% static "js/modal.js" %}"></script>
-
 <br><br><br><br><br><br>
 {% endblock %}

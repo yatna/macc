@@ -72,12 +72,14 @@
         <div class="col-sm-12 col-sm-offset-1">
             <a href="{% url 'malaria:list_posts' %}" class="btn btn-primary">Back to Post List</a>
             <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
-            <button id="myBtn" class="btn btn-danger">Delete</button>
-            <div id="myModal" class="modal">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <span class="close">&times;</span>
                     <p>{% include "malaria/delete_post.html" %}</p>
                 </div>
+              </div>
             </div>
         </div>
     </div>
