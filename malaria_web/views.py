@@ -1,9 +1,10 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
+import urllib.request, json 
 
 from malaria_web.forms import PostForm
-from malaria_web.models import Post
+from malaria_web.models import Post, MalariaUsers
 from malaria_web.services import (create_post_from_form, create_revpost,
                                   delete_post_by_id, get_post_by_id,
                                   get_revposts_of_owner)
@@ -57,4 +58,16 @@ class ViewPostView(LoginRequiredMixin, DetailView):
 
     model = Post
     template_name = "malaria/view_post.html"
+    redirect_field_name = 'redirect_to'
+
+class ListAppUsersView(LoginRequiredMixin, ListView):
+
+    def get_queryset(self):
+        with urllib.request.urlopen("https://rawgit.com/yatna/0e6b1ce2435de3e10a779aad40b4375b/raw/Malaria_users.json") as url:
+            data = json.loads(url.read().decode())
+            for user in data:
+                MalariaUsers.objects.get_or_create(name=user['name'],email=user['email'],age=user['age'],gender=user['gender'],medicineType=user['medicineType'])
+        queryset = MalariaUsers.objects.all()
+        return queryset
+    template_name = 'malaria/list_app_users.html'
     redirect_field_name = 'redirect_to'

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from malaria_web import views
-from malaria_web.views import ListPostView, CreatePostView, UpdatePostView, DeletePostView, ViewPostView
+from malaria_web.views import ListPostView, CreatePostView, UpdatePostView, DeletePostView, ViewPostView, ListAppUsersView
 
 urlpatterns = [
     url(r'^create_post/$', 
@@ -23,4 +23,8 @@ urlpatterns = [
     url(r'^view_post/(?P<pk>\d+)$', 
     	ViewPostView.as_view(), 
     	name='view_post'),
+
+    url(r'^list_app_users/$', 
+        ListAppUsersView.as_view(), 
+        name='list_users'),
 ]

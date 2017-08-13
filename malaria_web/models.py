@@ -69,7 +69,11 @@ class MalariaUsers(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     age = models.IntegerField()
+    gender = models.CharField(max_length=20, default='Not Specified')
     medicineType = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Malaria App Users'
