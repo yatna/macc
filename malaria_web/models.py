@@ -5,7 +5,6 @@ from django.core.files.storage import FileSystemStorage
 from profiles.models import Pcuser
 
 
-
 class Post(models.Model):
     # The owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
@@ -30,6 +29,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.owner.user.username
+
+    def get_absolute_url(self):
+        return '/malaria/view_post/%i' % self.id
+
+    def model_name(self):
+        return 'Malaria'
         
     class Meta:
     	verbose_name = 'Post'

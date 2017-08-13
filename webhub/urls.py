@@ -9,7 +9,7 @@ from profiles import views as profiles_views
 from webhub import views
 from firstaide import views as firstaide_views
 from django.views.generic import RedirectView
-from webhub.views import DashboardView, ListUsers, PcuserDetail, AboutPC, Policies, Details, HelpPC
+from webhub.views import DashboardView, ListUsers, PcuserDetail, AboutPC, Policies, Details, HelpPC, PostSearchView
 from profiles.views import ProfileView, EditProfile
 
 
@@ -56,6 +56,9 @@ urlpatterns = [
     url(r'^helpPC/$',
         HelpPC.as_view(),
         name='helpPC'),
+    url(r'^search/$',
+        PostSearchView.as_view(),
+        name='search'),
     url(r'^login_real/$', views.login_real, name = 'login_real'),
     url(r'^login_social/$', views.login_social, name = 'login_social'),
 ]

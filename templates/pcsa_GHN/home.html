@@ -5,98 +5,133 @@
 <h2 class="text-center">
     Get Help Now : Posts
 </h2>
-<div class="row">
-    <br>
-    {% if post_list %}
-        <div class=" col-sm-offset-2 col-sm-8">
-            <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
-            <table class="table table-responsive well">
-                <thead>
-                    <tr>
-                        <th>
-                            <h3><font color="black">Post</font></h3>
-                        </th>
-                        <th>
-                            <h3><font color="black">Description</font></h3>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for post in post_list %}
+<div class="container">
+    <div class="row">
+        <br>
+        {% if object_list %}
+            <div class=" col-sm-offset-1 col-sm-10">
+                <form action="" method="GET">
+                    <select name="category">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="title">Title</option>
+                        <option value="owner">Author</option>
+                        <option value="created_date">Date Created</option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format">New Post</a>
+                <table class="table table-responsive well">
+                    <thead>
                         <tr>
-                            <td>
-                                <h5>
-                                    {{ post.title|truncatechars:20 }}
-                                </h5>
-                            </td>
-    			            <td>
-                                <h5>
-        				            {{ post.description|truncatechars:40|linebreaks }}
-        			            </h5>
-                            </td>
-                            <td>
-                                <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-primary">View</a>
-                                <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th>
+                                <h3>Post</h3>
+                            </th>
+                            <th>
+                                <h3>Description</h3>
+                            </th>
+                            <th>
+                                <h3></h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-        <div class="well">
-            <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success pull-right">New Post</a>
-            <h3 class="text-center ">No Posts</h3>
-        </div>
-    {% endif %}
-</div>
+                    </thead>
+                    <tbody>
+                        {% for post in object_list %}
+                            <tr>
+                                <td>
+                                    <h5>
+                                        {{ post.title|truncatechars:20 }}
+                                    </h5>
+                                </td>
+        			            <td>
+                                    <h5>
+            				            {{ post.description|truncatechars:50|linebreaks }}
+            			            </h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        {{ post.created_date.date }}
+                                    </h5>
+                                </td>
+                                <td>
+                                    <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                    <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="well">
+                <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success pull-right">New Post</a>
+                <h3 class="text-center ">No Posts</h3>
+            </div>
+        {% endif %}
+    </div>
 
-<h2 class="text-center">
-    Get Help Now : Contacts
-</h2>
-<div class="row">
-    <br>
-    {% if contact_list %}
-        <div class=" col-sm-offset-2 col-sm-8">
-            <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-10 col-sm-2" >New Contact</a>
-            <table class="table table-responsive well">
-                <thead>
-                    <tr>
-                        <th>
-                            <h3>Ofiice</h3>
-                        </th>
-                        <th>
-                            <h3>Contact Number</h3>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for c in contact_list %}
+    <h2 class="text-center">
+        Get Help Now : Contacts
+    </h2>
+    <div class="row">
+        <br>
+        {% if contact_list %}
+            <div class=" col-sm-offset-1 col-sm-10">
+               <form action="" method="GET">
+                    <select name="category_contact">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="office_name">Office Name</option>
+                        <option value="contact_number">Contact Number</option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format" >New Contact</a>
+                <table class="table table-responsive well">
+                    <thead>
                         <tr>
-                            <td>
-                                <h5>{{ c.office_name }}</h5>
-                            </td>
-                            <td>
-                                <input type="tel" value="{{ c.contact_number }}" />
-                            </td>
-                            <td>
-        			            <a href="{% url 'pcsa_GHN:view_contact' c.id %}" class="btn btn-primary">View</a>
-                                <a href="{% url 'pcsa_GHN:edit_contact' c.id %}" class="btn btn-info">Edit</a>
-                                <a href="{% url 'pcsa_GHN:delete_contact' c.id %}" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th>
+                                <h3>Office</h3>
+                            </th>
+                            <th>
+                                <h3>Contact Number</h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% else %}
-         <div class="well">
-            <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-9 col-sm-3">Add Contact</a>
-            <h3 class="text-center ">No Contacts</h3>
-         </div>
-    {% endif %}
-    <br>
+                    </thead>
+                    <tbody>
+                        {% for c in contact_list %}
+                            <tr>
+                                <td>
+                                    <h5>{{ c.office_name }}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ c.contact_number }} </h5>
+                                </td>
+                                <td>
+            			            <a href="{% url 'pcsa_GHN:view_contact' c.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_GHN:edit_contact' c.id %}" class="btn btn-info">Edit</a>
+                                    <a href="{% url 'pcsa_GHN:delete_contact' c.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+             <div class="well">
+                <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-9 col-sm-3">Add Contact</a>
+                <h3 class="text-center ">No Contacts</h3>
+             </div>
+        {% endif %}
+        <br>
+    </div>
 </div>
 <br><br><br><br><br><br>
 {% endblock %}

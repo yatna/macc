@@ -36,9 +36,14 @@ class ghnPost(models.Model):
 
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
 
-    def __unicode__(self):
-
+    def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return '/gethelpnow/view_post/%i' % self.id
+
+    def model_name(self):
+        return 'PCSA Get Help Now'
         
     class Meta:
     	verbose_name = 'Get Help Now Post'
