@@ -24,16 +24,20 @@ class Pcuser(models.Model):
 
     #define the file storage system
     fs = FileSystemStorage(location='static/')
+    #for user's display picture
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/example.png',null=True)
      
     #verification status
     #1 - unverified
     #any other number = verification code
     verified = models.CharField(max_length=100)
-     
+    
+    # Name to be shown for a particular instanceof thistype of model 
     def __str__(self):
         return self.user.username
-        
+    
+    # Name to be shown on the home page of the admin view for the collective set 
+    # of model instances    
     class Meta:
     	verbose_name = 'Pcuser'
     	verbose_name_plural = 'Pcusers'
