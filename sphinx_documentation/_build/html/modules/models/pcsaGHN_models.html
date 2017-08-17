@@ -42,12 +42,8 @@
 <h1>PCSA Get Help Now Models<a class="headerlink" href="#pcsa-get-help-now-models" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-pcsa_GHN.models"></span><dl class="class">
 <dt id="pcsa_GHN.models.Contact">
-<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">Contact</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.Contact" title="Permalink to this definition">¶</a></dt>
-<dd><p>Contacts in ‘PCSA Get Help Now’ are created via this model. There are 3 fields in this model -</p>
-<p>1.) id - Primary Key</p>
-<p>2.) office_name - CharField (Max Length 200 characters)</p>
-<p>3.) contact_number - BigInteger</p>
-<dl class="exception">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">Contact</code><span class="sig-paren">(</span><em>id</em>, <em>office_name</em>, <em>contact_number</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.Contact" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
 <dt id="pcsa_GHN.models.Contact.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#pcsa_GHN.models.Contact.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -87,7 +83,7 @@ object the first time, the query is executed.</p>
 
 <dl class="class">
 <dt id="pcsa_GHN.models.ghnPost">
-<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">ghnPost</code><span class="sig-paren">(</span><em>id</em>, <em>owner</em>, <em>title</em>, <em>description</em>, <em>created_date</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">ghnPost</code><span class="sig-paren">(</span><em>id</em>, <em>owner</em>, <em>title</em>, <em>description</em>, <em>created_date</em>, <em>link</em>, <em>photo</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="exception">
 <dt id="pcsa_GHN.models.ghnPost.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -112,6 +108,16 @@ object the first time, the query is executed.</p>
 object the first time, the query is executed.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.fs">
+<code class="descname">fs</code><em class="property"> = &lt;django.core.files.storage.FileSystemStorage object&gt;</em><a class="headerlink" href="#pcsa_GHN.models.ghnPost.fs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.get_absolute_url">
+<code class="descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pcsa_GHN.models.ghnPost.get_next_by_created_date">
 <code class="descname">get_next_by_created_date</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.get_next_by_created_date" title="Permalink to this definition">¶</a></dt>
@@ -128,6 +134,18 @@ object the first time, the query is executed.</p>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.link">
+<code class="descname">link</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.model_name">
+<code class="descname">model_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.model_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pcsa_GHN.models.ghnPost.objects">
@@ -152,6 +170,13 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <code class="descname">owner_id</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.owner_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.photo">
+<code class="descname">photo</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.photo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -204,7 +229,7 @@ object the first time, the query is executed.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Yatna.
+      &copy;2017, yatna.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>

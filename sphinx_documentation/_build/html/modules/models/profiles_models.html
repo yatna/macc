@@ -42,9 +42,8 @@
 <h1>Profile Models<a class="headerlink" href="#profile-models" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-profiles.models"></span><dl class="class">
 <dt id="profiles.models.Pcuser">
-<em class="property">class </em><code class="descclassname">profiles.models.</code><code class="descname">Pcuser</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#profiles.models.Pcuser" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is a doc string for Pcuser Model</p>
-<dl class="exception">
+<em class="property">class </em><code class="descclassname">profiles.models.</code><code class="descname">Pcuser</code><span class="sig-paren">(</span><em>id</em>, <em>user</em>, <em>location</em>, <em>phone</em>, <em>gender</em>, <em>reset_pass</em>, <em>photo</em>, <em>verified</em><span class="sig-paren">)</span><a class="headerlink" href="#profiles.models.Pcuser" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
 <dt id="profiles.models.Pcuser.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#profiles.models.Pcuser.DoesNotExist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -52,6 +51,11 @@
 <dl class="exception">
 <dt id="profiles.models.Pcuser.MultipleObjectsReturned">
 <em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#profiles.models.Pcuser.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="profiles.models.Pcuser.fs">
+<code class="descname">fs</code><em class="property"> = &lt;django.core.files.storage.FileSystemStorage object&gt;</em><a class="headerlink" href="#profiles.models.Pcuser.fs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -131,6 +135,13 @@ object the first time, the query is executed.</p>
 <dt id="profiles.models.Pcuser.phone_regex">
 <code class="descname">phone_regex</code><em class="property"> = &lt;django.core.validators.RegexValidator object&gt;</em><a class="headerlink" href="#profiles.models.Pcuser.phone_regex" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="attribute">
+<dt id="profiles.models.Pcuser.photo">
+<code class="descname">photo</code><a class="headerlink" href="#profiles.models.Pcuser.photo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="profiles.models.Pcuser.powner">
@@ -243,7 +254,7 @@ class built by <code class="docutils literal"><span class="pre">create_forward_m
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Yatna.
+      &copy;2017, yatna.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>

@@ -42,7 +42,7 @@
 <h1>Malaria Web Models<a class="headerlink" href="#malaria-web-models" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-malaria_web.models"></span><dl class="class">
 <dt id="malaria_web.models.MalariaUsers">
-<em class="property">class </em><code class="descclassname">malaria_web.models.</code><code class="descname">MalariaUsers</code><span class="sig-paren">(</span><em>id</em>, <em>name</em>, <em>email</em>, <em>age</em>, <em>medicineType</em><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.MalariaUsers" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">malaria_web.models.</code><code class="descname">MalariaUsers</code><span class="sig-paren">(</span><em>id</em>, <em>name</em>, <em>email</em>, <em>age</em>, <em>gender</em>, <em>medicineType</em><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.MalariaUsers" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="exception">
 <dt id="malaria_web.models.MalariaUsers.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#malaria_web.models.MalariaUsers.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -63,6 +63,13 @@ object the first time, the query is executed.</p>
 <dl class="attribute">
 <dt id="malaria_web.models.MalariaUsers.email">
 <code class="descname">email</code><a class="headerlink" href="#malaria_web.models.MalariaUsers.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="malaria_web.models.MalariaUsers.gender">
+<code class="descname">gender</code><a class="headerlink" href="#malaria_web.models.MalariaUsers.gender" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -97,7 +104,7 @@ object the first time, the query is executed.</p>
 
 <dl class="class">
 <dt id="malaria_web.models.Post">
-<em class="property">class </em><code class="descclassname">malaria_web.models.</code><code class="descname">Post</code><span class="sig-paren">(</span><em>id</em>, <em>owner</em>, <em>title_post</em>, <em>description_post</em>, <em>link_post</em>, <em>created</em>, <em>updated</em><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.Post" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">malaria_web.models.</code><code class="descname">Post</code><span class="sig-paren">(</span><em>id</em>, <em>owner</em>, <em>title_post</em>, <em>description_post</em>, <em>link_post</em>, <em>photo</em>, <em>created</em>, <em>updated</em><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.Post" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="exception">
 <dt id="malaria_web.models.Post.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#malaria_web.models.Post.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -121,6 +128,16 @@ object the first time, the query is executed.</p>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="malaria_web.models.Post.fs">
+<code class="descname">fs</code><em class="property"> = &lt;django.core.files.storage.FileSystemStorage object&gt;</em><a class="headerlink" href="#malaria_web.models.Post.fs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="malaria_web.models.Post.get_absolute_url">
+<code class="descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.Post.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="malaria_web.models.Post.get_next_by_created">
@@ -155,6 +172,11 @@ object the first time, the query is executed.</p>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="malaria_web.models.Post.model_name">
+<code class="descname">model_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#malaria_web.models.Post.model_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="malaria_web.models.Post.objects">
@@ -194,6 +216,13 @@ many-to-one relation.</p>
 <p><code class="docutils literal"><span class="pre">parent.children</span></code> is a <code class="docutils literal"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
 <p>Most of the implementation is delegated to a dynamically defined manager
 class built by <code class="docutils literal"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="malaria_web.models.Post.photo">
+<code class="descname">photo</code><a class="headerlink" href="#malaria_web.models.Post.photo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -351,7 +380,7 @@ object the first time, the query is executed.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Yatna.
+      &copy;2017, yatna.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>

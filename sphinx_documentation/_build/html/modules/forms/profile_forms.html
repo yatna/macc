@@ -48,7 +48,7 @@
 <em class="property">class </em><code class="descname">Meta</code><a class="headerlink" href="#profiles.forms.PcuserForm.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="profiles.forms.PcuserForm.Meta.fields">
-<code class="descname">fields</code><em class="property"> = ['first_name', 'last_name', 'email', 'phone', 'gender', 'location']</em><a class="headerlink" href="#profiles.forms.PcuserForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fields</code><em class="property"> = ['first_name', 'last_name', 'email', 'phone', 'gender', 'location', 'photo']</em><a class="headerlink" href="#profiles.forms.PcuserForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -66,12 +66,12 @@
 
 <dl class="attribute">
 <dt id="profiles.forms.PcuserForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('first_name', &lt;django.forms.fields.CharField object&gt;), ('last_name', &lt;django.forms.fields.CharField object&gt;), ('email', &lt;django.forms.fields.EmailField object&gt;), ('phone', &lt;django.forms.fields.CharField object&gt;), ('gender', &lt;django.forms.fields.TypedChoiceField object&gt;), ('location', &lt;django.forms.fields.CharField object&gt;)])</em><a class="headerlink" href="#profiles.forms.PcuserForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('first_name', &lt;django.forms.fields.CharField object&gt;), ('last_name', &lt;django.forms.fields.CharField object&gt;), ('email', &lt;django.forms.fields.EmailField object&gt;), ('phone', &lt;django.forms.fields.CharField object&gt;), ('gender', &lt;django.forms.fields.TypedChoiceField object&gt;), ('location', &lt;django.forms.fields.CharField object&gt;), ('photo', &lt;django.forms.fields.FileField object&gt;)])</em><a class="headerlink" href="#profiles.forms.PcuserForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="profiles.forms.PcuserForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('first_name', &lt;django.forms.fields.CharField object&gt;), ('last_name', &lt;django.forms.fields.CharField object&gt;), ('email', &lt;django.forms.fields.EmailField object&gt;)])</em><a class="headerlink" href="#profiles.forms.PcuserForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('first_name', &lt;django.forms.fields.CharField object&gt;), ('last_name', &lt;django.forms.fields.CharField object&gt;), ('photo', &lt;django.forms.fields.FileField object&gt;), ('email', &lt;django.forms.fields.EmailField object&gt;)])</em><a class="headerlink" href="#profiles.forms.PcuserForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -194,7 +194,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Yatna.
+      &copy;2017, yatna.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
