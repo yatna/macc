@@ -4,12 +4,12 @@ from .models import Pcuser
 from django.core.validators import RegexValidator
 
 
-
 class UserForm(forms.ModelForm):
 
 	class Meta:
 		model = User
 		fields = ['first_name','last_name','email']
+
 
 class PcuserForm(forms.ModelForm):
 
@@ -19,14 +19,14 @@ class PcuserForm(forms.ModelForm):
 	photo = forms.FileField()
 	email = forms.EmailField()
 
-
 	class Meta:
 		model = Pcuser
 		fields = ['first_name','last_name','email','phone', 'gender', 'location','photo']
 
 
 class SignupForm(forms.Form):
-    
+
+    #extra fields required for signup that are not in PcuserForm
     username = forms.CharField(max_length=30, label='Voornaam')
     email = forms.CharField(max_length=30, label='Achternaam')
 

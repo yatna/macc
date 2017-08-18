@@ -26,9 +26,11 @@ class SafetyToolsPost(models.Model):
     def __str__(self):
         return self.title
 
+    #to get the url of the model in templates
     def get_absolute_url(self):
         return '/safetytools/view_post/%i' %self.id
 
+    #to access the model name in templates
     def model_name(self):
         return 'PCSA Safety Tools Post'
         

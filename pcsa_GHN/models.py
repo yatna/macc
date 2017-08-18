@@ -6,8 +6,6 @@ from django.core.validators import RegexValidator
 from django.core.files.storage import FileSystemStorage
 
 
-
-# Create your models here.
 class Contact(models.Model):
     office_name = models.CharField(max_length=200)
     contact_number = models.BigIntegerField()
@@ -39,9 +37,11 @@ class ghnPost(models.Model):
     def __str__(self):
         return self.title
 
+    #to get the url of the model in templates
     def get_absolute_url(self):
         return '/gethelpnow/view_post/%i' % self.id
-
+    
+    #to access the model name in templates
     def model_name(self):
         return 'PCSA Get Help Now'
         

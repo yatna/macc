@@ -30,9 +30,11 @@ class Post(models.Model):
     def __str__(self):
         return self.owner.user.username
 
+    #to get the url of the model in templates
     def get_absolute_url(self):
         return '/malaria/view_post/%i' % self.id
 
+    #to access the model name in templates
     def model_name(self):
         return 'Malaria'
         

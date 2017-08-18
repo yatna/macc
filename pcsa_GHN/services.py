@@ -132,4 +132,3 @@ def delete_posts(username):
         search_query = search_query.filter(owner=Pcuser.objects.filter(user__username__contains=username))
 
     search_query.delete()
-

@@ -6,7 +6,6 @@ from rest_framework import viewsets
 from .forms import SafetyToolsPostForm
 from .models import SafetyToolsPost
 from .serializers import SafetyToolsPostSerializer
-from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -16,6 +15,7 @@ class SafetyToolsPostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SafetyToolsPostSerializer
 
 
+#main page to display list of all pcsa safety tools posts separated as per category
 class ListPostView(LoginRequiredMixin, ListView):
 
     model = SafetyToolsPost
@@ -29,6 +29,7 @@ class ListPostView(LoginRequiredMixin, ListView):
         safety_plan_basics = SafetyToolsPost.objects.filter(category_id=5)
         safety_plan = SafetyToolsPost.objects.filter(category_id=6)
         category = self.request.GET.get('category')
+        #for sorting
         if category:
             if self.request.GET:
                 if self.request.GET.get('asc'):
@@ -55,6 +56,7 @@ class ListPostView(LoginRequiredMixin, ListView):
         return result
 
 
+#to create a new pcsa safety tools post
 class CreatePostView(LoginRequiredMixin, CreateView):
     
     model = SafetyToolsPost
@@ -63,6 +65,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     success_url='/safetytools/home/'
 
 
+#to edit an already created post
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     
     model = SafetyToolsPost
@@ -71,6 +74,7 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
     success_url='/safetytools/home/'
 
 
+#to delete a post
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = SafetyToolsPost
@@ -78,6 +82,7 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     success_url = '/safetytools/home/'
 
 
+#to view the details of a post
 class ViewPostView(LoginRequiredMixin, DetailView):
     model = SafetyToolsPost
     template_name = "pcsa_safety_tools/view_post.html"

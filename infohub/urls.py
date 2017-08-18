@@ -11,8 +11,6 @@ urlpatterns = [
     url(r'^docs/', schema_view),
     url(r'^malaria/', include('malaria_web.urls', namespace='malaria')),
     url(r'^webhub/', include('webhub.urls', namespace='webhub')),
-#    url(r'^signup/', include('signup.urls', namespace='signup')),
-#    url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^pcsa/', include('pcsa.urls', namespace='pcsa')),
     url(r'^gethelpnow/', include('pcsa_GHN.urls', namespace='pcsa_GHN')),
     url(r'^firstaide/', include('firstaide.urls', namespace='firstaide')),
