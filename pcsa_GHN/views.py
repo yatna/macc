@@ -4,9 +4,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from .forms import ContactForm, ghnPostForm
-from .models import Contact, ghnPost
+from .models import Contact, ghnPost, ghnRevPost
 from .serializers import ContactSerializer, ghnPostSerializer
-from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -23,12 +22,14 @@ class ContactViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ContactSerializer
 
 
+#main page to display list of all pcsa get help now posts and contacts
 class ListPostView(LoginRequiredMixin, ListView):
 
     model = ghnPost
     template_name = 'pcsa_GHN/home.html'
     redirect_field_name = 'redirect_to'
 
+    #for sorting contacts
     def get_context_data(self, **kwargs):
         context = super(ListPostView, self).get_context_data(**kwargs)
         context['contact_list'] = Contact.objects.all()
@@ -41,6 +42,7 @@ class ListPostView(LoginRequiredMixin, ListView):
                     context['contact_list'] = Contact.objects.order_by('-'+category_contact)
         return context
 
+    #for sorting posts
     def get_queryset(self):
         result = super(ListPostView, self).get_queryset()
         category = self.request.GET.get('category')
@@ -53,6 +55,7 @@ class ListPostView(LoginRequiredMixin, ListView):
         return result
 
 
+#to create a new pcsa post
 class CreatePostView(LoginRequiredMixin, CreateView):
     
     model = ghnPost
@@ -66,6 +69,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return super(CreatePostView, self).form_valid(form)
 
 
+#to edit an already created post
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     
     model = ghnPost
@@ -79,20 +83,28 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
         return super(UpdatePostView, self).form_valid(form)
 
 
+#to delete a post
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = ghnPost
-    template_name = "pcsa_GHN/delete_post.html"
     success_url = '/gethelpnow/'
     redirect_field_name = 'redirect_to'
 
 
+#to view the details of a post
 class ViewPostView(LoginRequiredMixin, DetailView):
     model = ghnPost
     template_name = "pcsa_GHN/view_post.html"
     redirect_field_name = 'redirect_to'
 
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = ghnRevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context
 
+
+#to create a new pcsa contact
 class CreateContactView(LoginRequiredMixin, CreateView):
     
     model = Contact
@@ -106,6 +118,7 @@ class CreateContactView(LoginRequiredMixin, CreateView):
         return super(CreateContactView, self).form_valid(form)
 
 
+#to edit an already created contact
 class UpdateContactView(LoginRequiredMixin, UpdateView):
     
     model = Contact
@@ -119,6 +132,7 @@ class UpdateContactView(LoginRequiredMixin, UpdateView):
         return super(UpdateContactView, self).form_valid(form)
 
 
+#to delete a contact
 class DeleteContactView(LoginRequiredMixin, DeleteView):
 
     model = Contact
@@ -127,6 +141,7 @@ class DeleteContactView(LoginRequiredMixin, DeleteView):
     redirect_field_name = 'redirect_to'
 
 
+#to view the details of a contact
 class ViewContactView(LoginRequiredMixin, DetailView):
     model = Contact
     template_name = "pcsa_GHN/view_contact.html"

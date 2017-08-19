@@ -5,9 +5,6 @@ from rest_framework import viewsets
 
 from pcsa.forms import PostForm
 from pcsa.models import PcsaPost
-from pcsa.services import (create_post_from_form, delete_post_by_id,
-                           get_post_by_id)
-
 from .models import PcsaPost
 from .serializers import PcsaPostSerializer
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView

@@ -3,10 +3,13 @@
 <title> Sign Up </title>
 
 {% block content %}
+<br>
+<br>
 <center>
     <div class="content">
         <div class ="row">
             <h2>Sign Up</h2>
+            <br>
             <form class="login form-horizontal" method="POST" action="">
                 {% csrf_token %}
                 {% for field in form %}
@@ -33,5 +36,5 @@
         </div>
     </div>
 </center>
-<br><br><br>
+<br>
 {% endblock %}
