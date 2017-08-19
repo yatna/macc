@@ -4,9 +4,9 @@ from django.core.files.storage import FileSystemStorage
 
 from profiles.models import Pcuser
 
-
+# model for posts in Malaria
 class Post(models.Model):
-    # The owner of the post
+    # Owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
     title_post = models.CharField(max_length=1000,
                                   validators=[
@@ -15,14 +15,14 @@ class Post(models.Model):
                                       )]
                                   )
     description_post = models.TextField(max_length=20000)
-    # link to important documents
+    # Link to important documents
     link_post = models.CharField(max_length=200)
 
     fs = FileSystemStorage(location='static/')
 
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
 
-    # field to note the timestamp when the post was created
+    # Timestamp recorded when new Post created
     created = models.DateTimeField(auto_now_add=True)
     # field to note the timestamp when the post was last updated
     updated = models.DateTimeField(auto_now=True)
@@ -30,11 +30,11 @@ class Post(models.Model):
     def __str__(self):
         return self.owner.user.username
 
-    #to get the url of the model in templates
+    # To get url of model in templates
     def get_absolute_url(self):
         return '/malaria/view_post/%i' % self.id
 
-    #to access the model name in templates
+    # To access the model name in templates
     def model_name(self):
         return 'Malaria'
         
@@ -42,15 +42,15 @@ class Post(models.Model):
     	verbose_name = 'Post'
     	verbose_name_plural = 'Posts'
 
-
+# model for post being edited
 class RevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(Post,
                                        null=False,
                                        related_name='owner_rev_post')
-    # The user who is editing the post
+    # User who is editing the post
     owner_rev = models.ForeignKey(Pcuser, null=False, related_name='owner_rev')
-    # revised title
+    # Revised title
     title_post_rev = models.CharField(max_length=1000)
     # revised description
     description_post_rev = models.TextField(max_length=20000,
@@ -61,7 +61,7 @@ class RevPost(models.Model):
                                             )
 
 
-    # field to note the timestamp when the revised version was created
+    # Timestamp recorded when the Post is submitted for edit
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -71,7 +71,7 @@ class RevPost(models.Model):
     	verbose_name = 'Reviewed Post'
     	verbose_name_plural = 'Reviewed Posts'
 
-
+# model to store Malaria Users
 class MalariaUsers(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
