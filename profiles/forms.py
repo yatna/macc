@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import Pcuser
 from django.core.validators import RegexValidator
 
+# Forms convert model fields to HTML fields
 
 class UserForm(forms.ModelForm):
 
@@ -21,6 +22,7 @@ class PcuserForm(forms.ModelForm):
 
 	class Meta:
 		model = Pcuser
+		#List of fields to be available in HTML
 		fields = ['first_name','last_name','email','phone', 'gender', 'location','photo']
 
 

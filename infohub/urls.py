@@ -5,6 +5,7 @@ from rest_framework_swagger.views import get_swagger_view
 admin.autodiscover()
 schema_view = get_swagger_view(title='Swagger API') 
 
+#inlude URLs from other apps here
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('webhub.urls')),
