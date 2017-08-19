@@ -1,5 +1,10 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from profiles.models import Pcuser
+from django.db.models.signals import post_save
+from django.dispatch import Signal
+
+post_update = Signal()
 
 
 class SafetyToolsCategory(models.Model):
@@ -35,3 +40,40 @@ class SafetyToolsPost(models.Model):
     class Meta:
     	verbose_name = 'Safety Tools Post'
     	verbose_name_plural = 'Safety Tools Posts'
+
+
+class safetyRevPost(models.Model):
+    # The post which is being edited
+    owner_rev_post = models.ForeignKey(SafetyToolsPost,
+                                       null=False,
+                                       related_name='owner_rev_post')
+    # revised title
+    title_post_rev = models.CharField(max_length=1000)
+    # revised description
+    description_post_rev = models.TextField(max_length=20000,
+                                            validators=[
+                                                RegexValidator(
+                                                    r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                                )]
+                                            )
+
+
+    # field to note the timestamp when the revised version was created
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.owner_rev.user.username
+        
+    class Meta:
+        verbose_name = 'Safety Tools Reviewed Post'
+        verbose_name_plural = 'Safety Tools Reviewed Posts'
+
+
+def create_revpost(sender, instance, created, **kwargs):
+    safetyRevPost.objects.create(owner_rev_post=instance,
+                      title_post_rev=instance.title,
+                      description_post_rev=instance.description)
+
+
+post_save.connect(create_revpost, sender=SafetyToolsPost)
+post_update.connect(create_revpost, sender=SafetyToolsPost)

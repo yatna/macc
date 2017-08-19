@@ -4,7 +4,7 @@ from django.shortcuts import render
 import urllib.request, json 
 
 from malaria_web.forms import PostForm
-from malaria_web.models import Post, MalariaUsers
+from malaria_web.models import Post, RevPost, MalariaUsers
 from malaria_web.services import (create_post_from_form, create_revpost,
                                   delete_post_by_id, get_post_by_id,
                                   get_revposts_of_owner)
@@ -70,7 +70,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = Post
-    template_name = "malaria/delete_post.html"
     success_url = '/malaria/list_posts'
     redirect_field_name = 'redirect_to'
 
@@ -101,3 +100,9 @@ class ListAppUsersView(LoginRequiredMixin, ListView):
     # HTML Template rendering the form
     template_name = 'malaria/list_app_users.html'
     redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = RevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context

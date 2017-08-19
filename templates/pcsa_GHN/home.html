@@ -39,27 +39,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for post in object_list %}
+                        {% for ghnpost in object_list %}
                             <tr>
                                 <td>
                                     <h5>
-                                        {{ post.title|truncatechars:20 }}
+                                        {{ ghnpost.title|truncatechars:20 }}
                                     </h5>
                                 </td>
         			            <td>
                                     <h5>
-            				            {{ post.description|truncatechars:50|linebreaks }}
+            				            {{ ghnpost.description|truncatechars:50|linebreaks }}
             			            </h5>
                                 </td>
                                 <td>
                                     <h5>
-                                        {{ post.created_date.date }}
+                                        {{ ghnpost.created_date.date }}
                                     </h5>
                                 </td>
                                 <td>
-                                    <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-primary">View</a>
-                                    <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
-                                    <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                                    <a href="{% url 'pcsa_GHN:view_post' ghnpost.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_GHN:edit_post' ghnpost.id %}" class="btn btn-info">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <p>{% include "pcsa_GHN/delete_post.html" %}</p>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -117,7 +126,16 @@
                                 <td>
             			            <a href="{% url 'pcsa_GHN:view_contact' c.id %}" class="btn btn-primary">View</a>
                                     <a href="{% url 'pcsa_GHN:edit_contact' c.id %}" class="btn btn-info">Edit</a>
-                                    <a href="{% url 'pcsa_GHN:delete_contact' c.id %}" class="btn btn-danger">Delete</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#mycontactModal">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="mycontactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <p>{% include "pcsa_GHN/delete_contact.html" %}</p>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -133,5 +151,6 @@
         <br>
     </div>
 </div>
+
 <br><br><br><br><br><br>
 {% endblock %}
