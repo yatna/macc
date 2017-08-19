@@ -4,10 +4,12 @@
 <title> Welcome ! </title>
 
 {% block content %}
+<br><br>
 <center>
     <div class="content">
         <div class ="row">
             <h2>Log in</h2>
+            <br>
             <form class ="form-horizontal" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {% for field in form %}
@@ -41,5 +43,5 @@
         </div>
     </div>
 </center>
-<br><br><br>
+<br>
 {% endblock %}
