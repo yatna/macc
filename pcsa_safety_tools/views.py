@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from .forms import SafetyToolsPostForm
-from .models import SafetyToolsPost
+from .models import SafetyToolsPost, safetyRevPost
 from .serializers import SafetyToolsPostSerializer
 from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
@@ -81,3 +81,9 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
 class ViewPostView(LoginRequiredMixin, DetailView):
     model = SafetyToolsPost
     template_name = "pcsa_safety_tools/view_post.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = safetyRevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context

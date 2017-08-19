@@ -85,59 +85,80 @@
     </div>
 </div>
 <br>
-
-<h2 class="text-center">Revision History</h2>
-    <div class="row">
-        <br>
-        <div class=" col-sm-offset-2 col-sm-8">
-        <table class="table table-responsive well">
-            <thead>
-                <tr>
-                    <th>
-                        <h4 ><strong>Author</strong></h4>
-                    </th>
-                    <th>
-                        <h4 ><strong>Date Updated</strong></h4>
-                    </th>
-                    <th>
-                        <h4 ><strong>Title</strong></h4>
-                    </th>
-                    <th>
-                        <h4 ><strong>Description</strong></h4>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for revpost in revpost_list %}
-                    <tr>
-                        <td>
-                            <h4 >
-                                {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
-                                    {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
-                                {% else %}
-                                    {{ revpost.owner_rev.user.username }}
-                                {% endif %}
-                            </h4>
-                        </td>
-                        <td>
-                            <h4 >
-                                {{ revpost.created }}
-                            </h4>
-                        </td>
-                        <td>
-                            <h4 >
-                                {{ revpost.title_post_rev }}
-                            </h4>
-                        </td>
-                        <td>
-                            <h4 >
-                                {{ revpost.description_post_rev|linebreaksbr }}
-                            </h4>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="well">
+    <h2 class="text-center">Revision History</h2>
+        <div class="row">
+            <br>
+                <div class="col-sm-1">
+                    <h4 >                
+                        <strong>Author</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Date Updated</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Title</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-3">
+                    <h4 >
+                        <strong>Description</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Link</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Image</strong>
+                    </h4>
+                </div>
+            </div>
+            {% for revpost in revpost_list %}
+                <div class="row">
+                    <div class="col-sm-1">
+                        <h5>
+                            {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
+                                {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                            {% else %}
+                                {{ revpost.owner_rev.user.username }}
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>
+                            {{ revpost.created }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>
+                            {{ revpost.title_post_rev }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>
+                            {{ revpost.description_post_rev|linebreaksbr }}
+                        </h5>
+                    </div>
+                     <div class="col-sm-2">
+                        <a href="{{ revpost.link_rev }}">
+                            {{ revpost.link_rev|truncatechars:20|linebreaksbr }}
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/static/{{ revpost.photo_rev }}">
+                            {{ revpost.photo_rev|truncatechars:20|linebreaksbr }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
