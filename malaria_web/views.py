@@ -31,7 +31,7 @@ class ListPostView(LoginRequiredMixin, ListView):
         return result
 
 
-#to create a new malaria post
+# Create a new malaria post
 class CreatePostView(LoginRequiredMixin, CreateView):
 
     model = Post
@@ -45,7 +45,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         return super(CreatePostView, self).form_valid(form)
 
 
-#to edit an already created post
+# Edit an already created post
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     
     model = Post
@@ -59,7 +59,7 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
         return super(UpdatePostView, self).form_valid(form)
 
 
-#to delete a post
+# Delete a post
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = Post
@@ -68,7 +68,7 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
     redirect_field_name = 'redirect_to'
 
 
-#to view the details of a post
+# Details of a post
 class ViewPostView(LoginRequiredMixin, DetailView):
 
     model = Post
