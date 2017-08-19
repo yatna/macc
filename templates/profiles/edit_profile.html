@@ -31,6 +31,19 @@
                     </tr>
                     <tr>
                         <td>   
+                            <label >
+                                User Name:
+                            </label> 
+                        </td>
+                        <td>  
+                            <input id="username" type="text" name="username" value="{{form.instance.user.username}}">
+                            {% if form.first_name.errors %}
+                                {{form.username.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
                             <label for="first_name">
                                 First name:
                             </label> 
@@ -38,8 +51,8 @@
                         <td> 
                             <input id="first_name" type="text" name="first_name" value="{{form.instance.user.first_name}}">
                             {% if form.first_name.errors %}
-                           {{form.first_name.errors}}
-                        {% endif %}
+                                {{form.first_name.errors}}
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
@@ -50,9 +63,9 @@
                         </td>
                         <td>  
                             <input type="text" name="last_name" value="{{form.instance.user.last_name}}">
-                             {% if form.last_name.errors %}
-                           {{form.last_name.errors}}
-                        {% endif %}
+                            {% if form.last_name.errors %}
+                                {{form.last_name.errors}}
+                            {% endif %}
                         </td>
         		    </tr>
                     <tr>
@@ -63,9 +76,9 @@
                         </td>
                         <td>  
                             <input type="tel" name="phone" value="{{form.instance.phone}}" required>
-                             {% if form.phone.errors %}
-                           {{form.phone.errors}}
-                        {% endif %}
+                            {% if form.phone.errors %}
+                                {{form.phone.errors}}
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
@@ -76,9 +89,9 @@
                         </td>
                         <td>  
                             <input type="email" name="email" value="{{form.instance.user.email}}" required >
-                             {% if form.email.errors %}
-                           {{form.email.errors}}
-                        {% endif %}
+                            {% if form.email.errors %}
+                                {{form.email.errors}}
+                            {% endif %}
                         </td>
                     </tr>
         		    <tr>
