@@ -147,7 +147,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# settings for smtp
+# SMTP Settings
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'pc.mobile.control.center@gmail.com'
 SERVER_EMAIL = 'pc.mobile.control.center@gmail.com'
@@ -161,7 +161,7 @@ SWAGGER_SETTINGS = {
 }
 
 
-#Django allauth configurations
+# Django allauth configurations
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -170,7 +170,11 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
+# To redirect to root page when login is required
 LOGIN_REDIRECT_URL = '/'
 
+# Logout from the account when password is changed
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+
+# Email not verified yet since there is a two step authentication used in the email for sending Authentication messages
 ACCOUNT_EMAIL_VERIFICATION ="none"
