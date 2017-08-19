@@ -61,7 +61,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = Post
-    template_name = "malaria/delete_post.html"
     success_url = '/malaria/list_posts'
     redirect_field_name = 'redirect_to'
 

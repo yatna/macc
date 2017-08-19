@@ -82,7 +82,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin, DeleteView):
 
     model = ghnPost
-    template_name = "pcsa_GHN/delete_post.html"
     success_url = '/gethelpnow/'
     redirect_field_name = 'redirect_to'
 

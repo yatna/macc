@@ -18,6 +18,9 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.office_name
+
+    def get_absolute_url(self):
+        return '/gethelpnow/view_contact/%i' % self.id
         
     class Meta:
     	verbose_name = 'Contact'
