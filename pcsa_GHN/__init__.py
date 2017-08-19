@@ -14,8 +14,6 @@ def new_clean(self, value):
 	Strip leading and traling whitespaces on all the CharField values
 	"""
 	if value:
-		#if user enters any value
-		# we try/catch here, because other fields subclass CharField
 		try:
 			value = value.strip()
 		except:
@@ -32,8 +30,6 @@ def new_clean_number(self, value):
 	If the number starts from any whitespace by accident, it strips it away.
 	"""
 	if value:
-		#if the user enters any value
-		#we try to catch any exception here if it is present
 		try:
 			value = value.strip()
 		except:

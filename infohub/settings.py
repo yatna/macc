@@ -170,7 +170,11 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
+#to redirect to root page when login is required
 LOGIN_REDIRECT_URL = '/'
 
+#logout from the account when password is changed
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+
+#email not verified yet since there is a two step authentication used in the email used for sending authentication messages
 ACCOUNT_EMAIL_VERIFICATION ="none"

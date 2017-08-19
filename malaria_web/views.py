@@ -45,7 +45,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 
     model = Post
     form_class = PostForm
-    # HTML Template rendering the form
     template_name = 'malaria/create_post.html'
     success_url='/malaria/list_posts'
     redirect_field_name = 'redirect_to'
@@ -61,7 +60,6 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
     
     model = Post
     form_class = PostForm
-    # HTML Template rendering the form
     template_name = "malaria/edit_post.html"
     success_url='/malaria/list_posts'
     redirect_field_name = 'redirect_to'
@@ -82,7 +80,6 @@ class DeletePostView(LoginRequiredMixin, DeleteView):
 class ViewPostView(LoginRequiredMixin, DetailView):
 
     model = Post
-    # HTML Template rendering the form
     template_name = "malaria/view_post.html"
     redirect_field_name = 'redirect_to'
 
@@ -119,7 +116,6 @@ class ListAppUsersView(LoginRequiredMixin, ListView):
         queryset = MalariaUsers.objects.all()
         return queryset
 
-    # HTML Template rendering the form
     template_name = 'malaria/list_app_users.html'
     redirect_field_name = 'redirect_to'
 

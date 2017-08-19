@@ -51,7 +51,7 @@ class Post(models.Model):
     	verbose_name_plural = 'Posts'
 
 
-# Model corresponding to Revision of Malaria Posts
+# Model corresponding to Revision History of Malaria Posts
 class RevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(Post,
@@ -87,7 +87,7 @@ class RevPost(models.Model):
     	verbose_name_plural = 'Reviewed Posts'
 
 
-
+#signal to RevPost whenever a new post is created or updated
 def create_revpost(sender, instance, created, **kwargs):
     RevPost.objects.create(owner_rev=instance.owner,
                       owner_rev_post=instance,
@@ -96,7 +96,11 @@ def create_revpost(sender, instance, created, **kwargs):
                       link_rev=instance.link_post,
                       photo_rev=instance.photo)
 
+
+#create RevPost after saving a new malaria post
 post_save.connect(create_revpost, sender=Post)
+
+#create a RevPost after updating an already existing malaria post
 post_update.connect(create_revpost, sender=Post)
 
 
