@@ -35,7 +35,8 @@ class EmailRequiredUserAdmin(UserAdmin):
 	add_form = MyUserCreationForm
 	add_fieldsets = ((None, {'fields': ('username', 'email', 'first_name', 'last_name',
 						'password1', 'password2'), 'classes' : ('wide',)}),)
-						
+
+#registering the models						
 admin.site.unregister(User)
 admin.site.register(User, EmailRequiredUserAdmin)
 admin.site.register(Pcuser)

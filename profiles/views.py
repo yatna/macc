@@ -7,6 +7,7 @@ from allauth.account.views import PasswordChangeView
 
 class ProfileView(LoginRequiredMixin, TemplateView):
 
+    # HTML Template rendering the form
     template_name = 'profiles/profile.html'
 
     def get_context_data(self, **kwargs):
@@ -16,6 +17,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 class EditProfile(LoginRequiredMixin, UpdateView):
     
+    # HTML Template rendering the form
     template_name = 'profiles/edit_profile.html'
     form_class = PcuserForm
     model = Pcuser
