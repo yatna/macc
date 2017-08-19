@@ -43,9 +43,11 @@ class Pcuser(models.Model):
     	verbose_name_plural = 'Pcusers'
 
 
+#signal to create a corresponding pcuser whenever a user is created
 def create_pcuser(sender, instance, created, **kwargs):
 	if created:
 		Pcuser.objects.create(user=instance)
 
 
+#call for pcuser creation after saving the user 
 post_save.connect(create_pcuser, sender=User)

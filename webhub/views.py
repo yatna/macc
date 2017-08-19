@@ -78,6 +78,7 @@ class PcuserDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+#Display the main page of the project with malaria and pcsa app options
 class DashboardView(LoginRequiredMixin,TemplateView):
 
     template_name = 'ui/dashboard.html'
@@ -91,6 +92,7 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         return context
 
 
+#Information about PeaceCorps in the footer section
 class AboutPC(TemplateView):
     
     template_name = 'ui/aboutPC.html'
@@ -104,6 +106,7 @@ class AboutPC(TemplateView):
         return context
 
 
+#PeaceCorps policies in the footer section
 class Policies(TemplateView):
     
     template_name = 'ui/policies.html'
@@ -117,6 +120,7 @@ class Policies(TemplateView):
         return context
 
 
+#PeaceCorps details in the footer section
 class Details(TemplateView):
     
     template_name = 'ui/details.html'
@@ -130,6 +134,7 @@ class Details(TemplateView):
         return context
 
 
+#PeaceCorps help in the footer section
 class HelpPC(TemplateView):
     
     template_name = 'ui/helpPC.html'
@@ -143,11 +148,11 @@ class HelpPC(TemplateView):
         return context
 
 
+#search through posts (displayed on the right corner of the dashboard)
 class PostSearchView(ListView):
 
     template_name = 'ui/result.html'
     model = Post
-    #paginate_by = 10
 
     def get_queryset(self):
         
