@@ -44,7 +44,7 @@ class ghnPost(models.Model):
     def __str__(self):
         return self.title
 
-    #to get the url of the model in templates
+    # To get the url of the model in templates
     def get_absolute_url(self):
         return '/gethelpnow/view_post/%i' % self.id
     
@@ -57,7 +57,7 @@ class ghnPost(models.Model):
     	verbose_name_plural = 'Get Help Now Posts'
 
 
-#to create revision history for posts
+# model to create revision history for posts
 class ghnRevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(ghnPost,
@@ -94,7 +94,7 @@ class ghnRevPost(models.Model):
         verbose_name_plural = 'GHN Reviewed Posts'
 
 
-#signal to RevPost whenever a new post is created or updated
+# Signal to RevPost whenever a new post is created or updated
 def create_revpost(sender, instance, created, **kwargs):
     ghnRevPost.objects.create(owner_rev_ghn=instance.owner,
                       owner_rev_post=instance,
@@ -104,8 +104,8 @@ def create_revpost(sender, instance, created, **kwargs):
                       photo_rev=instance.photo)
 
 
-#create ghnRevPost after saving a new pcsa_GHN post
+# Create ghnRevPost after saving a new pcsa_GHN post
 post_save.connect(create_revpost, sender=ghnPost)
 
-#create a ghnRevPost after updating an already existing pcsa_GHN post
+# Create a ghnRevPost after updating an already existing pcsa_GHN post
 post_update.connect(create_revpost, sender=ghnPost)
