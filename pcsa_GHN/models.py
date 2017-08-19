@@ -34,7 +34,7 @@ class ghnPost(models.Model):
     description = models.TextField(max_length=3000)
     created_date = models.DateTimeField(auto_now=True)
 
-    # link to important documents
+    # Link to important documents
     link = models.CharField(max_length=200, null = True)
 
     fs = FileSystemStorage(location='static/')
@@ -48,7 +48,7 @@ class ghnPost(models.Model):
     def get_absolute_url(self):
         return '/gethelpnow/view_post/%i' % self.id
     
-    #to access the model name in templates
+    # To access the model name in templates
     def model_name(self):
         return 'PCSA Get Help Now'
         
@@ -64,9 +64,9 @@ class ghnRevPost(models.Model):
                                        related_name='owner_rev_post')
     # The user who is editing the post
     owner_rev_ghn = models.ForeignKey(Pcuser, null=False, related_name='owner_rev_ghn')
-    # revised title
+    # Revised title
     title_post_rev = models.CharField(max_length=1000)
-    # revised description
+    # Revised description
     description_post_rev = models.TextField(max_length=20000,
                                             validators=[
                                                 RegexValidator(
@@ -75,7 +75,7 @@ class ghnRevPost(models.Model):
                                             )
 
 
-    # field to note the timestamp when the revised version was created
+    # Field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
 
     link_rev = models.CharField(max_length=200, null = True)
