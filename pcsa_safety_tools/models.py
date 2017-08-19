@@ -7,7 +7,7 @@ from django.dispatch import Signal
 post_update = Signal()
 
 
-#categories to be defined on the admin side
+# model for categories to be defined on the admin side
 class SafetyToolsCategory(models.Model):
     category_id = models.IntegerField()
     category_name = models.TextField(max_length=500)
@@ -72,7 +72,7 @@ class safetyRevPost(models.Model):
         verbose_name_plural = 'Safety Tools Reviewed Posts'
 
 
-#signal to RevPost whenever a new post is created or updated
+# Signal to RevPost whenever a new post is created or updated
 def create_revpost(sender, instance, created, **kwargs):
     safetyRevPost.objects.create(owner_rev_post=instance,
                       title_post_rev=instance.title,
