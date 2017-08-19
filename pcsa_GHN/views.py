@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 
 from .forms import ContactForm, ghnPostForm
-from .models import Contact, ghnPost
+from .models import Contact, ghnPost, ghnRevPost
 from .serializers import ContactSerializer, ghnPostSerializer
 from .services import *
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
@@ -91,6 +91,12 @@ class ViewPostView(LoginRequiredMixin, DetailView):
     model = ghnPost
     template_name = "pcsa_GHN/view_post.html"
     redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = ghnRevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context
 
 
 class CreateContactView(LoginRequiredMixin, CreateView):

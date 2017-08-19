@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 from malaria_web.forms import PostForm
-from malaria_web.models import Post
+from malaria_web.models import Post, RevPost
 from malaria_web.services import (create_post_from_form, create_revpost,
                                   delete_post_by_id, get_post_by_id,
                                   get_revposts_of_owner)
@@ -71,3 +71,9 @@ class ViewPostView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = "malaria/view_post.html"
     redirect_field_name = 'redirect_to'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewPostView, self).get_context_data(**kwargs)
+        revpost_list = RevPost.objects.filter(owner_rev_post_id=self.kwargs['pk'])
+        context['revpost_list'] = revpost_list
+        return context
