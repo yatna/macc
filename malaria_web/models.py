@@ -22,7 +22,7 @@ class Post(models.Model):
     # Link to important documents
     link_post = models.CharField(max_length=200)
 
-    #define where the images in posts will get stored
+    # Define where the images in posts will be stored
     fs = FileSystemStorage(location='static/')
     # uploadable image in posts
     photo = models.ImageField( storage =fs ,upload_to = 'images/', default = 'images/sample.jpg',null=True)
@@ -44,14 +44,13 @@ class Post(models.Model):
     def model_name(self):
         return 'Malaria'
     
-    # Name to be shown on the home page of the admin view for the collective set 
-    # of model instances    
+    # Name to be shown on the home page of the admin view for the collective set of model instances
     class Meta:
     	verbose_name = 'Post'
     	verbose_name_plural = 'Posts'
 
 
-# Model corresponding to Revision History of Malaria Posts
+# model corresponding to Revision History of Malaria Posts
 class RevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(Post,
@@ -87,7 +86,7 @@ class RevPost(models.Model):
     	verbose_name_plural = 'Reviewed Posts'
 
 
-#signal to RevPost whenever a new post is created or updated
+# Signal to RevPost when a new post is created or updated
 def create_revpost(sender, instance, created, **kwargs):
     RevPost.objects.create(owner_rev=instance.owner,
                       owner_rev_post=instance,
@@ -97,10 +96,10 @@ def create_revpost(sender, instance, created, **kwargs):
                       photo_rev=instance.photo)
 
 
-#create RevPost after saving a new malaria post
+# Create RevPost after saving a new malaria post
 post_save.connect(create_revpost, sender=Post)
 
-#create a RevPost after updating an already existing malaria post
+# Create a RevPost after updating an already existing malaria post
 post_update.connect(create_revpost, sender=Post)
 
 
@@ -114,14 +113,13 @@ class MalariaUsers(models.Model):
     age = models.IntegerField()
     # gender of the user
     gender = models.CharField(max_length=20, default='Not Specified')
-    #The meicine he/she is taking eg Mefloquine, Malarone etc
+    # Meicine he/she is taking eg Mefloquine, Malarone etc
     medicineType = models.CharField(max_length=100)
 
     # Name to be shown for a particular instance of this type of model
     def __str__(self):
         return self.name
 
-    # Name to be shown on the home page of the admin view for the collective set 
-    # of model instances
+    # Name to be shown on the home page of the admin view for the collective set of model instances
     class Meta:
         verbose_name = 'Malaria App Users'
