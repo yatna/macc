@@ -113,7 +113,7 @@ class MalariaUsers(models.Model):
     age = models.IntegerField()
     # gender of the user
     gender = models.CharField(max_length=20, default='Not Specified')
-    # Meicine he/she is taking eg Mefloquine, Malarone etc
+    # Medicine he/she is taking eg Mefloquine, Malarone etc
     medicineType = models.CharField(max_length=100)
 
     # Name to be shown for a particular instance of this type of model
