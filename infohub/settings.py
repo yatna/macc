@@ -2,7 +2,7 @@ import os
 from infohub.config import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SITE_ID = 7
+SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
