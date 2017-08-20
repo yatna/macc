@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # MACC documentation build configuration file, created by
-# sphinx-quickstart on Wed Jul 12 19:02:13 2017.
+# sphinx-quickstart on Thu Aug 17 21:49:39 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -52,8 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'MACC'
-copyright = '2017, Yatna'
-author = 'Yatna'
+copyright = '2017, yatna'
+author = 'yatna'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -148,7 +148,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'MACC.tex', 'MACC Documentation',
-     'Yatna', 'manual'),
+     'yatna', 'manual'),
 ]
 
 

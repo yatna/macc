@@ -156,12 +156,38 @@
 </dd></dl>
 
 <dl class="class">
+<dt id="webhub.views.PostSearchView">
+<em class="property">class </em><code class="descclassname">webhub.views.</code><code class="descname">PostSearchView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#webhub.views.PostSearchView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="webhub.views.PostSearchView.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#webhub.views.PostSearchView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webhub.views.PostSearchView.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#webhub.views.PostSearchView.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="webhub.views.PostSearchView.model">
+<code class="descname">model</code><a class="headerlink" href="#webhub.views.PostSearchView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Post</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webhub.views.PostSearchView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'ui/result.html'</em><a class="headerlink" href="#webhub.views.PostSearchView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="webhub.views.UserViewSet">
 <em class="property">class </em><code class="descclassname">webhub.views.</code><code class="descname">UserViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#webhub.views.UserViewSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>API endpoint that allows users to be viewed or edited.</p>
 <dl class="attribute">
 <dt id="webhub.views.UserViewSet.queryset">
-<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;User: yatna&gt;]&gt;</em><a class="headerlink" href="#webhub.views.UserViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;User: qwerty&gt;, &lt;User: yatna&gt;]&gt;</em><a class="headerlink" href="#webhub.views.UserViewSet.queryset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -223,7 +249,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017, Yatna.
+      &copy;2017, yatna.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
