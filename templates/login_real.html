@@ -6,7 +6,6 @@
 
 {% block content %}
     {% if user and not user.is_anonymous %}
-        <h1>{{user.username}} ! {{user.first_name}}, {{user.last_name}}, {{user.email}}</h1>
         <form action="/login_social/" method="POST" id="myprofile">
             {% csrf_token %}
             <input type="hidden" name="uname" value="{{user.username}}">

@@ -13,12 +13,12 @@ class Pcuser(models.Model):
     #username
     user = models.OneToOneField(User)
     #location
-    location = models.TextField(max_length=300)
+    location = models.TextField(max_length=300, default='N.A.')
     #phone number
     phone_regex = RegexValidator(r'\+\d{8,15}$', message = "Phone number must have correct format. +999999 and up to 15 digits allowed")
-    phone = models.CharField(validators=[phone_regex],blank=False, max_length=15 )
+    phone = models.CharField(validators=[phone_regex],blank=False, max_length=15 ,default='N.A.')
     #gender
-    gender = models.CharField(max_length=10,choices = gender_choices, default='0')
+    gender = models.CharField(max_length=10,choices = gender_choices, default='Restricted')
     #for reset_password
     reset_pass = models.CharField(default="",max_length=320)
 

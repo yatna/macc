@@ -5,7 +5,7 @@ from rest_framework import status, viewsets
 
 from rest_framework.decorators import api_view
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from webhub.serializers import *
 from django.views.generic import TemplateView, ListView
@@ -181,9 +181,8 @@ class PostSearchView(ListView):
         return context
 
 
-def login_real(request):
-    print("yolo")
-    return render(request,"login_real.html")
+class LoginReal(TemplateView):
+    template_name="login_real.html"
 
 
 def login_social(request):
@@ -203,10 +202,13 @@ def login_social(request):
         entry = Pcuser(user=user, phone=phone, gender=gender, location=location, verified = uuid.uuid4().hex)      
         entry.save()
     else:
+        print("num rsults")
+        print(num_results)
         pcuser=Pcuser.objects.get(user=user)
         entry=pcuser
 
-    if 'redirect' in request.POST.keys():
-        return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
-    return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
+    # if 'redirect' in request.POST.keys():
+    #     return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":request.POST['redirect'].replace("!!__!!","&")}))
+    # return HttpResponse(jinja_environ.get_template('redirect.html').render({"pcuser":None,"redirect_url":"/"}))
+    return redirect("dashboard")
 
