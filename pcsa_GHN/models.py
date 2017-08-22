@@ -57,7 +57,6 @@ class ghnPost(models.Model):
     	verbose_name_plural = 'Get Help Now Posts'
 
 
-# model to create revision history for posts
 class ghnRevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(ghnPost,

@@ -7,7 +7,7 @@ from django.dispatch import Signal
 post_update = Signal()
 
 
-# model for categories to be defined on the admin side
+# Model for categories to be defined on the admin side
 class SafetyToolsCategory(models.Model):
     category_id = models.IntegerField()
     category_name = models.TextField(max_length=500)
@@ -32,11 +32,11 @@ class SafetyToolsPost(models.Model):
     def __str__(self):
         return self.title
 
-    #to get the url of the model in templates
+    # To get the url of the model in templates
     def get_absolute_url(self):
         return '/safetytools/view_post/%i' %self.id
 
-    #to access the model name in templates
+    # To access the model name in templates
     def model_name(self):
         return 'PCSA Safety Tools Post'
         
@@ -50,9 +50,9 @@ class safetyRevPost(models.Model):
     owner_rev_post = models.ForeignKey(SafetyToolsPost,
                                        null=False,
                                        related_name='owner_rev_post')
-    # revised title
+    # Revised title
     title_post_rev = models.CharField(max_length=1000)
-    # revised description
+    # Revised description
     description_post_rev = models.TextField(max_length=20000,
                                             validators=[
                                                 RegexValidator(
@@ -61,7 +61,7 @@ class safetyRevPost(models.Model):
                                             )
 
 
-    # field to note the timestamp when the revised version was created
+    # Field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

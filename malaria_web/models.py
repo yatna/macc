@@ -29,7 +29,7 @@ class Post(models.Model):
 
     # Timestamp recorded when new Post created
     created = models.DateTimeField(auto_now_add=True)
-    # field to note the timestamp when the post was last updated
+    # Field to note the timestamp when the post was last updated
     updated = models.DateTimeField(auto_now=True)
 
     # Name to be shown for a particular instance of this type of model
@@ -50,7 +50,7 @@ class Post(models.Model):
     	verbose_name_plural = 'Posts'
 
 
-# model corresponding to Revision History of Malaria Posts
+# Model corresponding to Revision History of Malaria Posts
 class RevPost(models.Model):
     # The post which is being edited
     owner_rev_post = models.ForeignKey(Post,
@@ -60,7 +60,7 @@ class RevPost(models.Model):
     owner_rev = models.ForeignKey(Pcuser, null=False, related_name='owner_rev')
     # Revised title
     title_post_rev = models.CharField(max_length=1000)
-    # revised description
+    # Revised description
     description_post_rev = models.TextField(max_length=20000,
                                             validators=[
                                                 RegexValidator(
@@ -103,15 +103,15 @@ post_save.connect(create_revpost, sender=Post)
 post_update.connect(create_revpost, sender=Post)
 
 
-# model to store Malaria Users
+# Model to store Malaria Users
 class MalariaUsers(models.Model):
     # Name of the user
     name = models.CharField(max_length=200)
-    # email of the user
+    # Email of the user
     email = models.EmailField(max_length=254)
-    # age of the user
+    # Age of the user
     age = models.IntegerField()
-    # gender of the user
+    # Gender of the user
     gender = models.CharField(max_length=20, default='Not Specified')
     # Medicine he/she is taking eg Mefloquine, Malarone etc
     medicineType = models.CharField(max_length=100)

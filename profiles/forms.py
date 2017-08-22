@@ -22,13 +22,13 @@ class PcuserForm(forms.ModelForm):
 
 	class Meta:
 		model = Pcuser
-		#List of fields to be available in HTML
+		# List of fields to be available in HTML
 		fields = ['first_name','last_name','email','phone', 'gender', 'location','photo']
 
 
 class SignupForm(forms.Form):
 
-    #extra fields required for signup that are not in PcuserForm
+    # Extra fields required for signup that are not in PcuserForm
     username = forms.CharField(max_length=30, label='Voornaam')
     email = forms.CharField(max_length=30, label='Achternaam')
 
