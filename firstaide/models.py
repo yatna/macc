@@ -2,7 +2,7 @@ from django.db import models
 
 class FirstAideAPI(models.Model):
 	
-	# defining variables for creating choices for post_id field
+	# Defining variables for creating choices for post_id field
 	ADDED_SOON='added-soon'
 	SEEKING_STAFF_SUPPORT='seeking-staff-support'
 	SERVICES_AFTER_ASSAULT='services-after-assault'
@@ -25,7 +25,7 @@ class FirstAideAPI(models.Model):
 	MYTHBUSTERS='mythbusters'
 	SEXUAL_HARRASMENT='sexual-harassment'
 
-	# choices attribute requires a tuple
+	# Choices attribute requires a tuple
 	POST_ID_CHOICES=((ADDED_SOON, 'added-soon'),(SEEKING_STAFF_SUPPORT, 'seeking-staff-support'),(SERVICES_AFTER_ASSAULT,'services-after-assault'),
 		(PEACE_CORPS_COMMITMENT,'peace-corps-commitment'),(CONFIDENTIALITY,'confidentiality'),(RADAR,'radar'),(SEXUAL_PREDATORS, 'sexual-predators'),
 		(SAFETY_PLAN_BASICS, 'safety-plan-basics' ),(UNWANTED_ATTENTION,'unwanted-attention'),(BYSTANDER_INTERVENTION, 'bystander-intervention'),(COMMON_QUESTIONS,'common-questions'),
@@ -35,7 +35,7 @@ class FirstAideAPI(models.Model):
 	
 	post_id = models.CharField(max_length=30, choices= POST_ID_CHOICES)
 
-	# defining variables for creating choices for page_type field
+	# Defining variables for creating choices for page_type field
 	FULL_PAGE_CARD='full_page_card'
 	MULTI_CARDS_PAGE='multi_cards_page'
 	MULTI_SEGMENT_PAGE='multi_segment_page'
@@ -51,8 +51,7 @@ class FirstAideAPI(models.Model):
 	def __str__(self):
 		return self.title
 
-	# Name to be shown on the home page of the admin view for the collective set 
-	# of model instances
+	# Name to be shown on the home page of the admin view for the collective set of model instances
 	class Meta:
 		verbose_name = 'First Aide API'
 

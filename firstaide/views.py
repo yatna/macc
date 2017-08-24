@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-#View to render the JSON
+# View to render the JSON
 class FirstAideAPIViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = firstAideAPISerializer
@@ -22,7 +22,7 @@ class FirstAideAPIViewSet(viewsets.ReadOnlyModelViewSet):
     # When you set queryset (model = xyz), the queryset is created only once, when you start your server.
     # On the other hand, the get_queryset method is called for every request.
     def get_queryset(self):
-        # get all model instances with a particular 'id'
+        # Get all model instances with a particular 'id'
         queryset = FirstAideAPI.objects.all().filter(post_id=self.kwargs['id'])
         # Get the page_id of the first instance (all instances with a particular id will have the same value for this field)
         FirstAideAPIViewSet.page_id = queryset.values_list('post_id',flat=True)[0]
@@ -42,7 +42,7 @@ class FirstAideAPIViewSet(viewsets.ReadOnlyModelViewSet):
 
         # Create the JSON to be rendered
         serializer_data = {"page_id": FirstAideAPIViewSet.page_id,"page_type":FirstAideAPIViewSet.page_type,"title":FirstAideAPIViewSet.title}
-        #append the JSON with the card content
+        # Append the JSON with the card content
         serializer_data .update({"content": {"cards":serializer.data}})
         return Response(serializer_data) 
 
@@ -61,14 +61,14 @@ class ListFirstAideAPIView(LoginRequiredMixin, ListView):
         context['post_list'] = FirstAideAPI.objects.all().order_by('post_id')
         return context
 
-#View to add a card
+# View to add a card
 class CreateFirstAideAPIView(LoginRequiredMixin, CreateView):
     
     model = FirstAideAPI
     form_class = FirstAideAPIForm
     # HTML Template rendering the form
     template_name = 'firstaide/create_post.html'
-    #URL to be visited after successfully creating a model instance
+    # URL to be visited after successfully creating a model instance
     success_url='/firstaide/'
     redirect_field_name = 'redirect_to'
 
@@ -76,14 +76,14 @@ class CreateFirstAideAPIView(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user.pcuser
         return super(CreateFirstAideAPIView, self).form_valid(form)
 
-#View to edit a card
+# View to edit a card
 class UpdateFirstAideAPIView(LoginRequiredMixin, UpdateView):
     
     model = FirstAideAPI
     form_class = FirstAideAPIForm
     # HTML Template rendering the form
     template_name = "firstaide/edit_post.html"
-    #URL to be visited after successfully updating a model instance
+    # URL to be visited after successfully updating a model instance
     success_url='/firstaide/'
     redirect_field_name = 'redirect_to'
 
@@ -98,17 +98,14 @@ class DeleteFirstAideAPIView(LoginRequiredMixin, DeleteView):
     model = FirstAideAPI
     # HTML Template rendering the form
     template_name = "firstaide/delete_post.html"
-    #URL to be visited after successfully deleting a model instance
+    # URL to be visited after successfully deleting a model instance
     success_url = '/firstaide/'
     redirect_field_name = 'redirect_to'
 
 
-#View to view a single card
+# View to view a single card
 class ViewFirstAideAPIView(LoginRequiredMixin, DetailView):
     model = FirstAideAPI
     # HTML Template rendering the form
     template_name = "firstaide/view_post.html"
     redirect_field_name = 'redirect_to'
-
-
-
