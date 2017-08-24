@@ -31,6 +31,7 @@ class EditProfile(LoginRequiredMixin, UpdateView):
     # Save the edited form
     def form_valid(self, form):
         instance = form.save(commit=False)
+        instance.user.username = self.request.POST['username']
         instance.user.first_name = self.request.POST['first_name']
         instance.user.last_name = self.request.POST['last_name']
         instance.user.email = self.request.POST['email']
