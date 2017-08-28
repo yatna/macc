@@ -161,9 +161,9 @@ class PostSearchView(ListView):
         category = self.request.GET.get('category')
         
         if query:
-            if category == 'pcsa':
+            if category == 'firstaide':
                 result = ghnPost.objects.filter(title__icontains=query)
-            elif category == 'pcsa_safety_tools':
+            elif category == 'firstaide_safety_tools':
                 result = SafetyToolsPost.objects.filter(title__icontains=query)
             elif category == 'malaria':
                 result = Post.objects.filter(title_post__icontains=query)
