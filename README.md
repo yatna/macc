@@ -17,3 +17,9 @@ Documentation - [Here](https://drive.google.com/open?id=0B6cRm7QFaag1YWNTZ2stcmd
 API Documentation -  [here](https://docs.google.com/document/d/1uQ42HQGIEOWoD-PtRRGoKLN15S-EhEkWgsIxiceNMGI/edit?usp=sharing)
 
 Contribution Guide - [here](https://github.com/systers/macc/blob/develop/docs/Contribution.md)
+
+## Current Status
+Final Demos given by 2017 GSoC students on project status -
+Yatna's Demo - [Watch Here](https://www.youtube.com/watch?v=f7wgeBlxm1g&t=355s)
+Gunpreet's Demo - [Watch Here](https://www.youtube.com/watch?v=r_DrvDd96b8)
+
