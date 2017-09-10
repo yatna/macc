@@ -24,10 +24,10 @@ from itertools import chain
 # SMTP port for sending emails
 SMTP_PORT = 465
 
-#link for the localhost
+# Link for the localhost
 website = "http://systerspcweb.herokuapp.com/"
 
-#apis for malaria begin here
+# APIs for malaria begin here
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -78,7 +78,7 @@ class PcuserDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-#Display the main page of the project with malaria and pcsa app options
+# Display the main page of the project with malaria and pcsa app options
 class DashboardView(LoginRequiredMixin,TemplateView):
 
     template_name = 'ui/dashboard.html'
@@ -92,7 +92,7 @@ class DashboardView(LoginRequiredMixin,TemplateView):
         return context
 
 
-#Information about PeaceCorps in the footer section
+# Information about PeaceCorps in the footer section
 class AboutPC(TemplateView):
     
     template_name = 'ui/aboutPC.html'
@@ -106,7 +106,7 @@ class AboutPC(TemplateView):
         return context
 
 
-#PeaceCorps policies in the footer section
+# PeaceCorps policies in the footer section
 class Policies(TemplateView):
     
     template_name = 'ui/policies.html'
@@ -120,7 +120,7 @@ class Policies(TemplateView):
         return context
 
 
-#PeaceCorps details in the footer section
+# PeaceCorps details in the footer section
 class Details(TemplateView):
     
     template_name = 'ui/details.html'
@@ -134,7 +134,7 @@ class Details(TemplateView):
         return context
 
 
-#PeaceCorps help in the footer section
+# PeaceCorps help in the footer section
 class HelpPC(TemplateView):
     
     template_name = 'ui/helpPC.html'
@@ -148,7 +148,7 @@ class HelpPC(TemplateView):
         return context
 
 
-#search through posts (displayed on the right corner of the dashboard)
+# Search through posts (displayed on the right corner of the dashboard)
 class PostSearchView(ListView):
 
     template_name = 'ui/result.html'
@@ -161,16 +161,16 @@ class PostSearchView(ListView):
         category = self.request.GET.get('category')
         
         if query:
-            if category == 'pcsa':
-                result = ghnPost.objects.filter(title__contains=query)
-            elif category == 'pcsa_safety_tools':
-                result = SafetyToolsPost.objects.filter(title__contains=query)
+            if category == 'firstaide':
+                result = ghnPost.objects.filter(title__icontains=query)
+            elif category == 'firstaide_safety_tools':
+                result = SafetyToolsPost.objects.filter(title__icontains=query)
             elif category == 'malaria':
-                result = Post.objects.filter(title_post__contains=query)
+                result = Post.objects.filter(title_post__icontains=query)
             else:
-                result = chain(Post.objects.filter(title_post__contains=query),
-                            ghnPost.objects.filter(title__contains=query),
-                            SafetyToolsPost.objects.filter(title__contains=query))
+                result = list(chain(Post.objects.filter(title_post__icontains=query),
+                            ghnPost.objects.filter(title__icontains=query),
+                            SafetyToolsPost.objects.filter(title__icontains=query)))
         return result
 
     def get_context_data(self, **kwargs):

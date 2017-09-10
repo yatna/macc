@@ -9,19 +9,19 @@ from .models import Pcuser
 class EmailRequiredMixin(object):
 	def __init__(self, *args, **kwargs):
 		super(EmailRequiredMixin, self).__init__(*args, **kwargs)
-		#make the email field mandatory
+		# Make the email field mandatory
 		self.fields['email'].required = True
 
 class FirstNameRequiredMixin(object):
 	def __init__(self, *args, **kwargs):
 		super(FirstNameRequiredMixin, self).__init__(*args, **kwargs)
-		#make the first name mandatory
+		# Make the first name mandatory
 		self.fields['first_name'].required = True
 		
 class LastNameRequiredMixin(object):
 	def __init__(self, *args, **kwargs):
 		super(LastNameRequiredMixin, self).__init__(*args, **kwargs)
-		#make the last name mandatory
+		# Make the last name mandatory
 		self.fields['last_name'].required = True
 		
 class MyUserCreationForm(EmailRequiredMixin, FirstNameRequiredMixin, LastNameRequiredMixin, UserCreationForm):
@@ -36,7 +36,7 @@ class EmailRequiredUserAdmin(UserAdmin):
 	add_fieldsets = ((None, {'fields': ('username', 'email', 'first_name', 'last_name',
 						'password1', 'password2'), 'classes' : ('wide',)}),)
 
-#registering the models						
+# Registering the models						
 admin.site.unregister(User)
 admin.site.register(User, EmailRequiredUserAdmin)
 admin.site.register(Pcuser)

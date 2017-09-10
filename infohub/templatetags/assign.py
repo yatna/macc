@@ -10,15 +10,17 @@ class AssignNode(template.Node):
         return ''
 
 def do_assign(parser, token):
-    """
-    Assign an expression to a variable in the current context.
     
-    Syntax::
-        {% assign [name] [value] %}
-    Example::
-        {% assign list entry.get_related %}
+    """
+        Assign an expression to a variable in the current context.
+        
+        Syntax::
+            {% assign [name] [value] %}
+        Example::
+            {% assign list entry.get_related %}
         
     """
+    
     bits = token.contents.split()
     if len(bits) != 3:
         raise template.TemplateSyntaxError("'%s' tag takes two arguments" % bits[0])
